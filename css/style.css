@@ -486,18 +486,25 @@ body.nav-open .hamburger-line:last-child {
     background-color: #0a0a0a;
 }
 
-.hero-video {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+.hero-video-iframe {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100vw;
+    height: 56.25vw; /* 16:9 */
+    min-height: 100vh;
+    min-width: 177.77vh; /* 16:9 */
+    transform: translate(-50%, -50%) scale(1.1);
     filter: grayscale(20%) contrast(1.2);
-    transform: scale(1.1);
-    transition: transform 3.5s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: transform 3.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 1s ease;
+    z-index: -1;
+    pointer-events: none;
 }
 
-.hero.is-loaded .hero-video {
-    transform: scale(1);
+.hero.is-loaded .hero-video-iframe {
+    transform: translate(-50%, -50%) scale(1);
 }
+
 
 .overlay {
     position: absolute;
@@ -856,8 +863,15 @@ body.nav-open .hamburger-line:last-child {
 .portfolio-placeholder {
     width: 100%;
     height: 100%;
-    background-color: #1a1a1a;
+    background: linear-gradient(45deg, #0a0a0a 25%, #151515 50%, #0a0a0a 75%);
+    background-size: 200% 200%;
+    animation: placeholder-shimmer 3s infinite linear;
     transition: transform var(--transition-slow);
+}
+
+@keyframes placeholder-shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
 }
 
 .portfolio-hover-video {
