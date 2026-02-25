@@ -2,30 +2,35 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // LENS PROLOADER STARTED
 
-    // PRELOADER (Lens & Focus Reveal)
+    // PRELOADER (Cinematic Shutter Concept)
     document.body.classList.add('preloader-active');
 
-    // Phase 1: Odaklanma (Focus pull)
+    // Phase 1: Kamera Deklanşörü (Flash) & Yazının Belirmesi
     setTimeout(() => {
-        document.body.classList.add('preloader-focusing');
-    }, 100);
+        document.body.classList.add('preloader-flash');
+    }, 1200);
 
-    // Phase 2: Kameranın İçinden Geçiş (Zoom through)
+    // Phase 2: Dijital Kılıç Darbesi (Blade Strike)
     setTimeout(() => {
-        document.body.classList.add('preloader-zooming');
-    }, 2800);
+        document.body.classList.add('preloader-strike');
+    }, 3200);
 
-    // Phase 3: Tamamlanma ve Hero Tetikleme
+    // Phase 3: İkiye Ayrılma (Split)
     setTimeout(() => {
-        document.body.classList.remove('preloader-active', 'preloader-focusing', 'preloader-zooming');
-        document.body.classList.add('preloader-done');
-
-        // Trigger Hero Animation
+        document.body.classList.add('preloader-split');
+        
+        // As the background splits, trigger the hero animation to start playing behind it
         const heroSection = document.getElementById('hero');
         if (heroSection) {
             heroSection.classList.add('is-loaded');
         }
-    }, 4000);
+    }, 3500);
+
+    // Phase 4: Tamamlanma ve DOM'dan Temizleme
+    setTimeout(() => {
+        document.body.classList.remove('preloader-active', 'preloader-flash', 'preloader-strike', 'preloader-split');
+        document.body.classList.add('preloader-done');
+    }, 4800);
 
     // Header Scroll Effect
     const header = document.getElementById('header');

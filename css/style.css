@@ -121,70 +121,167 @@ h6 {
 }
 
 /* ==========================================================================
-   Preloader (Lens & Focus Reveal)
+   Preloader (Cinematic Shutter Concept)
    ========================================================================== */
 #preloader {
     position: fixed;
     inset: 0;
     background-color: var(--color-bg);
     z-index: 9999;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.preloader-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    overflow: visible;
-    margin-bottom: 2rem;
+.shutter-ring {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60px;
+    height: 60px;
+    border: 1px solid rgba(212, 168, 83, 0.2);
+    border-top-color: var(--color-accent);
+    border-radius: 50%;
+    animation: rotateRing 1.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) infinite;
+    opacity: 1;
+    transition: opacity 0.4s ease, transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.lens-text {
+@keyframes rotateRing {
+    0% { transform: translate(-50%, -50%) rotate(0deg) scale(1); }
+    50% { transform: translate(-50%, -50%) rotate(180deg) scale(1.1); }
+    100% { transform: translate(-50%, -50%) rotate(360deg) scale(1); }
+}
+
+.shutter-flash {
+    position: absolute;
+    inset: 0;
+    background-color: #ffffff;
+    opacity: 0;
+    pointer-events: none;
+    z-index: 2;
+}
+
+.preloader-text-container {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    z-index: 3;
+    pointer-events: none;
+}
+
+.cinematic-text {
     font-family: var(--font-serif);
-    font-size: clamp(2rem, 5vw, 4rem);
+    font-size: clamp(2.5rem, 5vw, 5rem);
     font-weight: 600;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.15em;
     color: var(--color-text);
     text-transform: uppercase;
-    text-align: center;
-    
-    /* Focus & Zoom Initial State */
-    filter: blur(20px);
-    transform: scale(0.6);
-    opacity: 0;
-    transition: filter 2.5s cubic-bezier(0.2, 0.8, 0.2, 1), transform 2.5s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 1.5s ease;
-    will-change: transform, filter, opacity;
+    white-space: nowrap;
+    margin: 0;
+    line-height: 1;
 }
 
-.lens-text-light {
-    color: var(--color-accent);
+.text-light {
+    color: var(--color-accent); /* Golden */
     font-style: italic;
     font-weight: 400;
 }
 
-/* Phase 1: Focusing */
-body.preloader-focusing .lens-text {
-    filter: blur(0px);
-    transform: scale(1);
+.text-slice {
+    position: absolute;
+    left: 0;
+    width: 100vw;
+    text-align: center;
+    overflow: hidden;
+    height: 50vh;
+}
+
+.text-slice-top {
+    top: 0;
+}
+
+.text-slice-top .cinematic-text {
+    position: absolute;
+    bottom: 0px;
+    left: 50%;
+    transform: translateX(-50%) translateY(50%);
+}
+
+.text-slice-bottom {
+    bottom: 0;
+}
+
+.text-slice-bottom .cinematic-text {
+    position: absolute;
+    top: 0px;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+}
+
+.slash-blade {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 0%;
+    height: 1px;
+    background-color: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 0 20px #fff, 0 0 40px var(--color-accent);
+    z-index: 4;
+    transform: translateY(-50%);
+    opacity: 0;
+}
+
+/* STATES */
+body.preloader-flash .shutter-ring {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0);
+}
+
+body.preloader-flash .shutter-flash {
+    animation: flashBang 2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes flashBang {
+    0% { opacity: 0; }
+    5% { opacity: 1; }
+    15% { opacity: 0.8; }
+    100% { opacity: 0; }
+}
+
+body.preloader-flash .preloader-text-container {
     opacity: 1;
+    animation: breatheText 2.3s ease forwards;
 }
 
-/* Phase 2: Zooming Through */
-body.preloader-zooming .lens-text {
-    transform: scale(5);
-    filter: blur(15px);
-    opacity: 0;
-    transition: filter 0.8s ease-in, transform 1.2s ease-in, opacity 0.6s ease-in 0.2s;
+@keyframes breatheText {
+    0% { transform: scale(1.05); filter: blur(4px); }
+    100% { transform: scale(1); filter: blur(0px); }
 }
 
-body.preloader-zooming #preloader {
-    opacity: 0;
+body.preloader-strike .slash-blade {
+    opacity: 1;
+    animation: bladeStrike 0.5s cubic-bezier(0.86, 0, 0.07, 1) forwards;
+}
+
+@keyframes bladeStrike {
+    0% { width: 0%; left: 0; opacity: 1; }
+    40% { width: 100%; left: 0; opacity: 1; }
+    100% { width: 0%; left: 100%; opacity: 0; }
+}
+
+body.preloader-split .text-slice-top {
+    transform: translateY(-100vh) rotate(-2deg);
+    transition: transform 1.2s cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+body.preloader-split .text-slice-bottom {
+    transform: translateY(100vh) rotate(2deg);
+    transition: transform 1.2s cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+body.preloader-split #preloader {
+    background-color: transparent;
     pointer-events: none;
-    transition: opacity 1.2s ease-in 0.3s;
+    transition: background-color 0.8s ease 0.2s;
 }
 
 body.preloader-active {
