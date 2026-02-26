@@ -9,7 +9,7 @@
     --color-bg-hover: #1e1e1e;
     --color-text: #f0f0f0;
     --color-text-muted: #a0a0a0;
-    --color-accent: #D4A853;
+    --color-accent: #d3a87c; /* Premium Champagne Gold */
     --color-border: #2a2a2a;
 
     --font-sans: 'Inter', sans-serif;
@@ -60,6 +60,8 @@ body {
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
 }
+
+
 
 img,
 video {
@@ -121,174 +123,103 @@ h6 {
 }
 
 /* ==========================================================================
-   Preloader (Cinematic Shutter Concept)
+   Preloader (Elegant Brand Reveal Concept)
    ========================================================================== */
-#preloader {
+.elegant-preloader {
     position: fixed;
     inset: 0;
-    background-color: var(--color-bg);
+    background-color: var(--color-bg); /* Siyah arka plan */
     z-index: 9999;
-}
-
-.shutter-ring {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 60px;
-    height: 60px;
-    border: 1px solid rgba(212, 168, 83, 0.2);
-    border-top-color: var(--color-accent);
-    border-radius: 50%;
-    animation: rotateRing 1.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) infinite;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 1.5s cubic-bezier(0.4, 0, 0.2, 1), visibility 1.5s;
     opacity: 1;
-    transition: opacity 0.4s ease, transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    visibility: visible;
 }
 
-@keyframes rotateRing {
-    0% { transform: translate(-50%, -50%) rotate(0deg) scale(1); }
-    50% { transform: translate(-50%, -50%) rotate(180deg) scale(1.1); }
-    100% { transform: translate(-50%, -50%) rotate(360deg) scale(1); }
-}
-
-.shutter-flash {
-    position: absolute;
-    inset: 0;
-    background-color: #ffffff;
+.elegant-preloader.fade-out {
     opacity: 0;
-    pointer-events: none;
-    z-index: 2;
+    visibility: hidden;
 }
 
-.preloader-text-container {
-    position: absolute;
-    inset: 0;
-    opacity: 0;
-    z-index: 3;
-    pointer-events: none;
+.elegant-content {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: hidden; /* Taşmaları gizle */
 }
 
-.cinematic-text {
+.elegant-title {
     font-family: var(--font-serif);
-    font-size: clamp(2.5rem, 5vw, 5rem);
+    font-size: clamp(2.5rem, 6vw, 5.5rem);
     font-weight: 600;
-    letter-spacing: 0.15em;
+    letter-spacing: 0.1em;
     color: var(--color-text);
     text-transform: uppercase;
-    white-space: nowrap;
     margin: 0;
-    line-height: 1;
+    line-height: 1.1;
+    display: flex;
+    gap: 1rem;
+    overflow: hidden; /* Kelimelerin aşağıdan çıkması için gizle */
 }
 
-.text-light {
-    color: var(--color-accent); /* Golden */
+.elegant-title .word {
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(100%); /* Aşağıda başla */
+    transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1), transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.elegant-title .text-light {
+    color: var(--color-accent);
     font-style: italic;
     font-weight: 400;
 }
 
-.text-slice {
-    position: absolute;
-    left: 0;
-    width: 100vw;
-    text-align: center;
-    overflow: hidden;
-    height: 50vh;
-}
-
-.text-slice-top {
-    top: 0;
-}
-
-.text-slice-top .cinematic-text {
-    position: absolute;
-    bottom: 0px;
-    left: 50%;
-    transform: translateX(-50%) translateY(50%);
-}
-
-.text-slice-bottom {
-    bottom: 0;
-}
-
-.text-slice-bottom .cinematic-text {
-    position: absolute;
-    top: 0px;
-    left: 50%;
-    transform: translateX(-50%) translateY(-50%);
-}
-
-.slash-blade {
-    position: absolute;
-    top: 50%;
-    left: 0;
+/* Çizgi */
+.elegant-line {
     width: 0%;
     height: 1px;
-    background-color: rgba(255, 255, 255, 0.9);
-    box-shadow: 0 0 20px #fff, 0 0 40px var(--color-accent);
-    z-index: 4;
-    transform: translateY(-50%);
+    background-color: var(--color-accent);
+    margin: 1.5rem 0;
+    transition: width 1.5s cubic-bezier(0.25, 1, 0.5, 1);
+    opacity: 0.7;
+}
+
+/* Alt başlık */
+.elegant-subtitle {
+    font-family: var(--font-sans);
+    font-size: clamp(0.9rem, 1.5vw, 1.1rem);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.7);
+    margin: 0;
     opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 1.2s ease, transform 1.2s ease;
 }
 
-/* STATES */
-body.preloader-flash .shutter-ring {
-    opacity: 0;
-    transform: translate(-50%, -50%) scale(0);
-}
-
-body.preloader-flash .shutter-flash {
-    animation: flashBang 2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
-
-@keyframes flashBang {
-    0% { opacity: 0; }
-    5% { opacity: 1; }
-    15% { opacity: 0.8; }
-    100% { opacity: 0; }
-}
-
-body.preloader-flash .preloader-text-container {
+/* Animasyon Sınıfları (JS ile eklenecek) */
+body.preloader-active .elegant-title .word {
     opacity: 1;
-    animation: breatheText 2.3s ease forwards;
+    transform: translateY(0);
 }
 
-@keyframes breatheText {
-    0% { transform: scale(1.05); filter: blur(4px); }
-    100% { transform: scale(1); filter: blur(0px); }
+body.preloader-active .elegant-title .word.delay-1 { transition-delay: 0.2s; }
+body.preloader-active .elegant-title .word.delay-2 { transition-delay: 0.4s; }
+
+body.line-active .elegant-line {
+    width: 60%; /* Çizginin genişliği */
 }
 
-body.preloader-strike .slash-blade {
+body.subtitle-active .elegant-subtitle {
     opacity: 1;
-    animation: bladeStrike 0.5s cubic-bezier(0.86, 0, 0.07, 1) forwards;
+    transform: translateY(0);
 }
 
-@keyframes bladeStrike {
-    0% { width: 0%; left: 0; opacity: 1; }
-    40% { width: 100%; left: 0; opacity: 1; }
-    100% { width: 0%; left: 100%; opacity: 0; }
-}
-
-body.preloader-split .text-slice-top {
-    transform: translateY(-100vh) rotate(-2deg);
-    transition: transform 1.2s cubic-bezier(0.77, 0, 0.175, 1);
-}
-
-body.preloader-split .text-slice-bottom {
-    transform: translateY(100vh) rotate(2deg);
-    transition: transform 1.2s cubic-bezier(0.77, 0, 0.175, 1);
-}
-
-body.preloader-split #preloader {
-    background-color: transparent;
-    pointer-events: none;
-    transition: background-color 0.8s ease 0.2s;
-}
-
-body.preloader-active {
-    overflow: hidden;
-}
-
-body.preloader-done #preloader {
+body.preloader-done .elegant-preloader {
     display: none;
 }
 
@@ -421,6 +352,38 @@ body.preloader-done #preloader {
     width: 100%;
     left: 0;
     box-shadow: 0 0 10px rgba(212, 168, 83, 0.6);
+}
+
+/* Language Switcher Styles */
+.lang-switcher {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-left: 1rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.lang-btn {
+    background: none;
+    border: none;
+    color: var(--color-text-muted);
+    cursor: pointer;
+    padding: 0.2rem 0.4rem;
+    transition: color var(--transition-fast);
+    letter-spacing: 1px;
+}
+
+.lang-btn.active {
+    color: var(--color-accent);
+}
+
+.lang-btn:hover:not(.active) {
+    color: var(--color-text);
+}
+
+.lang-divider {
+    color: rgba(255, 255, 255, 0.2);
 }
 
 /* Mobile Nav Toggle */
@@ -715,198 +678,183 @@ body.nav-open .hamburger-line:last-child {
 }
 
 /* ==========================================================================
-   Services Section (Concept 2: Cinematic Accordion)
+   Services Section (Concept 3: Luxury Asymmetric Hover Reveal)
    ========================================================================== */
-.services-accordion {
+.luxury-services-container {
+    padding: 6rem 0;
+}
+
+.luxury-services-wrapper {
     display: flex;
     flex-direction: column;
-    margin-top: 3rem;
+    gap: 4rem;
+    margin-top: 4rem;
+}
+
+@media (min-width: 992px) {
+    .luxury-services-wrapper {
+        flex-direction: row;
+        align-items: flex-start;
+        justify-content: space-between;
+    }
+}
+
+/* Sol Taraf: Liste */
+.services-list {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
     border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.accordion-item {
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    overflow: hidden;
-    transition: background-color var(--transition-normal);
-}
-
-.accordion-header {
+.sc-item {
     display: flex;
     align-items: center;
     gap: 2rem;
     padding: 2.5rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     cursor: pointer;
-    transition: padding var(--transition-normal);
+    transition: all var(--transition-normal);
+    position: relative;
+    overflow: hidden;
 }
 
-.service-number {
-    font-family: var(--font-secondary);
+/* Hover Efekti için Arka Plan Vurgusu */
+.sc-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: 100%;
+    background: linear-gradient(90deg, rgba(211, 168, 124, 0.05) 0%, transparent 100%);
+    transition: width var(--transition-slow);
+    z-index: 0;
+}
+
+.sc-item:hover::before,
+.sc-item.active::before {
+    width: 100%;
+}
+
+.sc-num {
+    font-family: var(--font-serif);
     font-size: 1.2rem;
     color: var(--color-text-muted);
     font-style: italic;
     font-weight: 300;
     transition: color var(--transition-normal);
+    z-index: 1;
 }
 
-.accordion-title {
-    font-size: clamp(1.8rem, 4vw, 3rem);
+.sc-title {
+    font-size: clamp(1.8rem, 3vw, 2.8rem);
     font-weight: 400;
     text-transform: uppercase;
     letter-spacing: 0.02em;
-    flex-grow: 1;
     margin: 0;
     transition: color var(--transition-normal), transform var(--transition-normal);
     transform-origin: left center;
+    z-index: 1;
+    color: var(--color-text-muted);
 }
 
-.accordion-toggle {
-    width: 40px;
-    height: 40px;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 50%;
-    position: relative;
-    transition: transform var(--transition-normal), border-color var(--transition-normal);
+/* Aktif Durum (Sayfada gösterilen öğe) */
+.sc-item.active .sc-num {
+    color: var(--color-accent);
 }
 
-.accordion-toggle::before,
-.accordion-toggle::after {
-    content: '';
-    position: absolute;
-    background-color: var(--color-text);
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    transition: background-color var(--transition-normal), transform var(--transition-normal);
+.sc-item.active .sc-title {
+    color: var(--color-text);
+    transform: translateX(20px);
 }
 
-.accordion-toggle::before {
-    width: 14px;
-    height: 2px;
+/* Hover Durumu (Interactivity) */
+@media (hover: hover) {
+    .sc-item:hover .sc-title {
+        color: var(--color-text);
+        transform: translateX(10px);
+    }
 }
 
-.accordion-toggle::after {
-    width: 2px;
-    height: 14px;
-}
-
-/* Accordion Body */
-.accordion-body {
-    max-height: 0;
-    opacity: 0;
-    transition: max-height 0.8s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.6s ease;
-}
-
-.accordion-body-inner {
-    display: flex;
-    gap: 3rem;
-    padding-bottom: 3rem;
-    transform: translateY(20px);
-    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.accordion-media {
+/* Sağ Taraf: Görsel ve İçerik Gösterimi */
+.services-display {
     flex: 1;
-    height: 300px;
+    position: relative;
+    height: 600px; /* Sabit bir yükseklik, ihtiyaca göre ayarlanabilir */
+    width: 100%;
     border-radius: 4px;
     overflow: hidden;
-    position: relative;
+}
+
+.sc-content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.8s ease, visibility 0.8s;
+    display: flex;
+    flex-direction: column;
+}
+
+.sc-content.active {
+    opacity: 1;
+    visibility: visible;
+    z-index: 2;
+}
+
+.sc-image-wrapper {
+    width: 100%;
+    height: 75%;
+    overflow: hidden;
     background-color: var(--color-bg-alt);
 }
 
-.accordion-image,
-.accordion-video {
+.sc-image-wrapper img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    display: block;
-    transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+    transform: scale(1.1);
+    transition: transform 1.5s cubic-bezier(0.16, 1, 0.3, 1);
+    filter: brightness(0.85); /* Sinematik karanlık */
 }
 
-.accordion-text {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+/* Aktif görselin yavaşça zoom out yapması (Luxury feel) */
+.sc-content.active .sc-image-wrapper img {
+    transform: scale(1);
+    filter: brightness(1);
 }
 
-.accordion-text .service-desc {
+.sc-desc {
+    margin-top: 2rem;
     color: var(--color-text-muted);
-    font-size: 1.15rem;
-    line-height: 1.7;
-    margin: 0;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    transform: translateY(20px);
+    opacity: 0;
+    transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    transition-delay: 0.2s; /* Görselden hemen sonra gelsin */
 }
 
-/* Active State */
-.accordion-item.active .accordion-header {
-    padding-bottom: 1.5rem;
-}
-
-.accordion-item.active .accordion-title {
-    color: var(--color-accent);
-}
-
-.accordion-item.active .service-number {
-    color: var(--color-accent);
-}
-
-.accordion-item.active .accordion-toggle {
-    transform: rotate(45deg);
-    border-color: var(--color-accent);
-}
-
-.accordion-item.active .accordion-toggle::before,
-.accordion-item.active .accordion-toggle::after {
-    background-color: var(--color-accent);
-}
-
-.accordion-item.active .accordion-body {
-    max-height: 500px;
+.sc-content.active .sc-desc {
+    transform: translateY(0);
     opacity: 1;
 }
 
-.accordion-item.active .accordion-body-inner {
-    transform: translateY(0);
-}
-
-.accordion-item.active .accordion-image,
-.accordion-item.active .accordion-video {
-    transform: scale(1.05);
-}
-
-/* Hover over active state header */
-@media (hover: hover) {
-    .accordion-item:not(.active):hover .accordion-title {
-        color: var(--color-accent);
+/* Responsive (Mobil için uyarlamalar) */
+@media (max-width: 991px) {
+    .services-display {
+        height: 400px;
+        order: -1; /* Görsel mobilde listenin üstüne çıksın */
+    }
+    
+    .sc-item.active .sc-title {
         transform: translateX(10px);
     }
-
-    .accordion-item:not(.active):hover .accordion-toggle {
-        border-color: rgba(255, 255, 255, 0.5);
-    }
 }
-
-/* Responsive adjustments */
-@media (max-width: 768px) {
-    .accordion-header {
-        padding: 1.5rem 0;
-        gap: 1rem;
-    }
-
-    .accordion-body-inner {
-        flex-direction: column;
-        gap: 1.5rem;
-        padding-bottom: 2rem;
-    }
-
-    .accordion-media {
-        height: 200px;
-    }
-
-    .accordion-item.active .accordion-body {
-        max-height: 800px;
-    }
-}
-
 /* ==========================================================================
    Portfolio Section
    ========================================================================== */
@@ -1113,33 +1061,31 @@ body.nav-open .hamburger-line:last-child {
 .contact-form {
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
-}
-
-.form-group {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
+    display: grid;
+    gap: 2rem;
 }
 
 .form-group label {
-    font-size: 0.85rem;
+    display: block;
+    font-size: 0.8rem;
     text-transform: uppercase;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.1em;
+    margin-bottom: 0.8rem;
     color: var(--color-text-muted);
 }
 
 .form-group input,
 .form-group select,
 .form-group textarea {
+    width: 100%;
     background-color: transparent;
     border: none;
     border-bottom: 1px solid var(--color-border);
-    color: var(--color-text);
     padding: 1rem 0;
-    font-family: inherit;
+    color: var(--color-text);
+    font-family: var(--font-sans);
     font-size: 1rem;
-    transition: border-color var(--transition-fast);
+    transition: border-color var(--transition-normal);
 }
 
 .form-group input:focus,
@@ -1147,6 +1093,11 @@ body.nav-open .hamburger-line:last-child {
 .form-group textarea:focus {
     outline: none;
     border-color: var(--color-accent);
+}
+
+.form-group select option {
+    background-color: var(--color-bg);
+    color: var(--color-text);
 }
 
 /* Fix dropdown styling for dark theme */

@@ -36,21 +36,16 @@
         <span class="cursor-text"></span>
     </div>
 
-    <!-- Cinematic Shutter Preloader -->
-    <div id="preloader">
-        <div class="shutter-ring"></div>
-        <div class="shutter-flash"></div>
-        
-        <div class="preloader-text-container">
-            <div class="text-slice text-slice-top">
-                <h1 class="cinematic-text">IMPULSE <span class="text-light">PRODUCTION</span></h1>
-            </div>
-            <div class="text-slice text-slice-bottom">
-                <h1 class="cinematic-text">IMPULSE <span class="text-light">PRODUCTION</span></h1>
-            </div>
+    <!-- Elegant Brand Reveal Preloader -->
+    <div id="preloader" class="elegant-preloader">
+        <div class="elegant-content">
+            <h1 class="elegant-title">
+                <span class="word delay-1">IMPULSE</span> 
+                <span class="word delay-2 text-light">PRODUCTION</span>
+            </h1>
+            <div class="elegant-line"></div>
+            <p class="elegant-subtitle delay-3">Cinematic Visuals & Digital Branding</p>
         </div>
-        
-        <div class="slash-blade"></div>
     </div>
 
     <!-- Header / Navigation -->
@@ -58,12 +53,19 @@
         <div class="container header-container">
             <a href="#" class="logo">Impulse Production</a>
             <nav class="nav">
-                <a href="#leistungen" class="nav-link" data-text="Leistungen">Leistungen</a>
-                <a href="#portfolio" class="nav-link" data-text="Portfolio">Portfolio</a>
-                <a href="#ueber-mich" class="nav-link" data-text="Über mich">Über mich</a>
-                <a href="#kontakt" class="nav-link" data-text="Kontakt">Kontakt</a>
+                <a href="#leistungen" class="nav-link" data-text="Leistungen" data-i18n="nav-services">Leistungen</a>
+                <a href="#portfolio" class="nav-link" data-text="Portfolio" data-i18n="nav-portfolio">Portfolio</a>
+                <a href="#ueber-mich" class="nav-link" data-text="Über mich" data-i18n="nav-about">Über mich</a>
+                <a href="#kontakt" class="nav-link" data-text="Kontakt" data-i18n="nav-contact">Kontakt</a>
+                
+                <!-- Language Switcher -->
+                <div class="lang-switcher">
+                    <button class="lang-btn active" data-lang="de">DE</button>
+                    <span class="lang-divider">|</span>
+                    <button class="lang-btn" data-lang="tr">TR</button>
+                </div>
             </nav>
-            <button class="mobile-nav-toggle" aria-label="Menüyü Aç/Kapat">
+            <button class="mobile-nav-toggle" aria-label="Menü">
                 <span class="hamburger-line"></span>
                 <span class="hamburger-line"></span>
             </button>
@@ -93,163 +95,116 @@
 
         <div class="hero-content container">
             <div class="reveal-mask">
-                <h1 class="hero-title">Ihre Geschichte</h1>
+                <h1 class="hero-title" data-i18n="hero-title-1">Ihre Geschichte</h1>
             </div>
             <div class="reveal-mask">
-                <h1 class="hero-title">Filmisch <span class="title-highlight">Erzählt</span></h1>
+                <h1 class="hero-title"><span data-i18n="hero-title-2">Filmisch</span> <span class="title-highlight" data-i18n="hero-title-3">Erzählt</span></h1>
             </div>
             <div class="reveal-mask delay-1">
-                <p class="hero-subtitle">Definieren Sie die Geschichte Ihrer Marke durch erstklassige Videoproduktion,
-                    Branding und visionäre digitale Lösungen neu.</p>
+                <p class="hero-subtitle" data-i18n="hero-subtitle">Definieren Sie die Geschichte Ihrer Marke durch erstklassige Videoproduktion, Branding und visionäre digitale Lösungen neu.</p>
             </div>
             <div class="reveal-mask delay-2">
                 <a href="#kontakt" class="cta-link">
                     <span class="cta-line"></span>
-                    <span class="cta-text">Angebot einholen</span>
+                    <span class="cta-text" data-i18n="hero-cta">Angebot einholen</span>
                 </a>
             </div>
         </div>
     </section>
 
-    <!-- Hizmetler Section -->
+    <!-- Hizmetler Section (Premium Hover Reveal Layout) -->
     <section class="services section" id="leistungen">
-        <div class="container">
-            <h2 class="section-title">Leistungen</h2>
-            <div class="services-accordion">
+        <div class="container luxury-services-container">
+            <h2 class="section-title fade-in-element" data-i18n="services-title">Leistungen</h2>
+            
+            <div class="luxury-services-wrapper">
+                <!-- Sol Taraf: Liste -->
+                <div class="services-list fade-in-element">
+                    
+                    <div class="sc-item" data-index="0">
+                        <span class="sc-num">01</span>
+                        <h3 class="sc-title" data-i18n="service-title-1">Videoproduktion & Schnitt</h3>
+                    </div>
+                
+                    <div class="sc-item" data-index="1">
+                        <span class="sc-num">02</span>
+                        <h3 class="sc-title" data-i18n="service-title-2">Drohnenaufnahmen</h3>
+                    </div>
 
-                <!-- Item 1: Video Çekim -->
-                <div class="accordion-item active">
-                    <div class="accordion-header">
-                        <span class="service-number">01</span>
-                        <h3 class="accordion-title">Videoproduktion & Schnitt</h3>
-                        <div class="accordion-toggle"></div>
+                    <div class="sc-item" data-index="2">
+                        <span class="sc-num">03</span>
+                        <h3 class="sc-title" data-i18n="service-title-3">Markenbildung (Branding)</h3>
                     </div>
-                    <div class="accordion-body">
-                        <div class="accordion-body-inner">
-                            <div class="accordion-media">
-                                <!-- Örnek Görsel: Kendi videonuzu/görselinizi 'src' kısmına ekleyeceksiniz -->
-                                <img src="https://images.unsplash.com/photo-1601506521937-0121a7fc2a6b?q=80&w=800&auto=format&fit=crop"
-                                    alt="Video Production" class="accordion-image">
-                            </div>
-                            <div class="accordion-text">
-                                <p class="service-desc">Premium-Videoinhalte, die die visuelle Seele Ihrer Marke mit
-                                    High-End-Equipment und filmischen Schnitttechniken einfangen. Wir erzählen Ihre
-                                    Geschichte mit atemberaubender Visualität.</p>
-                            </div>
-                        </div>
+
+                    <div class="sc-item" data-index="3">
+                        <span class="sc-num">04</span>
+                        <h3 class="sc-title" data-i18n="service-title-4">Landingpage-Erstellung</h3>
                     </div>
+
+                    <div class="sc-item" data-index="4">
+                        <span class="sc-num">05</span>
+                        <h3 class="sc-title" data-i18n="service-title-5">QR-Code-Design</h3>
+                    </div>
+
+                    <div class="sc-item" data-index="5">
+                        <span class="sc-num">06</span>
+                        <h3 class="sc-title" data-i18n="service-title-6">Webdesign</h3>
+                    </div>
+
                 </div>
 
-                <!-- Item 2: Drone -->
-                <div class="accordion-item">
-                    <div class="accordion-header">
-                        <span class="service-number">02</span>
-                        <h3 class="accordion-title">Drohnenaufnahmen</h3>
-                        <div class="accordion-toggle"></div>
-                    </div>
-                    <div class="accordion-body">
-                        <div class="accordion-body-inner">
-                            <div class="accordion-media">
-                                <img src="https://images.unsplash.com/photo-1508614589041-895b88991e3e?q=80&w=800&auto=format&fit=crop"
-                                    alt="Drone Cinematography" class="accordion-image">
-                            </div>
-                            <div class="accordion-text">
-                                <p class="service-desc">Wechseln Sie die Perspektive. Verleihen Sie Ihren Projekten
-                                    filmische Größe und makellose Pracht mit 4K-Luftaufnahmen. Luxuriöse Details aus der
-                                    Luft für Architektur- und Unternehmenspräsentationen.</p>
-                            </div>
+                <!-- Sağ Taraf: Görsel ve Açıklama Gösterimi -->
+                <div class="services-display fade-in-element">
+                    
+                    <!-- Item 1 Content -->
+                    <div class="sc-content active" data-content="0">
+                        <div class="sc-image-wrapper">
+                            <img src="https://images.unsplash.com/photo-1601506521937-0121a7fc2a6b?q=80&w=800&auto=format&fit=crop" alt="Video Production">
                         </div>
+                        <p class="sc-desc" data-i18n="service-desc-1">Premium-Videoinhalte, die die visuelle Seele Ihrer Marke mit High-End-Equipment und filmischen Schnitttechniken einfangen. Wir erzählen Ihre Geschichte mit atemberaubender Visualität.</p>
                     </div>
-                </div>
 
-                <!-- Item 3: Branding -->
-                <div class="accordion-item">
-                    <div class="accordion-header">
-                        <span class="service-number">03</span>
-                        <h3 class="accordion-title">Markenbildung (Branding)</h3>
-                        <div class="accordion-toggle"></div>
-                    </div>
-                    <div class="accordion-body">
-                        <div class="accordion-body-inner">
-                            <div class="accordion-media">
-                                <img src="https://images.unsplash.com/photo-1626785774573-4b799315345d?q=80&w=800&auto=format&fit=crop"
-                                    alt="Branding & Design" class="accordion-image">
-                            </div>
-                            <div class="accordion-text">
-                                <p class="service-desc">Indem wir Ihre Corporate Identity neu erfinden, bauen wir ein
-                                    einprägsames Premium-Markenimage auf, das sich von Ihren Mitbewerbern abhebt. Eine
-                                    ganzheitliche Vision von Ihrem Logo bis zur Farbpalette.</p>
-                            </div>
+                    <!-- Item 2 Content -->
+                    <div class="sc-content" data-content="1">
+                        <div class="sc-image-wrapper">
+                            <img src="https://images.unsplash.com/photo-1508614589041-895b88991e3e?q=80&w=800&auto=format&fit=crop" alt="Drone Cinematography">
                         </div>
+                        <p class="sc-desc" data-i18n="service-desc-2">Wechseln Sie die Perspektive. Verleihen Sie Ihren Projekten filmische Größe und makellose Pracht mit 4K-Luftaufnahmen. Luxuriöse Details aus der Luft für Architektur- und Unternehmenspräsentationen.</p>
                     </div>
-                </div>
 
-                <!-- Item 4: Landing Page -->
-                <div class="accordion-item">
-                    <div class="accordion-header">
-                        <span class="service-number">04</span>
-                        <h3 class="accordion-title">Landingpage-Erstellung</h3>
-                        <div class="accordion-toggle"></div>
-                    </div>
-                    <div class="accordion-body">
-                        <div class="accordion-body-inner">
-                            <div class="accordion-media">
-                                <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=800&auto=format&fit=crop"
-                                    alt="Landing Page Design" class="accordion-image">
-                            </div>
-                            <div class="accordion-text">
-                                <p class="service-desc">Ästhetisch reine, konversionsstarke Landingpages, die extrem
-                                    schnell laden und Ihre Zielgruppe direkt zum Handeln anregen. Eine digitale Waffe
-                                    für Ihre Kampagnen.</p>
-                            </div>
+                    <!-- Item 3 Content -->
+                    <div class="sc-content" data-content="2">
+                        <div class="sc-image-wrapper">
+                            <img src="https://images.unsplash.com/photo-1626785774573-4b799315345d?q=80&w=800&auto=format&fit=crop" alt="Branding & Design">
                         </div>
+                        <p class="sc-desc" data-i18n="service-desc-3">Indem wir Ihre Corporate Identity neu erfinden, bauen wir ein einprägsames Premium-Markenimage auf, das sich von Ihren Mitbewerbern abhebt. Eine ganzheitliche Vision von Ihrem Logo bis zur Farbpalette.</p>
                     </div>
-                </div>
 
-                <!-- Item 5: QR Code -->
-                <div class="accordion-item">
-                    <div class="accordion-header">
-                        <span class="service-number">05</span>
-                        <h3 class="accordion-title">QR-Code-Design</h3>
-                        <div class="accordion-toggle"></div>
-                    </div>
-                    <div class="accordion-body">
-                        <div class="accordion-body-inner">
-                            <div class="accordion-media">
-                                <img src="https://images.unsplash.com/photo-1595054225576-80516fc981db?q=80&w=800&auto=format&fit=crop"
-                                    alt="QR Code Interaction" class="accordion-image">
-                            </div>
-                            <div class="accordion-text">
-                                <p class="service-desc">Speziell für Ihre Marke entwickelte Premium-QR-Code-Lösungen und
-                                    Menüs, die die physische mit der digitalen Welt auf eleganteste Weise verbinden.
-                                    Verwandelt gewöhnliche Quadrate in luxuriöse Interaktionen.</p>
-                            </div>
+                    <!-- Item 4 Content -->
+                    <div class="sc-content" data-content="3">
+                        <div class="sc-image-wrapper">
+                            <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=800&auto=format&fit=crop" alt="Landing Page Design">
                         </div>
+                        <p class="sc-desc" data-i18n="service-desc-4">Ästhetisch reine, konversionsstarke Landingpages, die extrem schnell laden und Ihre Zielgruppe direkt zum Handeln anregen. Eine digitale Waffe für Ihre Kampagnen.</p>
                     </div>
-                </div>
 
-                <!-- Item 6: Web Design -->
-                <div class="accordion-item">
-                    <div class="accordion-header">
-                        <span class="service-number">06</span>
-                        <h3 class="accordion-title">Webdesign</h3>
-                        <div class="accordion-toggle"></div>
-                    </div>
-                    <div class="accordion-body">
-                        <div class="accordion-body-inner">
-                            <div class="accordion-media">
-                                <img src="https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?q=80&w=800&auto=format&fit=crop"
-                                    alt="Web Design Showcase" class="accordion-image">
-                            </div>
-                            <div class="accordion-text">
-                                <p class="service-desc">Makellos funktionierende digitale Schaufenster, die mit feinen
-                                    Details verwoben sind und all Ihre Dienstleistungen und Ihre Vision präsentieren.
-                                    Der Punkt, an dem User Experience (UX) auf luxuriöses Design trifft.</p>
-                            </div>
+                    <!-- Item 5 Content -->
+                    <div class="sc-content" data-content="4">
+                        <div class="sc-image-wrapper">
+                            <img src="https://images.unsplash.com/photo-1595054225576-80516fc981db?q=80&w=800&auto=format&fit=crop" alt="QR Code Interaction">
                         </div>
+                        <p class="sc-desc" data-i18n="service-desc-5">Speziell für Ihre Marke entwickelte Premium-QR-Code-Lösungen und Menüs, die die physische mit der digitalen Welt auf eleganteste Weise verbinden. Verwandelt gewöhnliche Quadrate in luxuriöse Interaktionen.</p>
                     </div>
-                </div>
 
+                    <!-- Item 6 Content -->
+                    <div class="sc-content" data-content="5">
+                        <div class="sc-image-wrapper">
+                            <img src="https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?q=80&w=800&auto=format&fit=crop" alt="Web Design">
+                        </div>
+                        <p class="sc-desc" data-i18n="service-desc-6">Makellos funktionierende digitale Schaufenster, die mit feinen Details verwoben sind und all Ihre Dienstleistungen und Ihre Vision präsentieren. Der Punkt, an dem User Experience (UX) auf luxuriöses Design trifft.</p>
+                    </div>
+
+                </div>
             </div>
         </div>
     </section>
@@ -257,7 +212,7 @@
     <!-- Portföy Section -->
     <section class="portfolio section bg-darker" id="portfolio">
         <div class="container">
-            <h2 class="section-title">Portfolio</h2>
+            <h2 class="section-title" data-i18n="portfolio-title">Portfolio</h2>
             <div class="portfolio-grid">
 
 
@@ -284,8 +239,8 @@
                         </div>
                     </div>
                     <div class="portfolio-info">
-                        <h3>Fine Dining & Kulinarik</h3>
-                        <p>Exklusive Restaurant-Präsentation</p>
+                        <h3 data-i18n="portfolio-item-1-title">Fine Dining & Kulinarik</h3>
+                        <p data-i18n="portfolio-item-1-desc">Exklusive Restaurant-Präsentation</p>
                     </div>
                 </div>
 
@@ -299,8 +254,8 @@
                         </div>
                     </div>
                     <div class="portfolio-info">
-                        <h3>Luftaufnahmen & Drone Shots</h3>
-                        <p>Filmische Perspektiven mit Dynamik</p>
+                        <h3 data-i18n="portfolio-item-2-title">Luftaufnahmen & Drone Shots</h3>
+                        <p data-i18n="portfolio-item-2-desc">Filmische Perspektiven mit Dynamik</p>
                     </div>
                 </div>
 
@@ -314,8 +269,8 @@
                         </div>
                     </div>
                     <div class="portfolio-info">
-                        <h3>Orient-Küche & Digitales Menü</h3>
-                        <p>Tradition trifft auf moderne Ästhetik</p>
+                        <h3 data-i18n="portfolio-item-3-title">Orient-Küche & Digitales Menü</h3>
+                        <p data-i18n="portfolio-item-3-desc">Tradition trifft auf moderne Ästhetik</p>
                     </div>
                 </div>
 
@@ -329,8 +284,8 @@
                         </div>
                     </div>
                     <div class="portfolio-info">
-                        <h3>Event-Locations & Atmosphäre</h3>
-                        <p>Unvergessliche Augenblicke festgehalten</p>
+                        <h3 data-i18n="portfolio-item-4-title">Event-Locations & Atmosphäre</h3>
+                        <p data-i18n="portfolio-item-4-desc">Unvergessliche Augenblicke festgehalten</p>
                     </div>
                 </div>
 
@@ -342,15 +297,15 @@
     <section class="about section" id="ueber-mich">
         <div class="container about-container">
             <div class="about-content">
-                <h2 class="section-title">Über mich</h2>
-                <p class="about-text delay-100">
+                <h2 class="section-title" data-i18n="about-title">Über mich</h2>
+                <p class="about-text delay-100" data-i18n="about-text-1">
                     Es ist nicht wichtig, wie hochwertig Ihr Produkt ist, wenn Sie es nicht der richtigen Zielgruppe auf
                     die richtige Art und Weise präsentieren. Wahre Kunst liegt in der Sichtbarkeit. Ein Meisterwerk, das
                     im Verborgenen bleibt, erreicht niemals die Massen. Mein Hauptfokus liegt darauf, die Qualität Ihrer
                     Arbeit mit der Ästhetik, der Seele und der Leidenschaft Ihrer Marke so filmisch wie möglich in der
                     digitalen Welt zu vereinen.
                 </p>
-                <p class="about-text delay-200">
+                <p class="about-text delay-200" data-i18n="about-text-2">
                     Von auffälligen Video- und Drohnenproduktionen bis hin zu konversionsstarken Landingpages und
                     ganzheitlichen Branding-Lösungen; ich entwerfe und konzipiere Ihre Projekte, um sie so zu verpacken,
                     dass sie bei Ihrem Publikum einen unvergesslichen <strong>Premium</strong>-Eindruck hinterlassen.
@@ -364,8 +319,8 @@
     <section class="contact section bg-darker" id="kontakt">
         <div class="container contact-container">
             <div class="contact-header">
-                <h2 class="section-title">Kostenlose Erstberatung</h2>
-                <p>Jede Marke ist einzigartig. Erzählen Sie uns von Ihrer Vision, und wir entwickeln ein maßgeschneidertes digitales Konzept, das Ihr Unternehmen auf das nächste <strong>Premium-Level</strong> hebt.</p>
+                <h2 class="section-title" data-i18n="contact-title">Kostenlose Erstberatung</h2>
+                <p data-i18n="contact-subtitle">Jede Marke ist einzigartig. Erzählen Sie uns von Ihrer Vision, und wir entwickeln ein maßgeschneidertes digitales Konzept, das Ihr Unternehmen auf das nächste <strong>Premium-Level</strong> hebt.</p>
                 <div class="contact-mail-wrapper">
                     <a href="mailto:heysemgate@gmail.com" class="cta-link contact-mail-cta">
                         <span class="cta-line"></span>
@@ -377,40 +332,40 @@
             <form class="contact-form" action="https://formspree.io/f/heysemgate@gmail.com" method="POST"
                 id="contactForm">
                 <div class="form-group">
-                    <label for="name">Ihr Name / Unternehmen</label>
-                    <input type="text" id="name" name="name" required placeholder="Geben Sie Ihren Namen ein">
+                    <label for="name" data-i18n="form-label-name">Ihr Name / Unternehmen</label>
+                    <input type="text" id="name" name="name" required placeholder="Geben Sie Ihren Namen ein" data-i18n-placeholder="form-placeholder-name">
                 </div>
 
                 <div class="form-group">
-                    <label for="email">Ihre E-Mail-Adresse</label>
-                    <input type="email" id="email" name="email" required placeholder="beispiel@email.com">
+                    <label for="email" data-i18n="form-label-email">Ihre E-Mail-Adresse</label>
+                    <input type="email" id="email" name="email" required placeholder="beispiel@email.com" data-i18n-placeholder="form-placeholder-email">
                 </div>
 
                 <div class="form-group">
-                    <label for="challenge">Ihre größte aktuelle digitale Herausforderung</label>
+                    <label for="challenge" data-i18n="form-label-challenge">Ihre größte aktuelle digitale Herausforderung</label>
                     <select id="challenge" name="challenge" required>
-                        <option value="">Bitte wählen</option>
-                        <option value="brand_awareness">Markenbekanntheit steigern</option>
-                        <option value="lead_generation">Mehr Buchungen / Anfragen generieren</option>
-                        <option value="rebranding">Ein neues, luxuriöses Markenimage (Rebranding)</option>
-                        <option value="video_content">Premium Video & Content Erstellung</option>
-                        <option value="custom">Individuelle Strategie benötigt</option>
+                        <option value="" data-i18n="form-option-default">Bitte wählen</option>
+                        <option value="brand_awareness" data-i18n="form-option-1">Markenbekanntheit steigern</option>
+                        <option value="lead_generation" data-i18n="form-option-2">Mehr Buchungen / Anfragen generieren</option>
+                        <option value="rebranding" data-i18n="form-option-3">Ein neues, luxuriöses Markenimage (Rebranding)</option>
+                        <option value="video_content" data-i18n="form-option-4">Premium Video & Content Erstellung</option>
+                        <option value="custom" data-i18n="form-option-5">Individuelle Strategie benötigt</option>
                     </select>
                 </div>
 
                 <div class="form-group">
-                    <label for="message">Erzählen Sie uns mehr über Ihre Ziele (Optional)</label>
+                    <label for="message" data-i18n="form-label-message">Erzählen Sie uns mehr über Ihre Ziele (Optional)</label>
                     <textarea id="message" name="message" rows="4"
-                        placeholder="Z.B.: 'Wir möchten in den nächsten 6 Monaten unsere Reservierungen im Fine-Dining Bereich um 20% steigern...'"></textarea>
+                        placeholder="Z.B.: 'Wir möchten in den nächsten 6 Monaten unsere Reservierungen im Fine-Dining Bereich um 20% steigern...'" data-i18n-placeholder="form-placeholder-message"></textarea>
                 </div>
 
-                <button type="submit" class="btn btn-primary btn-block">Potenzialanalyse anfragen</button>
+                <button type="submit" class="btn btn-primary btn-block" data-i18n="form-submit">Potenzialanalyse anfragen</button>
             </form>
 
             <div class="social-links">
-                <a href="#" class="social-link" aria-label="Instagram">IG</a>
-                <a href="#" class="social-link" aria-label="Vimeo">VM</a>
-                <a href="#" class="social-link" aria-label="LinkedIn">IN</a>
+                <a href="https://instagram.com/impulseproduction" target="_blank" rel="noopener" class="social-link" aria-label="Instagram">IG</a>
+                <a href="https://vimeo.com/impulseproduction" target="_blank" rel="noopener" class="social-link" aria-label="Vimeo">VM</a>
+                <a href="https://linkedin.com/company/impulseproduction" target="_blank" rel="noopener" class="social-link" aria-label="LinkedIn">IN</a>
             </div>
         </div>
     </section>
@@ -419,11 +374,11 @@
     <footer class="footer">
         <div class="container">
             <div class="footer-links">
-                <a href="impressum.html">Impressum</a>
+                <a href="impressum.html" data-i18n="footer-impressum">Impressum</a>
                 <span class="footer-separator">|</span>
-                <a href="datenschutz.html">Datenschutz</a>
+                <a href="datenschutz.html" data-i18n="footer-datenschutz">Datenschutz</a>
             </div>
-            <p>&copy; 2026 Impulse Production. Alle Rechte vorbehalten.</p>
+            <p data-i18n="footer-rights">&copy; 2026 Impulse Production. Alle Rechte vorbehalten.</p>
         </div>
     </footer>
 
@@ -438,7 +393,9 @@
         </div>
     </div>
 
-    <!-- JS -->
+
+    
+    <!-- Custom JS -->
     <script src="js/main.js"></script>
 </body>
 
