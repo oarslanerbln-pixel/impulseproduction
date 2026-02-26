@@ -18,15 +18,8 @@
     <!-- Analytics Placeholder (Plausible / Google Analytics) -->
     <!-- <script defer data-domain="impulse-production.de" src="https://plausible.io/js/script.js"></script> -->
 
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&family=Playfair+Display:ital,wght@0,600;1,600&display=swap"
-        rel="stylesheet">
-
-    <!-- CSS -->
-    <link rel="stylesheet" href="css/style.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.min.css?v=7">
 </head>
 
 <body>
@@ -38,15 +31,15 @@
         <span class="cursor-text"></span>
     </div>
 
-    <!-- Elegant Brand Reveal Preloader -->
-    <div id="preloader" class="elegant-preloader">
-        <div class="elegant-content">
-            <h1 class="elegant-title">
-                <span class="word delay-1">IMPULSE</span> 
-                <span class="word delay-2 text-light">PRODUCTION</span>
-            </h1>
-            <div class="elegant-line"></div>
-            <p class="elegant-subtitle delay-3">Cinematic Visuals & Digital Branding</p>
+    <!-- Premium Typography Intro (Preloader) -->
+    <div id="preloader" class="premium-preloader">
+        <div class="preloader-content">
+            <div class="preloader-text">
+                <span class="p-word" id="p-impulse">IMPULSE</span>
+                <span class="p-word p-accent" id="p-production">PRODUCTION</span>
+            </div>
+            <div class="preloader-line"></div>
+            <p class="preloader-tagline" data-i18n="preloader-subtitle">Cinematic Visuals & Digital Branding</p>
         </div>
     </div>
 
@@ -89,9 +82,10 @@
         <!-- Golden Particles Canvas -->
         <canvas id="particles-canvas" class="hero-particles"></canvas>
         <div class="video-container">
-            <!-- Vimeo Hero Video Background -->
-            <!-- Vimeo Hero Video Background -->
-            <iframe src="https://player.vimeo.com/video/1167533517?background=1&autoplay=1&loop=1&title=0&byline=0&portrait=0" class="hero-video-iframe" frameborder="0" allow="autoplay; fullscreen" allowfullscreen title="Kreative Momente - Hero Background"></iframe>
+            <!-- Local Hero Video Background -->
+            <video id="heroVideo" class="hero-video" muted loop playsinline poster="https://images.unsplash.com/photo-1492691523567-6170c81bf5d3?q=80&w=2070&auto=format&fit=crop">
+                <source src="assets/video/hero-bg.mp4" type="video/mp4">
+            </video>
             <div class="overlay"></div>
         </div>
 
@@ -193,7 +187,7 @@
                     <!-- Item 5 Content -->
                     <div class="sc-content" data-content="4">
                         <div class="sc-image-wrapper">
-                            <img src="https://images.unsplash.com/photo-1595054225576-80516fc981db?q=80&w=800&auto=format&fit=crop" alt="QR Code Interaction">
+                            <img src="https://images.unsplash.com/photo-1611162617474-5b21e879e113?q=80&w=800&auto=format&fit=crop" alt="Premium QR Code Display">
                         </div>
                         <p class="sc-desc" data-i18n="service-desc-5">Speziell für Ihre Marke entwickelte Premium-QR-Code-Lösungen und Menüs, die die physische mit der digitalen Welt auf eleganteste Weise verbinden. Verwandelt gewöhnliche Quadrate in luxuriöse Interaktionen.</p>
                     </div>
@@ -211,86 +205,83 @@
         </div>
     </section>
 
-    <!-- Portföy Section -->
-    <section class="portfolio section bg-darker" id="portfolio">
+    <!-- Cinematic Portfolio Slider Section -->
+    <section class="portfolio-cinematic section bg-darker" id="portfolio">
         <div class="container">
-            <h2 class="section-title" data-i18n="portfolio-title">Portfolio</h2>
-            <div class="portfolio-grid">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                <!-- Project 1 (Video) -->
-                <div class="portfolio-item hover-video-item" data-vimeo-id="1167534607">
-                    <div class="portfolio-media">
-                        <div class="portfolio-placeholder"></div>
-                        <iframe src="https://player.vimeo.com/video/1167534607?background=1&autoplay=1&loop=1&title=0&byline=0&portrait=0" class="portfolio-hover-video" frameborder="0" allow="autoplay; fullscreen" allowfullscreen loading="lazy" title="Fine Dining & Kulinarik Video"></iframe>
-                        <div class="portfolio-overlay">
-                            <span class="play-icon">▶</span>
+            <h2 class="section-title fade-in-element" data-i18n="portfolio-title">Portfolio</h2>
+        </div>
+        <div class="cinematic-slider-container fade-in-element">
+            <div class="cinematic-slider-track" id="portfolioSliderTrack">
+                
+                <!-- Project 1 -->
+                <div class="cinematic-slide active" data-vimeo-id="1167534607">
+                    <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?q=80&w=1920&auto=format&fit=crop" alt="Fine Dining" class="slide-bg" loading="lazy">
+                    <div class="slide-overlay">
+                        <div class="slide-content">
+                            <h3 data-i18n="portfolio-item-1-title">Fine Dining & Kulinarik</h3>
+                            <p data-i18n="portfolio-item-1-desc">Exklusive Restaurant-Präsentation</p>
+                            <button class="btn btn-primary play-project-btn" aria-label="Play Project">
+                                <span class="play-icon">▶</span> <span data-i18n="portfolio-play">Projekt ansehen</span>
+                            </button>
                         </div>
-                    </div>
-                    <div class="portfolio-info">
-                        <h3 data-i18n="portfolio-item-1-title">Fine Dining & Kulinarik</h3>
-                        <p data-i18n="portfolio-item-1-desc">Exklusive Restaurant-Präsentation</p>
                     </div>
                 </div>
 
-                <!-- Project 2 (Video) -->
-                <div class="portfolio-item hover-video-item" data-vimeo-id="1167534525">
-                    <div class="portfolio-media">
-                        <div class="portfolio-placeholder"></div>
-                        <iframe src="https://player.vimeo.com/video/1167534525?background=1&autoplay=1&loop=1&title=0&byline=0&portrait=0" class="portfolio-hover-video" frameborder="0" allow="autoplay; fullscreen" allowfullscreen loading="lazy" title="Luftaufnahmen & Drone Shots Video"></iframe>
-                        <div class="portfolio-overlay">
-                            <span class="play-icon">▶</span>
+                <!-- Project 2 -->
+                <div class="cinematic-slide" data-vimeo-id="1167534525">
+                    <img src="https://images.unsplash.com/photo-1506521781263-d8422e82f27a?q=80&w=1920&auto=format&fit=crop" alt="Luftaufnahmen" class="slide-bg" loading="lazy">
+                    <div class="slide-overlay">
+                        <div class="slide-content">
+                            <h3 data-i18n="portfolio-item-2-title">Luftaufnahmen & Drone Shots</h3>
+                            <p data-i18n="portfolio-item-2-desc">Filmische Perspektiven mit Dynamik</p>
+                            <button class="btn btn-primary play-project-btn" aria-label="Play Project">
+                                <span class="play-icon">▶</span> <span data-i18n="portfolio-play">Projekt ansehen</span>
+                            </button>
                         </div>
-                    </div>
-                    <div class="portfolio-info">
-                        <h3 data-i18n="portfolio-item-2-title">Luftaufnahmen & Drone Shots</h3>
-                        <p data-i18n="portfolio-item-2-desc">Filmische Perspektiven mit Dynamik</p>
                     </div>
                 </div>
 
-                <!-- Project 3 (Video) -->
-                <div class="portfolio-item hover-video-item" data-vimeo-id="1167533982">
-                    <div class="portfolio-media">
-                        <div class="portfolio-placeholder"></div>
-                        <iframe src="https://player.vimeo.com/video/1167533982?background=1&autoplay=1&loop=1&title=0&byline=0&portrait=0" class="portfolio-hover-video" frameborder="0" allow="autoplay; fullscreen" allowfullscreen loading="lazy" title="Orient-Küche & Digitales Menü Video"></iframe>
-                        <div class="portfolio-overlay">
-                            <span class="play-icon">▶</span>
+                <!-- Project 3 -->
+                <div class="cinematic-slide" data-vimeo-id="1167533982">
+                    <img src="https://images.unsplash.com/photo-1541518763669-27fef04b14ea?q=80&w=1920&auto=format&fit=crop" alt="Orient-Küche" class="slide-bg" loading="lazy">
+                    <div class="slide-overlay">
+                        <div class="slide-content">
+                            <h3 data-i18n="portfolio-item-3-title">Orient-Küche & Digitales Menü</h3>
+                            <p data-i18n="portfolio-item-3-desc">Tradition trifft auf moderne Ästhetik</p>
+                            <button class="btn btn-primary play-project-btn" aria-label="Play Project">
+                                <span class="play-icon">▶</span> <span data-i18n="portfolio-play">Projekt ansehen</span>
+                            </button>
                         </div>
-                    </div>
-                    <div class="portfolio-info">
-                        <h3 data-i18n="portfolio-item-3-title">Orient-Küche & Digitales Menü</h3>
-                        <p data-i18n="portfolio-item-3-desc">Tradition trifft auf moderne Ästhetik</p>
                     </div>
                 </div>
 
-                <!-- Project 4 (Video) -->
-                <div class="portfolio-item hover-video-item" data-vimeo-id="1167533825">
-                    <div class="portfolio-media">
-                        <div class="portfolio-placeholder"></div>
-                        <iframe src="https://player.vimeo.com/video/1167533825?background=1&autoplay=1&loop=1&title=0&byline=0&portrait=0" class="portfolio-hover-video" frameborder="0" allow="autoplay; fullscreen" allowfullscreen loading="lazy" title="Event-Locations & Atmosphäre Video"></iframe>
-                        <div class="portfolio-overlay">
-                            <span class="play-icon">▶</span>
+                <!-- Project 4 -->
+                <div class="cinematic-slide" data-vimeo-id="1167533825">
+                    <img src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?q=80&w=1920&auto=format&fit=crop" alt="Event-Locations" class="slide-bg" loading="lazy">
+                    <div class="slide-overlay">
+                        <div class="slide-content">
+                            <h3 data-i18n="portfolio-item-4-title">Event-Locations & Atmosphäre</h3>
+                            <p data-i18n="portfolio-item-4-desc">Unvergessliche Augenblicke festgehalten</p>
+                            <button class="btn btn-primary play-project-btn" aria-label="Play Project">
+                                <span class="play-icon">▶</span> <span data-i18n="portfolio-play">Projekt ansehen</span>
+                            </button>
                         </div>
-                    </div>
-                    <div class="portfolio-info">
-                        <h3 data-i18n="portfolio-item-4-title">Event-Locations & Atmosphäre</h3>
-                        <p data-i18n="portfolio-item-4-desc">Unvergessliche Augenblicke festgehalten</p>
                     </div>
                 </div>
 
+            </div>
+            
+            <!-- Slider Controls -->
+            <div class="cinematic-controls fade-in-element">
+                <button class="slider-btn prev-btn" aria-label="Previous Slide">
+                    <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                </button>
+                <div class="slider-dots" id="portfolioSliderDots">
+                    <!-- Dots will be generated via JS -->
+                </div>
+                <button class="slider-btn next-btn" aria-label="Next Slide">
+                    <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                </button>
             </div>
         </div>
     </section>
@@ -317,6 +308,37 @@
         </div>
     </section>
 
+    <!-- Testimonials Section -->
+    <section class="testimonials section" id="referenzen">
+        <div class="container">
+            <h2 class="section-title fade-in-element" data-i18n="testimonials-title">Was Kunden sagen</h2>
+            <div class="testimonials-grid">
+                <!-- Testimonial 1 -->
+                <div class="testimonial-card fade-in-element">
+                    <p class="testimonial-quote" data-i18n="testimonial-quote-1">"Impulse Production hat unsere Vision nicht nur verstanden, sondern auf ein Level gehoben, das wir uns nicht vorstellen konnten. Die filmische Qualität ist absolut Weltklasse."</p>
+                    <div class="testimonial-author">
+                        <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=150&h=150&fit=crop" alt="Marco Rossi" class="author-avatar" loading="lazy">
+                        <div class="author-info">
+                            <h4 data-i18n="testimonial-author-1">Marco Rossi</h4>
+                            <p data-i18n="testimonial-role-1">Inhaber, Fine Dining Group</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Testimonial 2 -->
+                <div class="testimonial-card fade-in-element" style="transition-delay: 0.2s;">
+                    <p class="testimonial-quote" data-i18n="testimonial-quote-2">"Die Zusammenarbeit war hochprofessionell. Unsere neue Landingpage in Kombination mit den Drohnenaufnahmen hat unsere Anfragen verdoppelt."</p>
+                    <div class="testimonial-author">
+                        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=150&h=150&fit=crop" alt="Sarah Schmidt" class="author-avatar" loading="lazy">
+                        <div class="author-info">
+                            <h4 data-i18n="testimonial-author-2">Sarah Schmidt</h4>
+                            <p data-i18n="testimonial-role-2">Marketing Direktorin, Luxury Estate</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- İletişim Formu Section -->
     <section class="contact section bg-darker" id="kontakt">
         <div class="container contact-container">
@@ -324,16 +346,17 @@
                 <h2 class="section-title" data-i18n="contact-title">Kostenlose Erstberatung</h2>
                 <p data-i18n="contact-subtitle">Jede Marke ist einzigartig. Erzählen Sie uns von Ihrer Vision, und wir entwickeln ein maßgeschneidertes digitales Konzept, das Ihr Unternehmen auf das nächste <strong>Premium-Level</strong> hebt.</p>
                 <div class="contact-mail-wrapper">
-                    <a href="mailto:heysemgate@gmail.com" class="cta-link contact-mail-cta">
+                    <a href="mailto:impulseprod1@gmail.com" class="cta-link contact-mail-cta">
                         <span class="cta-line"></span>
-                        <span class="cta-text mail-text">heysemgate@gmail.com</span>
+                        <span class="cta-text mail-text">impulseprod1@gmail.com</span>
                     </a>
                 </div>
             </div>
 
-            <!-- Formspree ID: Create a form at formspree.io and replace 'YOUR_FORM_ID' below -->
-            <form class="contact-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST"
-                id="contactForm">
+            <form class="contact-form" action="https://api.web3forms.com/submit" method="POST" id="contactForm">
+                <input type="hidden" name="access_key" value="46cf92ba-06e7-4b43-91cc-ac15e8cec027">
+                <input type="hidden" name="from_name" value="Impulse Production Website">
+                <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
                 <div class="form-group">
                     <label for="name" data-i18n="form-label-name">Ihr Name / Unternehmen</label>
                     <input type="text" id="name" name="name" required placeholder="Geben Sie Ihren Namen ein" data-i18n-placeholder="form-placeholder-name">
@@ -356,19 +379,23 @@
                     </select>
                 </div>
 
-                <div class="form-group">
-                    <label for="message" data-i18n="form-label-message">Erzählen Sie uns mehr über Ihre Ziele (Optional)</label>
-                    <textarea id="message" name="message" rows="4"
-                        placeholder="Z.B.: 'Wir möchten in den nächsten 6 Monaten unsere Reservierungen im Fine-Dining Bereich um 20% steigern...'" data-i18n-placeholder="form-placeholder-message"></textarea>
+                <div class="form-group checkbox-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" name="privacy_consent" required>
+                        <span class="checkbox-text">
+                            <span data-i18n="form-privacy-1">Ich habe die</span>
+                            <a href="datenschutz.html" target="_blank" data-i18n="form-privacy-link">Datenschutzerklärung</a>
+                            <span data-i18n="form-privacy-2">gelesen und akzeptiere sie.</span>
+                        </span>
+                    </label>
                 </div>
 
                 <button type="submit" class="btn btn-primary btn-block" data-i18n="form-submit">Potenzialanalyse anfragen</button>
             </form>
 
             <div class="social-links">
-                <a href="https://instagram.com/impulseproduction" target="_blank" rel="noopener" class="social-link" aria-label="Instagram">IG</a>
+                <a href="https://www.instagram.com/impulse.prod1?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" rel="noopener" class="social-link" aria-label="Instagram">IG</a>
                 <a href="https://vimeo.com/impulseproduction" target="_blank" rel="noopener" class="social-link" aria-label="Vimeo">VM</a>
-                <a href="https://linkedin.com/company/impulseproduction" target="_blank" rel="noopener" class="social-link" aria-label="LinkedIn">IN</a>
             </div>
         </div>
     </section>
@@ -376,9 +403,12 @@
     <!-- Footer -->
     <!-- Floating WhatsApp Button -->
     <a href="https://wa.me/491787277867?text=Hallo,%20ich%20interessiere%20mich%20für%20Ihre%20Dienstleistungen." class="whatsapp-float" target="_blank" rel="noopener" aria-label="WhatsApp Contact">
-        <svg viewBox="0 0 448 512" width="24" height="24">
-            <path fill="currentColor" d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.7 17.8 69.4 27.2 106.2 27.2h.1c122.3 0 222-99.6 222-222 0-59.3-23-115.1-65.1-157.1zM223.9 445.9c-33.1 0-65.5-8.9-93.7-25.7l-6.7-4-69.8 18.3 18.7-68.1-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 54 81.2 54 130.5 0 101.8-82.7 184.4-184.4 184.4zm101.1-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-5.5-2.8-23.2-8.5-44.2-27.3-16.3-14.5-27.4-32.5-30.6-37.9-3.2-5.5-.3-8.4 2.4-11.1 2.5-2.5 5.5-6.5 8.3-9.7 2.8-3.2 3.7-5.5 5.6-9.3 1.9-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 13.2 5.7 23.5 9.2 31.6 11.8 13.3 4.2 25.4 3.6 35 2.2 10.7-1.5 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/>
-        </svg>
+        <div class="whatsapp-inner">
+            <svg viewBox="0 0 448 512" width="20" height="20">
+                <path fill="currentColor" d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.7 17.8 69.4 27.2 106.2 27.2h.1c122.3 0 222-99.6 222-222 0-59.3-23-115.1-65.1-157.1zM223.9 445.9c-33.1 0-65.5-8.9-93.7-25.7l-6.7-4-69.8 18.3 18.7-68.1-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 54 81.2 54 130.5 0 101.8-82.7 184.4-184.4 184.4zm101.1-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-5.5-2.8-23.2-8.5-44.2-27.3-16.3-14.5-27.4-32.5-30.6-37.9-3.2-5.5-.3-8.4 2.4-11.1 2.5-2.5 5.5-6.5 8.3-9.7 2.8-3.2 3.7-5.5 5.6-9.3 1.9-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 13.2 5.7 23.5 9.2 31.6 11.8 13.3 4.2 25.4 3.6 35 2.2 10.7-1.5 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/>
+            </svg>
+            <span class="wa-label" data-i18n="wa-contact-label">WhatsApp</span>
+        </div>
     </a>
 
     <footer class="footer">
@@ -403,10 +433,22 @@
         </div>
     </div>
 
-
+    <!-- Cookie Consent Banner -->
+    <div id="cookieBanner" class="cookie-banner">
+        <div class="container cookie-container">
+            <div class="cookie-content">
+                <p data-i18n="cookie-text">Diese Website verwendet Cookies, um Ihre Erfahrung zu verbessern. Durch die weitere Nutzung der Website stimmen Sie der Verwendung von Cookies zu.</p>
+                <div class="cookie-actions">
+                    <a href="datenschutz.html" class="cookie-link" data-i18n="cookie-more">Mehr erfahren</a>
+                    <button id="cookieAccept" class="cookie-btn" data-i18n="cookie-accept">Akzeptieren</button>
+                </div>
+            </div>
+        </div>
+    </div>
     
     <!-- Custom JS -->
-    <script src="js/main.js"></script>
+    <script src="js/cookie-banner.min.js"></script>
+    <script src="js/main.min.js?v=7"></script>
 </body>
 
 </html>

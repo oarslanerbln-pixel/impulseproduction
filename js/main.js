@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // ==========================================
     const translations = {
         de: {
+            "preloader-subtitle": "Cinematic Visuals & Digital Branding",
             "nav-services": "Leistungen",
             "nav-portfolio": "Portfolio",
             "nav-about": "Über mich",
@@ -55,13 +56,29 @@ document.addEventListener('DOMContentLoaded', () => {
             "form-label-message": "Erzählen Sie uns mehr über Ihre Ziele (Optional)",
             "form-placeholder-message": "Z.B.: 'Wir möchten in den nächsten 6 Monaten unsere Reservierungen im Fine-Dining Bereich um 20% steigern...'",
             "form-submit": "Potenzialanalyse anfragen",
+            "form-privacy-1": "Ich habe die",
+            "form-privacy-link": "Datenschutzerklärung",
+            "form-privacy-2": "gelesen und akzeptiere die Speicherung meiner Daten.",
             "footer-impressum": "Impressum",
             "footer-datenschutz": "Datenschutz",
             "footer-rights": "© 2026 Impulse Production. Alle Rechte vorbehalten.",
+            "cookie-text": "Diese Website verwendet Cookies, um Ihre Erfahrung zu verbessern. Durch die weitere Nutzung der Website stimmen Sie der Verwendung von Cookies zu.",
+            "cookie-more": "Mehr erfahren",
+            "cookie-accept": "Akzeptieren",
+            "testimonials-title": "Was Kunden sagen",
+            "testimonial-quote-1": "\"Impulse Production hat unsere Vision nicht nur verstanden, sondern auf ein Level gehoben, das wir uns nicht vorstellen konnten. Die filmische Qualität ist absolut Weltklasse.\"",
+            "testimonial-author-1": "Marco Rossi",
+            "testimonial-role-1": "Inhaber, Fine Dining Group",
+            "testimonial-quote-2": "\"Die Zusammenarbeit war hochprofessionell. Unsere neue Landingpage in Kombination mit den Drohnenaufnahmen hat unsere Anfragen verdoppelt.\"",
+            "testimonial-author-2": "Sarah Schmidt",
+            "testimonial-role-2": "Marketing Direktorin, Luxury Estate",
             "form-sending": "Wird gesendet...",
-            "form-success": "Nachricht erhalten!"
+            "form-success": "Nachricht erhalten!",
+            "wa-contact-label": "WhatsApp Kontakt",
+            "portfolio-play": "Projekt ansehen"
         },
         tr: {
+            "preloader-subtitle": "Sinematik Görseller & Dijital Markalama",
             "nav-services": "Hizmetler",
             "nav-portfolio": "Portfolyo",
             "nav-about": "Hakkımda",
@@ -112,11 +129,26 @@ document.addEventListener('DOMContentLoaded', () => {
             "form-label-message": "Hedefleriniz Hakkında Daha Fazla Bilgi Verin (Opsiyonel)",
             "form-placeholder-message": "Örn: 'Önümüzdeki 6 ay içinde fine-dining rezervasyonlarımızı %20 artırmak istiyoruz...'",
             "form-submit": "Potansiyel Analizi Talep Et",
+            "form-privacy-1": "Okudum ve",
+            "form-privacy-link": "Gizlilik Politikasını",
+            "form-privacy-2": "verilerimin işlenmesini kabul ediyorum.",
             "footer-impressum": "Künye",
             "footer-datenschutz": "Gizlilik",
             "footer-rights": "© 2026 Impulse Production. Tüm hakları saklıdır.",
+            "cookie-text": "Bu web sitesi, size en iyi deneyimi sunmak için çerezleri kullanır. Sitemizi kullanmaya devam ederek çerez kullanımını kabul etmiş sayılırsınız.",
+            "cookie-more": "Daha fazla bilgi",
+            "cookie-accept": "Kabul Et",
+            "testimonials-title": "Müşterilerimiz Ne Diyor?",
+            "testimonial-quote-1": "\"Impulse Production sadece vizyonumuzu anlamakla kalmadı, onu hayal bile edemeyeceğimiz bir seviyeye taşıdı. Sinematik kalite kesinlikle dünya standartlarında.\"",
+            "testimonial-author-1": "Marco Rossi",
+            "testimonial-role-1": "Sahibi, Fine Dining Group",
+            "testimonial-quote-2": "\"İş birliğimiz son derece profesyoneldi. Yeni landing page'imiz ve drone çekimlerimiz sayesinde aldığımız talepler iki katına çıktı.\"",
+            "testimonial-author-2": "Sarah Schmidt",
+            "testimonial-role-2": "Pazarlama Direktörü, Luxury Estate",
             "form-sending": "Gönderiliyor...",
-            "form-success": "Mesajınız Alındı!"
+            "form-success": "Mesajınız Alındı!",
+            "wa-contact-label": "Bizimle Yazışın",
+            "portfolio-play": "Projeyi İzle"
         }
     };
 
@@ -168,37 +200,59 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     // ==========================================
-    // PRELOADER (Optimized Snappy Feel)
+    // PREMIUM TYPOGRAPHY PRELOADER
     // ==========================================
     const preloader = document.getElementById('preloader');
-    
-    // Snappier timings
-    setTimeout(() => {
-        document.body.classList.add('preloader-active');
-    }, 200);
 
-    setTimeout(() => {
-        document.body.classList.add('line-active');
-    }, 800);
+    if (preloader) {
+        // Sequentially add classes for staggered animation
+        setTimeout(() => {
+            preloader.classList.add('show-text');
+        }, 300);
 
-    setTimeout(() => {
-        document.body.classList.add('subtitle-active');
-    }, 1200);
+        setTimeout(() => {
+            preloader.classList.add('show-line');
+        }, 900);
 
-    setTimeout(() => {
-        if(preloader) {
-            preloader.classList.add('fade-out');
+        setTimeout(() => {
+            preloader.classList.add('show-tagline');
+        }, 1500);
+
+        // Transition to main content after everything is loaded
+        window.addEventListener('load', () => {
+            // Ensure minimum display time (2.5s) for the brand impact
+            const minStayTime = 2500;
+            const startTime = parseInt(sessionStorage.getItem('preloaderStartTime')) || Date.now();
+            const elapsed = Date.now() - startTime;
+            const remaining = Math.max(0, minStayTime - elapsed);
+
+            setTimeout(() => {
+                preloader.classList.add('fade-out');
+                
+                setTimeout(() => {
+                    preloader.style.display = 'none';
+                    document.body.classList.add('preloader-done');
+                    
+                    // Trigger hero reveal
+                    const hero = document.getElementById('hero');
+                    if (hero) hero.classList.add('is-loaded');
+
+                    // PLAY LOCAL HERO VIDEO
+                    const heroVideo = document.getElementById('heroVideo');
+                    if (heroVideo) {
+                        heroVideo.play().catch(err => {
+                            console.log("Autoplay blocked or video missing:", err);
+                        });
+                    }
+                }, 1200);
+            }, remaining);
+        });
+
+        // Track start time if not already tracked
+        if (!sessionStorage.getItem('preloaderStartTime')) {
+            sessionStorage.setItem('preloaderStartTime', Date.now());
         }
-        const heroSection = document.getElementById('hero');
-        if (heroSection) {
-            heroSection.classList.add('is-loaded');
-        }
-    }, 2000); // reduced from 3.8s
-
-    setTimeout(() => {
-        document.body.classList.remove('preloader-active', 'line-active', 'subtitle-active');
-        document.body.classList.add('preloader-done');
-    }, 3000); // reduced from 5.3s
+    }
 
 
     // ==========================================
@@ -256,42 +310,79 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Portfolio Focus
-    const portfolioGrid = document.querySelector('.portfolio-grid');
-    const portfolioItemsDOM = document.querySelectorAll('.portfolio-item');
+    // ==========================================
+    // CINEMATIC PORTFOLIO SLIDER
+    // ==========================================
+    const sliderTrack = document.getElementById('portfolioSliderTrack');
+    const slides = document.querySelectorAll('.cinematic-slide');
+    const prevBtn = document.querySelector('.prev-btn');
+    const nextBtn = document.querySelector('.next-btn');
+    const dotsContainer = document.getElementById('portfolioSliderDots');
+    
+    if (sliderTrack && slides.length > 0) {
+        let currentSlide = 0;
+        const totalSlides = slides.length;
 
-    if (portfolioGrid && portfolioItemsDOM.length > 0) {
-        const portfolioObserverOptions = {
-            root: null,
-            rootMargin: '-30% 0px -30% 0px',
-            threshold: 0
-        };
-
-        const portfolioObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                const item = entry.target;
-                const video = item.querySelector('.portfolio-hover-video');
-
-                if (entry.isIntersecting) {
-                    item.classList.add('is-focused');
-                    if (video) video.play().catch(() => {});
-                } else {
-                    item.classList.remove('is-focused');
-                    if (video) video.pause();
-                }
-            });
-
-            const hasFocus = Array.from(portfolioItemsDOM).some(i => i.classList.contains('is-focused'));
-            if (hasFocus) {
-                portfolioGrid.classList.add('has-focus');
-            } else {
-                portfolioGrid.classList.remove('has-focus');
-            }
-        }, portfolioObserverOptions);
-
-        portfolioItemsDOM.forEach(item => {
-            portfolioObserver.observe(item);
+        // Create dots
+        slides.forEach((_, index) => {
+            const dot = document.createElement('div');
+            dot.classList.add('slider-dot');
+            if (index === 0) dot.classList.add('active');
+            dot.addEventListener('click', () => goToSlide(index));
+            dotsContainer.appendChild(dot);
         });
+        const dots = document.querySelectorAll('.slider-dot');
+
+        function updateSlider() {
+            // Move track
+            sliderTrack.style.transform = `translateX(-${currentSlide * 100}%)`;
+            
+            // Update classes
+            slides.forEach((slide, index) => {
+                slide.classList.toggle('active', index === currentSlide);
+            });
+            dots.forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentSlide);
+            });
+        }
+
+        function goToSlide(index) {
+            currentSlide = index;
+            updateSlider();
+        }
+
+        if (prevBtn) {
+            prevBtn.addEventListener('click', () => {
+                currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+                updateSlider();
+            });
+        }
+        
+        if (nextBtn) {
+            nextBtn.addEventListener('click', () => {
+                currentSlide = (currentSlide + 1) % totalSlides;
+                updateSlider();
+            });
+        }
+
+        // Swipe support
+        let touchStartX = 0;
+        sliderTrack.addEventListener('touchstart', e => {
+            touchStartX = e.changedTouches[0].screenX;
+        }, {passive: true});
+        
+        sliderTrack.addEventListener('touchend', e => {
+            const touchEndX = e.changedTouches[0].screenX;
+            if (touchStartX - touchEndX > 50) {
+                // Swipe left
+                currentSlide = (currentSlide + 1) % totalSlides;
+                updateSlider();
+            } else if (touchEndX - touchStartX > 50) {
+                // Swipe right
+                currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+                updateSlider();
+            }
+        }, {passive: true});
     }
 
     // Smooth Scroll
@@ -331,60 +422,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
 
-    // ==========================================
-    // ACTUAL FORM SUBMISSION (Formspree)
-    // ==========================================
-    const contactForm = document.getElementById('contactForm');
-    if (contactForm) {
-        contactForm.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const btn = contactForm.querySelector('button[type="submit"]');
-            const originalText = btn.textContent;
-            const currentLang = localStorage.getItem('preferredLang') || 'de';
-
-            btn.textContent = translations[currentLang]["form-sending"];
-            btn.disabled = true;
-
-            const formData = new FormData(contactForm);
-            
-            try {
-                const response = await fetch(contactForm.action, {
-                    method: 'POST',
-                    body: formData,
-                    headers: {
-                        'Accept': 'application/json'
-                    }
-                });
-
-                if (response.ok) {
-                    btn.textContent = translations[currentLang]["form-success"];
-                    btn.style.backgroundColor = '#10b981';
-                    btn.style.color = '#fff';
-                    contactForm.reset();
-                    
-                    setTimeout(() => {
-                        btn.textContent = originalText;
-                        btn.style.backgroundColor = '';
-                        btn.style.color = '';
-                        btn.disabled = false;
-                    }, 5000);
-                } else {
-                    const errorData = await response.json();
-                    console.error("Formspree Error Details:", errorData);
-                    throw new Error(errorData.error || 'Submission failed');
-                }
-            } catch (error) {
-                console.error("Form error:", error);
-                btn.textContent = "Error!";
-                btn.style.backgroundColor = "#ef4444";
-                setTimeout(() => {
-                    btn.textContent = originalText;
-                    btn.style.backgroundColor = '';
-                    btn.disabled = false;
-                }, 3000);
-            }
-        });
-    }
 
     // ==========================================
     // PREMIUM MICRO-INTERACTIONS
@@ -418,8 +455,8 @@ document.addEventListener('DOMContentLoaded', () => {
             el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
         });
 
-        const portfolioItems = document.querySelectorAll('.portfolio-item');
-        portfolioItems.forEach(item => {
+        const sliderItems = document.querySelectorAll('.cinematic-slide');
+        sliderItems.forEach(item => {
             item.addEventListener('mouseenter', () => {
                 cursor.classList.add('play-hover');
                 if (cursorText) cursorText.textContent = 'PLAY';
@@ -450,15 +487,15 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // 3. 3D Portfolio Tilt
-    if (portfolioItemsDOM.length > 0) {
-        portfolioItemsDOM.forEach(item => {
-            const media = item.querySelector('.portfolio-media');
+    if (sliderItems.length > 0) {
+        sliderItems.forEach(item => {
+            const media = item.querySelector('.slide-bg');
             item.addEventListener('mousemove', (e) => {
                 const rect = item.getBoundingClientRect();
                 const x = (e.clientX - rect.left) / rect.width - 0.5;
                 const y = (e.clientY - rect.top) / rect.height - 0.5;
-                item.style.transform = `perspective(1000px) rotateY(${x * 10}deg) rotateX(${-y * 10}deg) scale3d(1.02, 1.02, 1.02)`;
-                if(media) media.style.transform = `translateX(${x * -10}px) translateY(${y * -10}px)`;
+                item.style.transform = `perspective(1000px) rotateY(${x * 5}deg) rotateX(${-y * 5}deg)`;
+                if(media) media.style.transform = `scale(1.05) translateX(${x * -20}px) translateY(${y * -20}px)`;
             });
             item.addEventListener('mouseleave', () => {
                 item.style.transform = '';
@@ -475,10 +512,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const videoModalClose = document.querySelector('.video-modal-close');
     const videoModalContainer = document.querySelector('.video-modal-container');
 
-    if (portfolioItemsDOM.length > 0 && videoModal) {
-        portfolioItemsDOM.forEach(item => {
-            item.addEventListener('click', () => {
-                const vimeoId = item.getAttribute('data-vimeo-id');
+    if (videoModal) {
+        document.body.addEventListener('click', (e) => {
+            const btn = e.target.closest('.play-project-btn');
+            if (btn) {
+                const slide = btn.closest('.cinematic-slide');
+                if (!slide) return;
+                const vimeoId = slide.getAttribute('data-vimeo-id');
                 if (vimeoId) {
                     const iframeElement = document.createElement('iframe');
                     iframeElement.setAttribute('src', `https://player.vimeo.com/video/${vimeoId}?autoplay=1&title=0&byline=0&portrait=0`);
@@ -490,14 +530,25 @@ document.addEventListener('DOMContentLoaded', () => {
                     videoModalContainer.innerHTML = '';
                     videoModalContainer.appendChild(iframeElement);
                     document.body.classList.add('modal-active');
+                    videoModal.classList.add('active'); // CSS matches .video-modal.active
                 }
-            });
+            }
         });
     }
 
-    const closeModal = () => {
-        document.body.classList.remove('modal-active');
-        setTimeout(() => { videoModalContainer.innerHTML = ''; }, 500);
+    const closeModal = (e) => {
+        if (e) {
+            // If clicking overlay, only close if e.target is overlay
+            if (e.target.classList.contains('video-modal-overlay') || e.target.closest('.video-modal-close')) {
+                document.body.classList.remove('modal-active');
+                videoModal.classList.remove('active');
+                setTimeout(() => { videoModalContainer.innerHTML = ''; }, 500);
+            }
+        } else {
+            document.body.classList.remove('modal-active');
+            videoModal.classList.remove('active');
+            setTimeout(() => { videoModalContainer.innerHTML = ''; }, 500);
+        }
     };
 
     if (videoModalClose) videoModalClose.addEventListener('click', closeModal);
@@ -551,5 +602,132 @@ document.addEventListener('DOMContentLoaded', () => {
             requestAnimationFrame(animate);
         }
         init(); animate();
+    }
+
+    // 6. Web3Forms AJAX Submission
+    const contactForm = document.getElementById('contactForm');
+    if (contactForm) {
+        contactForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const btn = contactForm.querySelector('button[type="submit"]');
+            const originalText = btn.textContent;
+            const currentLang = localStorage.getItem('preferredLang') || 'de';
+            btn.disabled = true;
+            btn.textContent = translations[currentLang]["form-sending"] || "Sending...";
+
+            const formData = new FormData(contactForm);
+            const object = Object.fromEntries(formData);
+            const json = JSON.stringify(object);
+
+            try {
+                const response = await fetch("https://api.web3forms.com/submit", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Accept": "application/json"
+                    },
+                    body: json
+                });
+                const result = await response.json();
+
+                if (response.status === 200) {
+                    btn.textContent = translations[currentLang]["form-success"] || "Success!";
+                    btn.style.backgroundColor = '#10b981';
+                    contactForm.reset();
+                    setTimeout(() => {
+                        btn.textContent = originalText;
+                        btn.style.backgroundColor = '';
+                        btn.disabled = false;
+                    }, 5000);
+                } else {
+                    console.log(result);
+                    throw new Error(result.message);
+                }
+            } catch (error) {
+                console.error("Email Error:", error);
+                btn.textContent = "Error!";
+                btn.style.backgroundColor = "#ef4444";
+                setTimeout(() => {
+                    btn.textContent = originalText;
+                    btn.style.backgroundColor = '';
+                    btn.disabled = false;
+                }, 3000);
+            }
+        });
+    }
+
+    // 7. Interactive 3D Logo Tilt & Shimmer
+    const logo = document.querySelector('.logo');
+    if (logo) {
+        logo.classList.add('shimmer');
+        logo.addEventListener('mousemove', (e) => {
+            const rect = logo.getBoundingClientRect();
+            const x = e.clientX - rect.left - rect.width / 2;
+            const y = e.clientY - rect.top - rect.height / 2;
+            const rotateX = (y / (rect.height / 2)) * -15;
+            const rotateY = (x / (rect.width / 2)) * 15;
+            logo.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.05)`;
+        });
+        logo.addEventListener('mouseleave', () => {
+            logo.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale(1)';
+        });
+    }
+
+    // 8. Magnetic WhatsApp Button
+    const waFloat = document.querySelector('.whatsapp-float');
+    if (waFloat) {
+        document.addEventListener('mousemove', (e) => {
+            const rect = waFloat.getBoundingClientRect();
+            const waX = rect.left + rect.width / 2;
+            const waY = rect.top + rect.height / 2;
+            
+            const distX = e.clientX - waX;
+            const distY = e.clientY - waY;
+            const distance = Math.sqrt(distX * distX + distY * distY);
+            
+            if (distance < 150) {
+                const moveX = (e.clientX - waX) * 0.15;
+                const moveY = (e.clientY - waY) * 0.15;
+                waFloat.style.transform = `translate(${moveX}px, ${moveY}px) scale(1.05)`;
+            } else {
+                waFloat.style.transform = 'translate(0, 0) scale(1)';
+            }
+        });
+    }
+
+    // --- Lazy Loading for Vimeo Iframes ---
+    const vimeoObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const iframe = entry.target;
+                const src = iframe.getAttribute('data-src');
+                if (src) {
+                    iframe.setAttribute('src', src);
+                    iframe.removeAttribute('data-src');
+                }
+                vimeoObserver.unobserve(iframe);
+            }
+        });
+    }, { rootMargin: '200px' });
+
+    document.querySelectorAll('.lazy-vimeo').forEach(iframe => {
+        vimeoObserver.observe(iframe);
+    });
+
+    // --- Particle System Optimization ---
+    const particlesCanvas = document.getElementById('particles-canvas');
+    if (particlesCanvas) {
+        const particlesObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (window.pJSDom && window.pJSDom[0]) {
+                    if (entry.isIntersecting) {
+                        window.pJSDom[0].pJS.particles.move.enable = true;
+                    } else {
+                        window.pJSDom[0].pJS.particles.move.enable = false;
+                    }
+                }
+            });
+        }, { threshold: 0.1 });
+        particlesObserver.observe(particlesCanvas);
     }
 });

@@ -1,4 +1,16 @@
-assets/video/
-.trunk/
-temp/
-*.log
+# Folders
+.gemini/
+.agents/
+.agent/
+_agents/
+_agent/
+node_modules/
+dist/
+
+# Large Video Files (GitHub limit is 100MB)
+assets/video/*
+!assets/video/hero-bg.mp4
+
+# OS files
+.DS_Store
+Thumbs.db
