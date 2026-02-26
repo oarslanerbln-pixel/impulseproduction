@@ -369,7 +369,9 @@ document.addEventListener('DOMContentLoaded', () => {
                         btn.disabled = false;
                     }, 5000);
                 } else {
-                    throw new Error('Submission failed');
+                    const errorData = await response.json();
+                    console.error("Formspree Error Details:", errorData);
+                    throw new Error(errorData.error || 'Submission failed');
                 }
             } catch (error) {
                 console.error("Form error:", error);
