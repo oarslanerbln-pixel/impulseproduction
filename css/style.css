@@ -392,12 +392,13 @@ h6 {
 
 .nav a.nav-link {
     position: relative;
-    font-size: 0.85rem;
-    font-weight: 500;
+    font-family: var(--font-sans);
+    font-size: 0.75rem;
+    font-weight: 400;
     text-transform: uppercase;
-    letter-spacing: 0.15em;
+    letter-spacing: 0.25em;
     padding: 0.5rem 0;
-    color: var(--color-text);
+    color: rgba(255, 255, 255, 0.7);
     transition: color var(--transition-normal);
 }
 
@@ -736,6 +737,16 @@ body.nav-open .hamburger-line:last-child {
     margin-top: 1.5rem;
     margin-bottom: 3.5rem;
     max-width: 600px;
+}
+
+@media (max-width: 768px) {
+    .hero-subtitle {
+        font-size: 0.95rem;
+        max-width: 95vw;
+        padding-right: 1rem;
+        word-wrap: break-word;
+        margin-bottom: 2.5rem;
+    }
 }
 
 /* Minimal Custom Linear CTA */
