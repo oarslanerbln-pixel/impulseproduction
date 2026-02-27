@@ -50,8 +50,11 @@
     <!-- <script defer data-domain="impulse-production.de" src="https://plausible.io/js/script.js"></script> -->
 
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="css/style.min.css?v=7">
+    <link rel="stylesheet" href="css/style.min.css?v=9">
     <link rel="icon" type="image/x-icon" href="favicon.ico">
+
+    <!-- Lottie Player -->
+    <script src="https://unpkg.com/@dotlottie/player-component@2.7.12/dist/dotlottie-player.mjs" type="module"></script>
 </head>
 
 <body>
@@ -140,8 +143,90 @@
         </div>
     </section>
 
+    <!-- Cinematic Portfolio Slider Section (Netflix Style) -->
+    <section class="portfolio-cinematic section bg-darker parallax-section" id="portfolio" data-parallax-speed="0.3">
+        <!-- Optional overlay gradient for the entire section -->
+        <div class="portfolio-global-overlay"></div>
+
+        <div class="container portfolio-header-container">
+            <h2 class="section-title fade-in-element" data-i18n="portfolio-title">Portfolio</h2>
+        </div>
+
+        <div class="cinematic-slider-container fade-in-element">
+            <div class="cinematic-slider-track" id="portfolioSliderTrack">
+
+                <!-- Project 1 -->
+                <div class="cinematic-slide active" data-vimeo-id="1167534607">
+                    <!-- Vimeo Background Player -->
+                    <div class="vimeo-bg-container">
+                        <iframe src="https://player.vimeo.com/video/1167534607?background=1&autoplay=1&loop=1&byline=0&title=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen title="Fine Dining Portfolio Video"></iframe>
+                    </div>
+                    <div class="slide-overlay">
+                        <div class="slide-content">
+                            <h3 data-i18n="portfolio-item-1-title">Fine Dining & Kulinarik</h3>
+                            <p data-i18n="portfolio-item-1-desc">Exklusive Restaurant-Präsentation</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="cinematic-slide" data-vimeo-id="1167534525">
+                    <div class="vimeo-bg-container">
+                        <iframe src="https://player.vimeo.com/video/1167534525?background=1&autoplay=1&loop=1&byline=0&title=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen title="Drone Shots Portfolio Video"></iframe>
+                    </div>
+                    <div class="slide-overlay">
+                        <div class="slide-content">
+                            <h3 data-i18n="portfolio-item-2-title">Luftaufnahmen & Drone Shots</h3>
+                            <p data-i18n="portfolio-item-2-desc">Filmische Perspektiven mit Dynamik</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="cinematic-slide" data-vimeo-id="1167533982">
+                    <div class="vimeo-bg-container">
+                        <iframe src="https://player.vimeo.com/video/1167533982?background=1&autoplay=1&loop=1&byline=0&title=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen title="Orient-Küche Portfolio Video"></iframe>
+                    </div>
+                    <div class="slide-overlay">
+                        <div class="slide-content">
+                            <h3 data-i18n="portfolio-item-3-title">Orient-Küche & Digitales Menü</h3>
+                            <p data-i18n="portfolio-item-3-desc">Tradition trifft auf moderne Ästhetik</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 4 -->
+                <div class="cinematic-slide" data-vimeo-id="1167533825">
+                    <div class="vimeo-bg-container">
+                        <iframe src="https://player.vimeo.com/video/1167533825?background=1&autoplay=1&loop=1&byline=0&title=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen title="Event-Locations Portfolio Video"></iframe>
+                    </div>
+                    <div class="slide-overlay">
+                        <div class="slide-content">
+                            <h3 data-i18n="portfolio-item-4-title">Event-Locations & Atmosphäre</h3>
+                            <p data-i18n="portfolio-item-4-desc">Unvergessliche Augenblicke festgehalten</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Slider Controls -->
+            <div class="cinematic-controls fade-in-element">
+                <button class="slider-btn prev-btn" aria-label="Previous Slide">
+                    <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                </button>
+                <div class="slider-dots" id="portfolioSliderDots">
+                    <!-- Dots will be generated via JS -->
+                </div>
+                <button class="slider-btn next-btn" aria-label="Next Slide">
+                    <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                </button>
+            </div>
+        </div>
+    </section>
+
     <!-- Hizmetler Section (Premium Hover Reveal Layout) -->
-    <section class="services section" id="leistungen">
+    <section class="services section parallax-section" id="leistungen" data-parallax-speed="0.2">
         <div class="container luxury-services-container">
             <h2 class="section-title fade-in-element" data-i18n="services-title">Leistungen</h2>
             
@@ -150,31 +235,49 @@
                 <div class="services-list fade-in-element">
                     
                     <div class="sc-item" data-index="0">
+                        <div class="sc-lottie">
+                            <dotlottie-player src="https://lottie.host/b13c7f10-8af2-4b22-bc84-3f5919400483/WuxkVrqdRQ.lottie" background="transparent" speed="1" loop autoplay></dotlottie-player>
+                        </div>
                         <span class="sc-num">01</span>
                         <h3 class="sc-title" data-i18n="service-title-1">Videoproduktion & Schnitt</h3>
                     </div>
                 
                     <div class="sc-item" data-index="1">
+                        <div class="sc-lottie">
+                            <dotlottie-player src="https://lottie.host/8c5f3666-e7c2-445d-81b3-83a6fc372e3d/dFM3rPAepB.lottie" background="transparent" speed="1" loop autoplay></dotlottie-player>
+                        </div>
                         <span class="sc-num">02</span>
                         <h3 class="sc-title" data-i18n="service-title-2">Drohnenaufnahmen</h3>
                     </div>
 
                     <div class="sc-item" data-index="2">
+                        <div class="sc-lottie">
+                            <dotlottie-player src="https://lottie.host/c9433f24-3bba-4357-9ac7-74c0b3f10d0d/ZnDRoYjfOq.lottie" background="transparent" speed="1" loop autoplay></dotlottie-player>
+                        </div>
                         <span class="sc-num">03</span>
                         <h3 class="sc-title" data-i18n="service-title-3">Markenbildung (Branding)</h3>
                     </div>
 
                     <div class="sc-item" data-index="3">
+                        <div class="sc-lottie">
+                            <dotlottie-player src="https://lottie.host/a42fb2d1-1e86-4f25-85d2-80f1a65cf82e/C2qCZGMFdx.lottie" background="transparent" speed="1" loop autoplay></dotlottie-player>
+                        </div>
                         <span class="sc-num">04</span>
                         <h3 class="sc-title" data-i18n="service-title-4">Landingpage-Erstellung</h3>
                     </div>
 
                     <div class="sc-item" data-index="4">
+                        <div class="sc-lottie">
+                            <dotlottie-player src="https://lottie.host/e5be66d1-0e2d-44fb-8a84-62fbd5eb8d1e/8yVLXwuqGp.lottie" background="transparent" speed="1" loop autoplay></dotlottie-player>
+                        </div>
                         <span class="sc-num">05</span>
                         <h3 class="sc-title" data-i18n="service-title-5">QR-Code-Design</h3>
                     </div>
 
                     <div class="sc-item" data-index="5">
+                        <div class="sc-lottie">
+                            <dotlottie-player src="https://lottie.host/5dbdb52e-5a1d-405e-a9ef-c1c85ccb61ec/WwCKxjPaRm.lottie" background="transparent" speed="1" loop autoplay></dotlottie-player>
+                        </div>
                         <span class="sc-num">06</span>
                         <h3 class="sc-title" data-i18n="service-title-6">Webdesign</h3>
                     </div>
@@ -237,89 +340,8 @@
         </div>
     </section>
 
-    <!-- Cinematic Portfolio Slider Section -->
-    <section class="portfolio-cinematic section bg-darker" id="portfolio">
-        <div class="container">
-            <h2 class="section-title fade-in-element" data-i18n="portfolio-title">Portfolio</h2>
-        </div>
-        <div class="cinematic-slider-container fade-in-element">
-            <div class="cinematic-slider-track" id="portfolioSliderTrack">
-                
-                <!-- Project 1 -->
-                <div class="cinematic-slide active" data-vimeo-id="1167534607">
-                    <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?q=80&w=1920&auto=format&fit=crop" alt="Fine Dining" class="slide-bg" loading="lazy">
-                    <div class="slide-overlay">
-                        <div class="slide-content">
-                            <h3 data-i18n="portfolio-item-1-title">Fine Dining & Kulinarik</h3>
-                            <p data-i18n="portfolio-item-1-desc">Exklusive Restaurant-Präsentation</p>
-                            <button class="btn btn-primary play-project-btn" aria-label="Play Project">
-                                <span class="play-icon">▶</span> <span data-i18n="portfolio-play">Projekt ansehen</span>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Project 2 -->
-                <div class="cinematic-slide" data-vimeo-id="1167534525">
-                    <img src="https://images.unsplash.com/photo-1506521781263-d8422e82f27a?q=80&w=1920&auto=format&fit=crop" alt="Luftaufnahmen" class="slide-bg" loading="lazy">
-                    <div class="slide-overlay">
-                        <div class="slide-content">
-                            <h3 data-i18n="portfolio-item-2-title">Luftaufnahmen & Drone Shots</h3>
-                            <p data-i18n="portfolio-item-2-desc">Filmische Perspektiven mit Dynamik</p>
-                            <button class="btn btn-primary play-project-btn" aria-label="Play Project">
-                                <span class="play-icon">▶</span> <span data-i18n="portfolio-play">Projekt ansehen</span>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Project 3 -->
-                <div class="cinematic-slide" data-vimeo-id="1167533982">
-                    <img src="https://images.unsplash.com/photo-1541518763669-27fef04b14ea?q=80&w=1920&auto=format&fit=crop" alt="Orient-Küche" class="slide-bg" loading="lazy">
-                    <div class="slide-overlay">
-                        <div class="slide-content">
-                            <h3 data-i18n="portfolio-item-3-title">Orient-Küche & Digitales Menü</h3>
-                            <p data-i18n="portfolio-item-3-desc">Tradition trifft auf moderne Ästhetik</p>
-                            <button class="btn btn-primary play-project-btn" aria-label="Play Project">
-                                <span class="play-icon">▶</span> <span data-i18n="portfolio-play">Projekt ansehen</span>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Project 4 -->
-                <div class="cinematic-slide" data-vimeo-id="1167533825">
-                    <img src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?q=80&w=1920&auto=format&fit=crop" alt="Event-Locations" class="slide-bg" loading="lazy">
-                    <div class="slide-overlay">
-                        <div class="slide-content">
-                            <h3 data-i18n="portfolio-item-4-title">Event-Locations & Atmosphäre</h3>
-                            <p data-i18n="portfolio-item-4-desc">Unvergessliche Augenblicke festgehalten</p>
-                            <button class="btn btn-primary play-project-btn" aria-label="Play Project">
-                                <span class="play-icon">▶</span> <span data-i18n="portfolio-play">Projekt ansehen</span>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-            
-            <!-- Slider Controls -->
-            <div class="cinematic-controls fade-in-element">
-                <button class="slider-btn prev-btn" aria-label="Previous Slide">
-                    <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
-                </button>
-                <div class="slider-dots" id="portfolioSliderDots">
-                    <!-- Dots will be generated via JS -->
-                </div>
-                <button class="slider-btn next-btn" aria-label="Next Slide">
-                    <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
-                </button>
-            </div>
-        </div>
-    </section>
-
     <!-- Hakkımda Section -->
-    <section class="about section" id="ueber-mich">
+    <section class="about section parallax-section" id="ueber-mich" data-parallax-speed="0.15">
         <div class="container about-container">
             <div class="about-content">
                 <h2 class="section-title" data-i18n="about-title">Über mich</h2>
@@ -341,7 +363,7 @@
     </section>
 
     <!-- Testimonials Section -->
-    <section class="testimonials section" id="referenzen">
+    <section class="testimonials section parallax-section" id="referenzen" data-parallax-speed="0.2">
         <div class="container">
             <h2 class="section-title fade-in-element" data-i18n="testimonials-title">Was Kunden sagen</h2>
             <div class="testimonials-grid">
@@ -372,7 +394,7 @@
     </section>
 
     <!-- İletişim Formu Section -->
-    <section class="contact section bg-darker" id="kontakt">
+    <section class="contact section bg-darker parallax-section" id="kontakt" data-parallax-speed="0.15">
         <div class="container contact-container">
             <div class="contact-header">
                 <h2 class="section-title" data-i18n="contact-title">Kostenlose Erstberatung</h2>
@@ -433,15 +455,24 @@
     </section>
 
     <!-- Footer -->
-    <!-- Floating WhatsApp Button -->
-    <a href="https://wa.me/491787277867?text=Hallo,%20ich%20interessiere%20mich%20für%20Ihre%20Dienstleistungen." class="whatsapp-float" target="_blank" rel="noopener" aria-label="WhatsApp Contact">
-        <div class="whatsapp-inner">
-            <svg viewBox="0 0 448 512" width="20" height="20">
+    <!-- Premium Floating WhatsApp CTA -->
+    <div class="floating-cta" id="floatingCta">
+        <!-- Kostenlose Beratung Tooltip -->
+        <div class="floating-cta-tooltip">
+            <span>Kostenlose Beratung</span>
+            <div class="tooltip-arrow"></div>
+        </div>
+        <!-- WhatsApp Button -->
+        <a href="https://wa.me/491787277867?text=Hallo,%20ich%20interessiere%20mich%20für%20Ihre%20Dienstleistungen." class="floating-cta-btn" target="_blank" rel="noopener" aria-label="WhatsApp - Kostenlose Beratung">
+            <!-- Pulse Ring -->
+            <span class="cta-pulse-ring"></span>
+            <span class="cta-pulse-ring delay"></span>
+            <!-- Icon -->
+            <svg class="floating-cta-icon" viewBox="0 0 448 512" width="28" height="28">
                 <path fill="currentColor" d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.7 17.8 69.4 27.2 106.2 27.2h.1c122.3 0 222-99.6 222-222 0-59.3-23-115.1-65.1-157.1zM223.9 445.9c-33.1 0-65.5-8.9-93.7-25.7l-6.7-4-69.8 18.3 18.7-68.1-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 54 81.2 54 130.5 0 101.8-82.7 184.4-184.4 184.4zm101.1-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-5.5-2.8-23.2-8.5-44.2-27.3-16.3-14.5-27.4-32.5-30.6-37.9-3.2-5.5-.3-8.4 2.4-11.1 2.5-2.5 5.5-6.5 8.3-9.7 2.8-3.2 3.7-5.5 5.6-9.3 1.9-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 13.2 5.7 23.5 9.2 31.6 11.8 13.3 4.2 25.4 3.6 35 2.2 10.7-1.5 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/>
             </svg>
-            <span class="wa-label" data-i18n="wa-contact-label">WhatsApp</span>
-        </div>
-    </a>
+        </a>
+    </div>
 
     <footer class="footer">
         <div class="container">
@@ -454,16 +485,7 @@
         </div>
     </footer>
 
-    <!-- Video Modal -->
-    <div class="video-modal" id="videoModal">
-        <div class="video-modal-overlay"></div>
-        <div class="video-modal-content">
-            <button class="video-modal-close" aria-label="Schließen">×</button>
-            <div class="video-modal-container">
-                <!-- Vimeo Iframe will be injected here via JS -->
-            </div>
-        </div>
-    </div>
+
 
     <!-- Cookie Consent Banner -->
     <div id="cookieBanner" class="cookie-banner">
@@ -480,7 +502,7 @@
     
     <!-- Custom JS -->
     <script src="js/cookie-banner.min.js"></script>
-    <script src="js/main.min.js?v=7"></script>
+    <script src="js/main.min.js?v=9"></script>
 </body>
 
 </html>

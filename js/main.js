@@ -497,82 +497,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // 3. 3D Portfolio Tilt
-    if (sliderItems.length > 0) {
-        sliderItems.forEach(item => {
-            const media = item.querySelector('.slide-bg');
-            item.addEventListener('mousemove', (e) => {
-                const rect = item.getBoundingClientRect();
-                const x = (e.clientX - rect.left) / rect.width - 0.5;
-                const y = (e.clientY - rect.top) / rect.height - 0.5;
-                item.style.transform = `perspective(1000px) rotateY(${x * 5}deg) rotateX(${-y * 5}deg)`;
-                if(media) media.style.transform = `scale(1.05) translateX(${x * -20}px) translateY(${y * -20}px)`;
-            });
-            item.addEventListener('mouseleave', () => {
-                item.style.transform = '';
-                if(media) media.style.transform = '';
-            });
-        });
-    }
-
-    // ==========================================
-    // PORTFOLIO VIDEO MODAL
-    // ==========================================
-    const videoModal = document.getElementById('videoModal');
-    const videoModalOverlay = document.querySelector('.video-modal-overlay');
-    const videoModalClose = document.querySelector('.video-modal-close');
-    const videoModalContainer = document.querySelector('.video-modal-container');
-
-    if (videoModal) {
-        document.body.addEventListener('click', (e) => {
-            // Check if clicking inside a play button OR the slide itself
-            const slide = e.target.closest('.cinematic-slide');
-            const controls = e.target.closest('.cinematic-controls');
-            
-            // Only trigger if we clicked a slide and NOT the slider controls (prev/next/dots)
-            if (slide && !controls) {
-                // Ignore if they swipe/drag (if needed, but click event usually fires after drag. We'll rely on controls being separate)
-                const vimeoId = slide.getAttribute('data-vimeo-id');
-                if (vimeoId) {
-                    const iframeElement = document.createElement('iframe');
-                    iframeElement.setAttribute('src', `https://player.vimeo.com/video/${vimeoId}?autoplay=1&title=0&byline=0&portrait=0`);
-                    iframeElement.setAttribute('frameborder', '0');
-                    iframeElement.setAttribute('allow', 'autoplay; fullscreen; picture-in-picture');
-                    iframeElement.setAttribute('allowfullscreen', 'true');
-                    iframeElement.style.width = '100%';
-                    iframeElement.style.height = '100%';
-                    videoModalContainer.innerHTML = '';
-                    videoModalContainer.appendChild(iframeElement);
-                    document.body.classList.add('modal-active');
-                    videoModal.classList.add('active'); // CSS matches .video-modal.active
-                }
-            }
-        });
-    }
-
-    const closeModal = (e) => {
-        if (e) {
-            // If clicking overlay, only close if e.target is overlay
-            if (e.target.classList.contains('video-modal-overlay') || e.target.closest('.video-modal-close')) {
-                document.body.classList.remove('modal-active');
-                videoModal.classList.remove('active');
-                setTimeout(() => { videoModalContainer.innerHTML = ''; }, 500);
-            }
-        } else {
-            document.body.classList.remove('modal-active');
-            videoModal.classList.remove('active');
-            setTimeout(() => { videoModalContainer.innerHTML = ''; }, 500);
-        }
-    };
-
-    if (videoModalClose) videoModalClose.addEventListener('click', closeModal);
-    if (videoModalOverlay) videoModalOverlay.addEventListener('click', closeModal);
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && document.body.classList.contains('modal-active')) {
-            closeModal();
-        }
-    });
-
     // ==========================================
     // PARTICLES (Golden)
     // ==========================================
@@ -743,5 +667,88 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }, { threshold: 0.1 });
         particlesObserver.observe(particlesCanvas);
+    }
+
+    // ==========================================
+    // FLOATING CTA - Delayed Appearance
+    // ==========================================
+    const floatingCta = document.getElementById('floatingCta');
+    if (floatingCta) {
+        setTimeout(() => {
+            floatingCta.classList.add('visible');
+        }, 4000); // Show after 4 seconds
+    }
+
+    // ==========================================
+    // PARALLAX SCROLL EFFECTS
+    // ==========================================
+    const parallaxSections = document.querySelectorAll('.parallax-section');
+
+    if (parallaxSections.length > 0 && window.innerWidth > 768) {
+        // Scroll-based parallax for section content
+        let ticking = false;
+
+        const updateParallax = () => {
+            const scrollY = window.scrollY;
+            const windowHeight = window.innerHeight;
+
+            parallaxSections.forEach(section => {
+                const rect = section.getBoundingClientRect();
+                const sectionTop = rect.top + scrollY;
+                const speed = parseFloat(section.dataset.parallaxSpeed) || 0.2;
+
+                // Only apply when section is near viewport
+                if (rect.bottom > 0 && rect.top < windowHeight) {
+                    const offset = (scrollY - sectionTop + windowHeight) * speed;
+
+                    // Apply subtle parallax to inner content
+                    const content = section.querySelector('.container, .cinematic-slider-container');
+                    if (content) {
+                        content.style.transform = `translateY(${offset * 0.15}px)`;
+                    }
+                }
+            });
+
+            ticking = false;
+        };
+
+        window.addEventListener('scroll', () => {
+            if (!ticking) {
+                requestAnimationFrame(updateParallax);
+                ticking = true;
+            }
+        }, { passive: true });
+    }
+
+    // ==========================================
+    // ENHANCED SCROLL REVEAL ANIMATIONS
+    // ==========================================
+    const revealElements = document.querySelectorAll('.fade-in-element, .section-title, .about-text, .testimonial-card, .sc-item');
+
+    if (revealElements.length > 0) {
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    // Staggered delay for grouped items
+                    const delay = entry.target.classList.contains('sc-item')
+                        ? parseInt(entry.target.dataset.index || 0) * 100
+                        : 0;
+
+                    setTimeout(() => {
+                        entry.target.classList.add('revealed');
+                    }, delay);
+
+                    revealObserver.unobserve(entry.target);
+                }
+            });
+        }, {
+            threshold: 0.15,
+            rootMargin: '0px 0px -50px 0px'
+        });
+
+        revealElements.forEach(el => {
+            el.classList.add('reveal-ready');
+            revealObserver.observe(el);
+        });
     }
 });
