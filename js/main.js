@@ -207,21 +207,21 @@ document.addEventListener('DOMContentLoaded', () => {
     if (preloader) {
         // Sequentially add classes for staggered animation
         setTimeout(() => {
-            preloader.classList.add('show-text');
-        }, 300);
+            preloader.classList.add('show-i');
+        }, 400);
 
         setTimeout(() => {
-            preloader.classList.add('show-line');
-        }, 900);
+            preloader.classList.add('show-rest');
+        }, 1300);
 
         setTimeout(() => {
-            preloader.classList.add('show-tagline');
-        }, 1500);
+            preloader.classList.add('show-subtitle');
+        }, 2100);
 
         // Transition to main content after everything is loaded
         window.addEventListener('load', () => {
-            // Ensure minimum display time (2.5s) for the brand impact
-            const minStayTime = 2500;
+            // Ensure minimum display time (3.5s) for the brand impact
+            const minStayTime = 3500;
             const startTime = parseInt(sessionStorage.getItem('preloaderStartTime')) || Date.now();
             const elapsed = Date.now() - startTime;
             const remaining = Math.max(0, minStayTime - elapsed);
