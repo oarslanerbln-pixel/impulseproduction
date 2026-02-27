@@ -260,11 +260,22 @@ document.addEventListener('DOMContentLoaded', () => {
     // ==========================================
     const header = document.getElementById('header');
 
+    // Scroll Progress Bar
+    const scrollProgress = document.querySelector('.scroll-progress');
+
     window.addEventListener('scroll', () => {
         if (window.scrollY > 50) {
             header.classList.add('scrolled');
         } else {
             header.classList.remove('scrolled');
+        }
+
+        // Update scroll progress bar
+        if (scrollProgress) {
+            const scrollTop = window.scrollY;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const scrollPercent = (scrollTop / docHeight) * 100;
+            scrollProgress.style.width = scrollPercent + '%';
         }
     });
 
@@ -514,10 +525,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (videoModal) {
         document.body.addEventListener('click', (e) => {
-            const btn = e.target.closest('.play-project-btn');
-            if (btn) {
-                const slide = btn.closest('.cinematic-slide');
-                if (!slide) return;
+            // Check if clicking inside a play button OR the slide itself
+            const slide = e.target.closest('.cinematic-slide');
+            const controls = e.target.closest('.cinematic-controls');
+            
+            // Only trigger if we clicked a slide and NOT the slider controls (prev/next/dots)
+            if (slide && !controls) {
+                // Ignore if they swipe/drag (if needed, but click event usually fires after drag. We'll rely on controls being separate)
                 const vimeoId = slide.getAttribute('data-vimeo-id');
                 if (vimeoId) {
                     const iframeElement = document.createElement('iframe');

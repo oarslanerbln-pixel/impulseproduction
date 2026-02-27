@@ -4,24 +4,65 @@
 /* Fonts */
 @font-face {
     font-family: 'Inter';
-    src: url('../fonts/Inter-VariableFont_slnt,wght.ttf') format('truetype');
-    font-weight: 100 900;
+    src:          url('../fonts/Inter-normal-300.ttf') format('truetype');
+    font-weight: 300;
+    font-display: swap;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Inter';
+    src:          url('../fonts/Inter-normal-400.ttf') format('truetype');
+    font-weight: 400;
+    font-display: swap;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Inter';
+    src:          url('../fonts/Inter-normal-700.ttf') format('truetype');
+    font-weight: 700;
+    font-display: swap;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Inter';
+    src:          url('../fonts/Inter-normal-800.ttf') format('truetype');
+    font-weight: 800;
+    font-display: swap;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Inter';
+    src:          url('../fonts/Inter-normal-900.ttf') format('truetype');
+    font-weight: 900;
     font-display: swap;
     font-style: normal;
 }
 
 @font-face {
     font-family: 'Playfair Display';
-    src: url('../fonts/PlayfairDisplay-VariableFont_wght.ttf') format('truetype');
-    font-weight: 400 900;
+    src:          url('../fonts/PlayfairDisplay-normal-400.ttf') format('truetype');
+    font-weight: 400;
     font-display: swap;
     font-style: normal;
 }
-
 @font-face {
     font-family: 'Playfair Display';
-    src: url('../fonts/PlayfairDisplay-Italic-VariableFont_wght.ttf') format('truetype');
-    font-weight: 400 900;
+    src:          url('../fonts/PlayfairDisplay-normal-600.ttf') format('truetype');
+    font-weight: 600;
+    font-display: swap;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Playfair Display';
+    src:          url('../fonts/PlayfairDisplay-normal-700.ttf') format('truetype');
+    font-weight: 700;
+    font-display: swap;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Playfair Display';
+    src:          url('../fonts/PlayfairDisplay-italic-400.ttf') format('truetype');
+    font-weight: 400;
     font-display: swap;
     font-style: italic;
 }
@@ -545,6 +586,19 @@ body.nav-open .hamburger-line:last-child {
     /* Let clicks pass through */
 }
 
+/* Scroll Progress Bar */
+.scroll-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: 3px;
+    background: linear-gradient(90deg, var(--color-accent), #e8c99b);
+    z-index: 10001;
+    transition: width 0.1s linear;
+    box-shadow: 0 0 8px rgba(212, 168, 83, 0.4);
+}
+
 .video-container {
     position: absolute;
     top: 0;
@@ -553,6 +607,22 @@ body.nav-open .hamburger-line:last-child {
     height: 100%;
     z-index: -1;
     background-color: #0a0a0a;
+}
+
+/* Hero Video (Local MP4) */
+.hero-video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100vw;
+    height: 56.25vw; /* 16:9 */
+    min-height: 100vh;
+    min-width: 177.77vh; /* 16:9 */
+    transform: translate(-50%, -50%);
+    object-fit: cover;
+    filter: grayscale(20%) contrast(1.1);
+    z-index: -1;
+    pointer-events: none;
 }
 
 .hero-video-iframe {
@@ -1690,84 +1760,7 @@ body.modal-active .video-modal-content {
     transform: translateY(-2px);
 }
 
-/* Video Modal Styles */
-.video-modal {
-    position: fixed;
-    inset: 0;
-    z-index: 3000;
-    display: none;
-    align-items: center;
-    justify-content: center;
-    padding: 2rem;
-}
-
-body.modal-active {
-    overflow: hidden; /* Prevent scrolling when modal is open */
-}
-
-body.modal-active .video-modal {
-    display: flex;
-}
-
-.video-modal-overlay {
-    position: absolute;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.95);
-    -webkit-backdrop-filter: blur(15px);
-    backdrop-filter: blur(15px);
-}
-
-.video-modal-content {
-    position: relative;
-    width: 100%;
-    max-width: 1200px;
-    aspect-ratio: 16 / 9;
-    z-index: 2;
-    background: #000;
-    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-    transform: scale(0.9);
-    opacity: 0;
-    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-body.modal-active .video-modal-content {
-    transform: scale(1);
-    opacity: 1;
-}
-
-.video-modal-close {
-    position: absolute;
-    top: -50px;
-    right: 0;
-    background: none;
-    border: none;
-    color: white;
-    font-size: 3rem;
-    cursor: pointer;
-    line-height: 1;
-    transition: transform 0.3s ease, color 0.3s ease;
-}
-
-.video-modal-close:hover {
-    transform: rotate(90deg);
-    color: var(--color-accent);
-}
-
-.video-modal-container {
-    width: 100%;
-    height: 100%;
-}
-
-@media (max-width: 991px) {
-    .video-modal-content {
-        max-width: 95%;
-    }
-    .video-modal-close {
-        top: -40px;
-        right: 10px;
-        font-size: 2.5rem;
-    }
-}
+/* Video Modal Duplicate Block Removed - see line ~1500 for active styles */
 
 /* ==========================================
    CINEMATIC SLIDER STYLES
