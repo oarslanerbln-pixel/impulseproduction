@@ -972,12 +972,83 @@ dotlottie-player {
 /* Responsive (Mobil için uyarlamalar) */
 @media (max-width: 991px) {
     .services-display {
-        height: 400px;
+        height: 300px;
         order: -1; /* Görsel mobilde listenin üstüne çıksın */
     }
     
+    .sc-item {
+        gap: 1rem;
+        padding: 1.5rem 0;
+    }
+
     .sc-item.active .sc-title {
         transform: translateX(10px);
+    }
+
+    .sc-title {
+        font-size: clamp(1.2rem, 4vw, 1.8rem);
+        word-break: break-word;
+    }
+
+    .sc-desc {
+        font-size: 0.95rem;
+    }
+
+    .luxury-services-wrapper {
+        gap: 2rem;
+    }
+}
+
+/* Extra small mobile: aggressive layout fixes */
+@media (max-width: 480px) {
+    .sc-item {
+        gap: 0.6rem;
+        padding: 1.2rem 0;
+        flex-wrap: wrap;
+    }
+
+    .sc-lottie {
+        display: none;
+    }
+
+    .sc-title {
+        font-size: clamp(1rem, 5vw, 1.4rem);
+        word-break: break-word;
+        overflow-wrap: break-word;
+        hyphens: auto;
+    }
+
+    .sc-num {
+        font-size: 1rem;
+        min-width: 2rem;
+    }
+
+    .services-display {
+        height: 250px;
+    }
+
+    .luxury-services-container {
+        padding: 3rem 0;
+    }
+
+    .section-title {
+        font-size: 2rem;
+    }
+
+    .hero-title {
+        line-height: 1.05;
+    }
+
+    .portfolio-info {
+        padding: 1.5rem 1rem 1rem;
+    }
+
+    .portfolio-info h3 {
+        font-size: 1.1rem;
+    }
+
+    .testimonial-card {
+        padding: 1.5rem;
     }
 }
 /* ==========================================================================
@@ -985,7 +1056,7 @@ dotlottie-player {
    ========================================================================== */
 .portfolio-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(min(350px, 100%), 1fr));
     gap: 2rem;
     margin-top: 4rem;
 }
@@ -1184,8 +1255,6 @@ dotlottie-player {
 }
 
 .contact-form {
-    display: flex;
-    flex-direction: column;
     display: grid;
     gap: 2rem;
 }
@@ -1877,8 +1946,8 @@ body.modal-active .video-modal-content {
     position: absolute;
     top: 50%;
     left: 50%;
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
+    height: 100%;
     transform: translate(-50%, -50%);
     pointer-events: none; /* Let clicks pass through */
     z-index: 1;
@@ -1889,9 +1958,9 @@ body.modal-active .video-modal-content {
     position: absolute;
     top: 50%;
     left: 50%;
-    width: 100vw;
+    width: 100%;
     height: 56.25vw; /* 16:9 Aspect Ratio */
-    min-height: 100vh;
+    min-height: 100%;
     min-width: 177.77vh; /* 16:9 Aspect Ratio */
     transform: translate(-50%, -50%) scale(1.15); /* Center and zoom to hide Vimeo playbar/edges */
     pointer-events: none;
@@ -1991,11 +2060,47 @@ body.modal-active .video-modal-content {
 }
 
 @media (max-width: 768px) {
-    .cinematic-slider-track { height: 60vh; }
-    .slide-overlay { padding: 2rem; }
-    .cinematic-controls { padding: 1rem 2rem; }
-    .slider-btn { width: 40px; height: 40px; }
-    .slider-dot { width: 25px; }
+    .portfolio-cinematic {
+        height: 60vh;
+        height: 60dvh;
+    }
+    .cinematic-slider-container {
+        height: 60vh;
+        height: 60dvh;
+    }
+    .cinematic-slider-track {
+        height: 60vh;
+        height: 60dvh;
+        min-height: auto;
+    }
+    .cinematic-slide {
+        height: 60vh;
+        height: 60dvh;
+    }
+    .slide-overlay {
+        padding: 1.5rem;
+        padding-bottom: 5rem;
+    }
+    .slide-content h3 {
+        font-size: clamp(1.5rem, 5vw, 2.5rem);
+    }
+    .slide-content p {
+        font-size: 0.95rem;
+        margin-bottom: 1rem;
+    }
+    .cinematic-controls {
+        padding: 1rem 1.5rem;
+    }
+    .slider-btn {
+        width: 40px;
+        height: 40px;
+    }
+    .slider-dot {
+        width: 25px;
+    }
+    .vimeo-bg-container iframe {
+        transform: translate(-50%, -50%) scale(1.3);
+    }
 }
 
 /* ==========================================
