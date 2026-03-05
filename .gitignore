@@ -9,7 +9,7 @@ dist/
 
 # Large Video Files (GitHub limit is 100MB)
 assets/video/*
-!assets/video/hero-bg.mp4
+!assets/video/hero-bg-opt.mp4
 
 # OS files
 .DS_Store

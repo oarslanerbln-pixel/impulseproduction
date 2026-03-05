@@ -115,9 +115,12 @@
         <!-- Golden Particles Canvas -->
         <canvas id="particles-canvas" class="hero-particles"></canvas>
         <div class="video-container">
-            <!-- Local Hero Video Background -->
-            <video id="heroVideo" class="hero-video" muted loop playsinline poster="https://images.unsplash.com/photo-1492691523567-6170c81bf5d3?q=80&w=2070&auto=format&fit=crop">
-                <source src="assets/video/hero-bg.mp4" type="video/mp4">
+            <!-- Local Hero Video Background - Optimized -->
+            <video id="heroVideo" class="hero-video" autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1492691523567-6170c81bf5d3?q=80&w=2070&auto=format&fit=crop">
+                <!-- Web Optimized Alternative -->
+                <source src="assets/video/hero-bg-opt.mp4" type="video/mp4">
+                <!-- Original High-Res Fallback -->
+                <source src="assets/video/hero-bg.mov" type="video/mp4">
             </video>
             <div class="overlay"></div>
         </div>

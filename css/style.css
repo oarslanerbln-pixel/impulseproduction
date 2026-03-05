@@ -4,35 +4,39 @@
 /* Fonts */
 @font-face {
     font-family: 'Inter';
-    src:          url('../fonts/Inter-normal-300.ttf') format('truetype');
+    src: url('../fonts/Inter-normal-300.ttf') format('truetype');
     font-weight: 300;
     font-display: swap;
     font-style: normal;
 }
+
 @font-face {
     font-family: 'Inter';
-    src:          url('../fonts/Inter-normal-400.ttf') format('truetype');
+    src: url('../fonts/Inter-normal-400.ttf') format('truetype');
     font-weight: 400;
     font-display: swap;
     font-style: normal;
 }
+
 @font-face {
     font-family: 'Inter';
-    src:          url('../fonts/Inter-normal-700.ttf') format('truetype');
+    src: url('../fonts/Inter-normal-700.ttf') format('truetype');
     font-weight: 700;
     font-display: swap;
     font-style: normal;
 }
+
 @font-face {
     font-family: 'Inter';
-    src:          url('../fonts/Inter-normal-800.ttf') format('truetype');
+    src: url('../fonts/Inter-normal-800.ttf') format('truetype');
     font-weight: 800;
     font-display: swap;
     font-style: normal;
 }
+
 @font-face {
     font-family: 'Inter';
-    src:          url('../fonts/Inter-normal-900.ttf') format('truetype');
+    src: url('../fonts/Inter-normal-900.ttf') format('truetype');
     font-weight: 900;
     font-display: swap;
     font-style: normal;
@@ -40,28 +44,31 @@
 
 @font-face {
     font-family: 'Playfair Display';
-    src:          url('../fonts/PlayfairDisplay-normal-400.ttf') format('truetype');
+    src: url('../fonts/PlayfairDisplay-normal-400.ttf') format('truetype');
     font-weight: 400;
     font-display: swap;
     font-style: normal;
 }
+
 @font-face {
     font-family: 'Playfair Display';
-    src:          url('../fonts/PlayfairDisplay-normal-600.ttf') format('truetype');
+    src: url('../fonts/PlayfairDisplay-normal-600.ttf') format('truetype');
     font-weight: 600;
     font-display: swap;
     font-style: normal;
 }
+
 @font-face {
     font-family: 'Playfair Display';
-    src:          url('../fonts/PlayfairDisplay-normal-700.ttf') format('truetype');
+    src: url('../fonts/PlayfairDisplay-normal-700.ttf') format('truetype');
     font-weight: 700;
     font-display: swap;
     font-style: normal;
 }
+
 @font-face {
     font-family: 'Playfair Display';
-    src:          url('../fonts/PlayfairDisplay-italic-400.ttf') format('truetype');
+    src: url('../fonts/PlayfairDisplay-italic-400.ttf') format('truetype');
     font-weight: 400;
     font-display: swap;
     font-style: italic;
@@ -73,7 +80,8 @@
     --color-bg-hover: #1e1e1e;
     --color-text: #f0f0f0;
     --color-text-muted: #a0a0a0;
-    --color-accent: #d3a87c; /* Premium Champagne Gold */
+    --color-accent: #d3a87c;
+    /* Premium Champagne Gold */
     --color-border: #2a2a2a;
 
     --font-sans: 'Inter', sans-serif;
@@ -232,7 +240,8 @@ h6 {
     opacity: 0;
     white-space: nowrap;
     transition: max-width 1.2s cubic-bezier(0.65, 0, 0.35, 1), opacity 0.8s ease;
-    margin-left: -0.1em; /* Tighten kerning slightly */
+    margin-left: -0.1em;
+    /* Tighten kerning slightly */
     padding-right: 0.1em;
     color: var(--color-text);
 }
@@ -793,6 +802,7 @@ body.nav-open .hamburger-line:last-child {
     flex-direction: column;
     gap: 4rem;
     margin-top: 4rem;
+    overflow-x: hidden;
 }
 
 @media (min-width: 992px) {
@@ -906,7 +916,8 @@ dotlottie-player {
 .services-display {
     flex: 1;
     position: relative;
-    height: 600px; /* Sabit bir yükseklik, ihtiyaca göre ayarlanabilir */
+    height: 600px;
+    /* Sabit bir yükseklik, ihtiyaca göre ayarlanabilir */
     width: 100%;
     border-radius: 4px;
     overflow: hidden;
@@ -944,7 +955,8 @@ dotlottie-player {
     object-fit: cover;
     transform: scale(1.1);
     transition: transform 1.5s cubic-bezier(0.16, 1, 0.3, 1);
-    filter: brightness(0.85); /* Sinematik karanlık */
+    filter: brightness(0.85);
+    /* Sinematik karanlık */
 }
 
 /* Aktif görselin yavaşça zoom out yapması (Luxury feel) */
@@ -961,7 +973,8 @@ dotlottie-player {
     transform: translateY(20px);
     opacity: 0;
     transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-    transition-delay: 0.2s; /* Görselden hemen sonra gelsin */
+    transition-delay: 0.2s;
+    /* Görselden hemen sonra gelsin */
 }
 
 .sc-content.active .sc-desc {
@@ -972,13 +985,26 @@ dotlottie-player {
 /* Responsive (Mobil için uyarlamalar) */
 @media (max-width: 991px) {
     .services-display {
-        height: 300px;
-        order: -1; /* Görsel mobilde listenin üstüne çıksın */
+        height: 340px;
+        order: -1;
+        /* Görsel mobilde listenin üstüne çıksın */
     }
     
+    .sc-image-wrapper {
+        height: 180px;
+        border-radius: 12px;
+    }
+
+    .sc-desc {
+        margin-top: 1rem;
+    }
+
     .sc-item {
         gap: 1rem;
         padding: 1.5rem 0;
+        max-width: 100%;
+        /* Prevent stretching */
+        box-sizing: border-box;
     }
 
     .sc-item.active .sc-title {
@@ -987,7 +1013,14 @@ dotlottie-player {
 
     .sc-title {
         font-size: clamp(1.2rem, 4vw, 1.8rem);
+        /* Force word break */
         word-break: break-word;
+        overflow-wrap: break-word;
+        white-space: normal;
+        flex: 1;
+        /* Allow taking remaining space */
+        min-width: 0;
+        /* Fix flex child blowout */
     }
 
     .sc-desc {
@@ -1004,7 +1037,10 @@ dotlottie-player {
     .sc-item {
         gap: 0.6rem;
         padding: 1.2rem 0;
-        flex-wrap: wrap;
+        flex-wrap: nowrap;
+        /* Keep items mostly single line with flex */
+        width: 100vw;
+        max-width: 100%;
     }
 
     .sc-lottie {
@@ -1016,6 +1052,9 @@ dotlottie-player {
         word-break: break-word;
         overflow-wrap: break-word;
         hyphens: auto;
+        white-space: normal;
+        flex: 1;
+        min-width: 0;
     }
 
     .sc-num {
@@ -1024,7 +1063,17 @@ dotlottie-player {
     }
 
     .services-display {
-        height: 250px;
+        height: 280px;
+    }
+
+    .sc-image-wrapper {
+        height: 140px;
+        border-radius: 8px;
+    }
+
+    .sc-desc {
+        margin-top: 0.8rem;
+        font-size: 0.9rem;
     }
 
     .luxury-services-container {
@@ -1051,6 +1100,7 @@ dotlottie-player {
         padding: 1.5rem;
     }
 }
+
 /* ==========================================================================
    Portfolio Section
    ========================================================================== */
@@ -1111,8 +1161,13 @@ dotlottie-player {
 }
 
 @keyframes placeholder-shimmer {
-    0% { background-position: -200% 0; }
-    100% { background-position: 200% 0; }
+    0% {
+        background-position: -200% 0;
+    }
+
+    100% {
+        background-position: 200% 0;
+    }
 }
 
 .portfolio-hover-video {
@@ -1125,7 +1180,8 @@ dotlottie-player {
     opacity: 0;
     transition: opacity var(--transition-normal);
     z-index: 0;
-    pointer-events: none; /* Allows click to pass to parent item */
+    pointer-events: none;
+    /* Allows click to pass to parent item */
 }
 
 .portfolio-item:hover .portfolio-placeholder {
@@ -1384,7 +1440,8 @@ dotlottie-player {
     left: 20px;
     font-family: var(--font-serif);
     font-size: 6rem;
-    color: rgba(212, 168, 83, 0.1); /* Accent color with low opacity */
+    color: rgba(212, 168, 83, 0.1);
+    /* Accent color with low opacity */
     line-height: 1;
     z-index: 0;
 }
@@ -1494,7 +1551,14 @@ dotlottie-player {
    Premium Micro-Interactions (Cursor & 3D Tools)
    ========================================================================== */
 @media (pointer: fine) {
-    body, a, button, input, select, textarea, .portfolio-item {
+
+    body,
+    a,
+    button,
+    input,
+    select,
+    textarea,
+    .portfolio-item {
         cursor: none !important;
     }
 }
@@ -1516,7 +1580,7 @@ dotlottie-player {
     align-items: center;
     justify-content: center;
     /* initial hidden until mouse moves */
-    opacity: 0; 
+    opacity: 0;
 }
 
 body.cursor-active .custom-cursor {
@@ -1559,12 +1623,10 @@ body.cursor-active .custom-cursor {
     left: -100%;
     width: 50%;
     height: 100%;
-    background: linear-gradient(
-        to right,
-        rgba(255, 255, 255, 0) 0%,
-        rgba(255, 255, 255, 0.3) 50%,
-        rgba(255, 255, 255, 0) 100%
-    );
+    background: linear-gradient(to right,
+            rgba(255, 255, 255, 0) 0%,
+            rgba(255, 255, 255, 0.3) 50%,
+            rgba(255, 255, 255, 0) 100%);
     transform: skewX(-25deg);
     transition: none;
 }
@@ -1574,8 +1636,13 @@ body.cursor-active .custom-cursor {
 }
 
 @keyframes shimmer-logo {
-    0% { left: -150%; }
-    100% { left: 150%; }
+    0% {
+        left: -150%;
+    }
+
+    100% {
+        left: 150%;
+    }
 }
 
 .cursor-text {
@@ -1596,6 +1663,7 @@ body.cursor-active .custom-cursor {
 .magnetic {
     transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
+
 .magnetic:hover {
     transition: transform 0.1s linear;
 }
@@ -1647,12 +1715,13 @@ body.modal-active .video-modal-content {
 
 .video-modal-container {
     position: relative;
-    padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+    padding-bottom: 56.25%;
+    /* 16:9 Aspect Ratio */
     height: 0;
     background: #000;
     border-radius: 8px;
     overflow: hidden;
-    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
 }
 
 .video-modal-container iframe,
@@ -1674,7 +1743,8 @@ body.modal-active .video-modal-content {
     color: #fff;
     font-size: 2rem;
     font-weight: 300;
-    cursor: none; /* Let custom cursor handle it */
+    cursor: none;
+    /* Let custom cursor handle it */
     transition: color 0.3s ease;
     line-height: 1;
     padding: 10px;
@@ -1689,14 +1759,16 @@ body.modal-active .video-modal-content {
         width: 100%;
         border-radius: 0;
     }
+
     .video-modal-container {
         border-radius: 0;
     }
+
     .video-modal-close {
         top: 10px;
         right: 10px;
         z-index: 10;
-        background: rgba(0,0,0,0.5);
+        background: rgba(0, 0, 0, 0.5);
         border-radius: 50%;
         width: 40px;
         height: 40px;
@@ -1912,7 +1984,7 @@ body.modal-active .video-modal-content {
 
 .portfolio-header-container .section-title {
     margin-bottom: 0;
-    text-shadow: 0 4px 12px rgba(0,0,0,0.8);
+    text-shadow: 0 4px 12px rgba(0, 0, 0, 0.8);
 }
 
 .cinematic-slider-container {
@@ -1925,6 +1997,7 @@ body.modal-active .video-modal-content {
     overflow: hidden;
     box-shadow: none;
 }
+
 .cinematic-slider-track {
     display: flex;
     transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
@@ -1932,6 +2005,7 @@ body.modal-active .video-modal-content {
     min-height: 100vh;
     max-height: none;
 }
+
 .cinematic-slide {
     flex: 0 0 100%;
     width: 100%;
@@ -1949,7 +2023,8 @@ body.modal-active .video-modal-content {
     width: 100%;
     height: 100%;
     transform: translate(-50%, -50%);
-    pointer-events: none; /* Let clicks pass through */
+    pointer-events: none;
+    /* Let clicks pass through */
     z-index: 1;
     overflow: hidden;
 }
@@ -1959,28 +2034,34 @@ body.modal-active .video-modal-content {
     top: 50%;
     left: 50%;
     width: 100%;
-    height: 56.25vw; /* 16:9 Aspect Ratio */
+    height: 56.25vw;
+    /* 16:9 Aspect Ratio */
     min-height: 100%;
-    min-width: 177.77vh; /* 16:9 Aspect Ratio */
-    transform: translate(-50%, -50%) scale(1.15); /* Center and zoom to hide Vimeo playbar/edges */
+    min-width: 177.77vh;
+    /* 16:9 Aspect Ratio */
+    transform: translate(-50%, -50%) scale(1.15);
+    /* Center and zoom to hide Vimeo playbar/edges */
     pointer-events: none;
-    filter: brightness(0.85); /* Darken slightly to make text pop */
+    filter: brightness(0.85);
+    /* Darken slightly to make text pop */
     transition: filter 1s ease;
 }
 
 .cinematic-slide.active .vimeo-bg-container iframe {
-    filter: brightness(1); /* Brighten on active */
+    filter: brightness(1);
+    /* Brighten on active */
 }
 
 .slide-overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(to top, rgba(10,10,10,0.95) 0%, rgba(10,10,10,0.4) 40%, rgba(10,10,10,0.1) 100%);
+    background: linear-gradient(to top, rgba(10, 10, 10, 0.95) 0%, rgba(10, 10, 10, 0.4) 40%, rgba(10, 10, 10, 0.1) 100%);
     display: flex;
     align-items: flex-end;
     padding: 6rem;
     z-index: 2;
 }
+
 .slide-content {
     max-width: 800px;
     z-index: 2;
@@ -1988,24 +2069,27 @@ body.modal-active .video-modal-content {
     opacity: 0;
     transition: all 0.8s cubic-bezier(0.25, 1, 0.5, 1) 0.3s;
 }
+
 .cinematic-slide.active .slide-content {
     transform: translateY(0);
     opacity: 1;
 }
+
 .slide-content h3 {
     font-family: var(--font-heading);
     font-size: clamp(2.5rem, 5vw, 4.5rem);
     color: var(--text-light);
     margin-bottom: 1rem;
     line-height: 1.1;
-    text-shadow: 0 4px 15px rgba(0,0,0,0.8);
+    text-shadow: 0 4px 15px rgba(0, 0, 0, 0.8);
     letter-spacing: -0.02em;
 }
+
 .slide-content p {
     font-size: clamp(1.1rem, 1.5vw, 1.3rem);
     color: var(--color-text-muted);
     margin-bottom: 2rem;
-    text-shadow: 0 2px 8px rgba(0,0,0,0.8);
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
 }
 
 /* Controls */
@@ -2021,6 +2105,7 @@ body.modal-active .video-modal-content {
     z-index: 10;
     /* Removed background gradient, slide-overlay handles it */
 }
+
 .slider-btn {
     background: rgba(255, 255, 255, 0.1);
     -webkit-backdrop-filter: blur(10px);
@@ -2036,6 +2121,7 @@ body.modal-active .video-modal-content {
     cursor: pointer;
     transition: all 0.4s ease;
 }
+
 .slider-btn:hover {
     background: var(--color-accent);
     color: var(--color-bg);
@@ -2043,10 +2129,12 @@ body.modal-active .video-modal-content {
     border-color: var(--color-accent);
     box-shadow: 0 10px 20px rgba(212, 168, 83, 0.3);
 }
+
 .slider-dots {
     display: flex;
     gap: 1rem;
 }
+
 .slider-dot {
     width: 50px;
     height: 3px;
@@ -2054,6 +2142,7 @@ body.modal-active .video-modal-content {
     cursor: pointer;
     transition: all 0.4s ease;
 }
+
 .slider-dot.active {
     background: var(--color-accent);
     box-shadow: 0 0 10px rgba(212, 168, 83, 0.5);
@@ -2064,40 +2153,50 @@ body.modal-active .video-modal-content {
         height: 60vh;
         height: 60dvh;
     }
+
     .cinematic-slider-container {
         height: 60vh;
         height: 60dvh;
     }
+
     .cinematic-slider-track {
         height: 60vh;
         height: 60dvh;
         min-height: auto;
     }
+
     .cinematic-slide {
         height: 60vh;
         height: 60dvh;
     }
+
     .slide-overlay {
         padding: 1.5rem;
         padding-bottom: 5rem;
     }
+
     .slide-content h3 {
         font-size: clamp(1.5rem, 5vw, 2.5rem);
     }
+
     .slide-content p {
         font-size: 0.95rem;
         margin-bottom: 1rem;
     }
+
     .cinematic-controls {
         padding: 1rem 1.5rem;
     }
+
     .slider-btn {
         width: 40px;
         height: 40px;
     }
+
     .slider-dot {
         width: 25px;
     }
+
     .vimeo-bg-container iframe {
         transform: translate(-50%, -50%) scale(1.3);
     }
@@ -2236,6 +2335,7 @@ body.modal-active .video-modal-content {
         transform: scale(1);
         opacity: 0.6;
     }
+
     100% {
         transform: scale(1.8);
         opacity: 0;
@@ -2280,8 +2380,8 @@ body.modal-active .video-modal-content {
     overflow: hidden;
 }
 
-.parallax-section > .container,
-.parallax-section > .cinematic-slider-container {
+.parallax-section>.container,
+.parallax-section>.cinematic-slider-container {
     transition: transform 0.1s linear;
     will-change: transform;
 }
@@ -2291,7 +2391,7 @@ body.modal-active .video-modal-content {
     opacity: 0;
     transform: translateY(40px);
     transition: opacity 0.8s cubic-bezier(0.25, 1, 0.5, 1),
-                transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+        transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
 /* Scroll Reveal - Revealed State */
@@ -2305,12 +2405,29 @@ body.modal-active .video-modal-content {
     transition-delay: calc(var(--stagger-index, 0) * 0.1s);
 }
 
-.sc-item[data-index="0"] { --stagger-index: 0; }
-.sc-item[data-index="1"] { --stagger-index: 1; }
-.sc-item[data-index="2"] { --stagger-index: 2; }
-.sc-item[data-index="3"] { --stagger-index: 3; }
-.sc-item[data-index="4"] { --stagger-index: 4; }
-.sc-item[data-index="5"] { --stagger-index: 5; }
+.sc-item[data-index="0"] {
+    --stagger-index: 0;
+}
+
+.sc-item[data-index="1"] {
+    --stagger-index: 1;
+}
+
+.sc-item[data-index="2"] {
+    --stagger-index: 2;
+}
+
+.sc-item[data-index="3"] {
+    --stagger-index: 3;
+}
+
+.sc-item[data-index="4"] {
+    --stagger-index: 4;
+}
+
+.sc-item[data-index="5"] {
+    --stagger-index: 5;
+}
 
 /* Section titles get a special slide-up with slight scale */
 .section-title.reveal-ready {
