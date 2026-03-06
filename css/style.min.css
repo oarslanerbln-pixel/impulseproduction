@@ -2688,3 +2688,88 @@ body.modal-active .video-modal-content {
         font-size: clamp(1.4rem, 5vw, 1.8rem) !important;
     }
 }
+
+/* ==========================================================================
+   PREMIUM FEATURE: Scroll-Triggered Word Reveal
+   ========================================================================== */
+.word-reveal {
+    display: inline-block;
+}
+
+.word-reveal .word {
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(30px) rotateX(-15deg);
+    transition: opacity 0.5s ease, transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    transform-origin: center bottom;
+}
+
+.word-reveal.revealed .word {
+    opacity: 1;
+    transform: translateY(0) rotateX(0deg);
+}
+
+/* ==========================================================================
+   PREMIUM FEATURE: 3D Parallax Tilt Cards
+   ========================================================================== */
+.tilt-card {
+    transform-style: preserve-3d;
+    transition: transform 0.15s ease-out;
+    will-change: transform;
+}
+
+.tilt-card .tilt-inner {
+    transform: translateZ(30px);
+    transition: transform 0.3s ease;
+}
+
+.tilt-card .tilt-shine {
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: radial-gradient(
+        circle at var(--shine-x, 50%) var(--shine-y, 50%),
+        rgba(255,255,255,0.08) 0%,
+        transparent 60%
+    );
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+    z-index: 5;
+}
+
+.tilt-card:hover .tilt-shine {
+    opacity: 1;
+}
+
+/* ==========================================================================
+   PREMIUM FEATURE: Smooth Page Transitions
+   ========================================================================== */
+.page-transition-overlay {
+    position: fixed;
+    inset: 0;
+    background: var(--color-bg);
+    z-index: 99999;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.page-transition-overlay.active {
+    opacity: 1;
+    pointer-events: all;
+}
+
+/* Page load fade-in */
+body {
+    animation: pageLoadFadeIn 0.6s ease forwards;
+}
+
+@keyframes pageLoadFadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}

@@ -844,4 +844,112 @@ document.addEventListener('DOMContentLoaded', () => {
             revealObserver.observe(el);
         });
     }
+
+    // ==========================================
+    // PREMIUM: Scroll-Triggered Word Reveal
+    // ==========================================
+    const sectionTitles = document.querySelectorAll('.section-title');
+    sectionTitles.forEach(title => {
+        const text = title.textContent.trim();
+        if (!text) return;
+
+        const words = text.split(/\s+/);
+        title.innerHTML = '';
+        title.classList.add('word-reveal');
+
+        words.forEach((word, i) => {
+            const span = document.createElement('span');
+            span.classList.add('word');
+            span.textContent = word;
+            span.style.transitionDelay = `${i * 0.08}s`;
+            title.appendChild(span);
+            // Add space between words
+            if (i < words.length - 1) {
+                title.appendChild(document.createTextNode('\u00A0'));
+            }
+        });
+
+        // Re-add the ::after pseudo-element separator line
+        // (section-title originally had one)
+    });
+
+    const wordRevealObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('revealed');
+                wordRevealObserver.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.3 });
+
+    document.querySelectorAll('.word-reveal').forEach(el => {
+        wordRevealObserver.observe(el);
+    });
+
+    // ==========================================
+    // PREMIUM: 3D Parallax Tilt Cards
+    // ==========================================
+    const tiltTargets = document.querySelectorAll('.testimonial-card, .cinematic-slide');
+
+    tiltTargets.forEach(card => {
+        // Only on desktop
+        if (window.innerWidth < 768) return;
+
+        card.classList.add('tilt-card');
+        card.style.perspective = '800px';
+
+        // Add shine overlay
+        const shine = document.createElement('div');
+        shine.classList.add('tilt-shine');
+        card.appendChild(shine);
+
+        card.addEventListener('mousemove', (e) => {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            const centerX = rect.width / 2;
+            const centerY = rect.height / 2;
+
+            const rotateX = ((y - centerY) / centerY) * -6;
+            const rotateY = ((x - centerX) / centerX) * 6;
+
+            card.style.transform = `perspective(800px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.02)`;
+
+            // Update shine position
+            const shineX = (x / rect.width) * 100;
+            const shineY = (y / rect.height) * 100;
+            shine.style.setProperty('--shine-x', shineX + '%');
+            shine.style.setProperty('--shine-y', shineY + '%');
+        });
+
+        card.addEventListener('mouseleave', () => {
+            card.style.transform = 'perspective(800px) rotateX(0) rotateY(0) scale(1)';
+        });
+    });
+
+    // ==========================================
+    // PREMIUM: Smooth Page Transitions
+    // ==========================================
+    // Create overlay element
+    const transOverlay = document.createElement('div');
+    transOverlay.classList.add('page-transition-overlay');
+    document.body.appendChild(transOverlay);
+
+    // Intercept internal links (not anchors, not external)
+    document.querySelectorAll('a[href]').forEach(link => {
+        const href = link.getAttribute('href');
+        if (!href) return;
+        // Skip anchors, external links, mailto, tel, javascript
+        if (href.startsWith('#') || href.startsWith('http') || href.startsWith('mailto') || href.startsWith('tel') || href.startsWith('javascript')) return;
+        // Skip target="_blank" links
+        if (link.getAttribute('target') === '_blank') return;
+
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            transOverlay.classList.add('active');
+            setTimeout(() => {
+                window.location.href = href;
+            }, 500);
+        });
+    });
 });
