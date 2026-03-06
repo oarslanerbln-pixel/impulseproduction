@@ -10,9 +10,9 @@ document.addEventListener('DOMContentLoaded', () => {
             "nav-portfolio": "Portfolio",
             "nav-about": "Über mich",
             "nav-contact": "Kontakt",
-            "hero-title-1": "Ihre Geschichte",
-            "hero-title-2": "Filmisch",
-            "hero-title-3": "Erzählt",
+            "hero-title-1": "Ihre Marke.",
+            "hero-title-2": "Premium",
+            "hero-title-3": "Inszeniert.",
             "hero-subtitle": "Definieren Sie die Geschichte Ihrer Marke durch erstklassige Videoproduktion, Branding und visionäre digitale Lösungen neu.",
             "hero-cta": "Angebot einholen",
             "services-title": "Leistungen",
@@ -83,9 +83,9 @@ document.addEventListener('DOMContentLoaded', () => {
             "nav-portfolio": "Portfolyo",
             "nav-about": "Hakkımda",
             "nav-contact": "İletişim",
-            "hero-title-1": "Sizin Hikayeniz",
-            "hero-title-2": "Sinematik",
-            "hero-title-3": "Anlatım",
+            "hero-title-1": "Markanız.",
+            "hero-title-2": "Premium",
+            "hero-title-3": "Sahnelendi.",
             "hero-subtitle": "Birinci sınıf video prodüksiyonu, markalaşma ve vizyoner dijital çözümlerle markanızın hikayesini yeniden tanımlayın.",
             "hero-cta": "Teklif Al",
             "services-title": "Hizmetler",
@@ -432,6 +432,77 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // ==========================================
+    // MOBILE ACCORDION SERVICES
+    // ==========================================
+    function initMobileAccordion() {
+        if (window.innerWidth > 991) return;
+
+        const scItems = document.querySelectorAll('.sc-item');
+        const scContents = document.querySelectorAll('.sc-content');
+
+        scItems.forEach((item) => {
+            // Skip if panel already created
+            if (item.querySelector('.accordion-panel')) return;
+
+            const idx = item.getAttribute('data-index');
+            const content = document.querySelector(`.sc-content[data-content="${idx}"]`);
+            if (!content) return;
+
+            // Extract data from the hidden services-display
+            const img = content.querySelector('.sc-image-wrapper img');
+            const desc = content.querySelector('.sc-desc');
+
+            // Build accordion panel
+            const panel = document.createElement('div');
+            panel.classList.add('accordion-panel');
+            const inner = document.createElement('div');
+            inner.classList.add('accordion-panel-inner');
+
+            if (img) {
+                const imgClone = document.createElement('img');
+                imgClone.src = img.src;
+                imgClone.alt = img.alt;
+                imgClone.classList.add('accordion-img');
+                imgClone.loading = 'lazy';
+                inner.appendChild(imgClone);
+            }
+
+            if (desc) {
+                const descClone = desc.cloneNode(true);
+                descClone.classList.remove('sc-desc');
+                descClone.classList.add('accordion-desc');
+                inner.appendChild(descClone);
+            }
+
+            panel.appendChild(inner);
+            item.appendChild(panel);
+
+            // Click handler
+            item.addEventListener('click', (e) => {
+                if (window.innerWidth > 991) return;
+
+                const isOpen = item.classList.contains('accordion-open');
+
+                // Close all
+                scItems.forEach(other => {
+                    other.classList.remove('accordion-open');
+                    const otherPanel = other.querySelector('.accordion-panel');
+                    if (otherPanel) otherPanel.classList.remove('open');
+                });
+
+                // Open this one (if it wasn't already open)
+                if (!isOpen) {
+                    item.classList.add('accordion-open');
+                    panel.classList.add('open');
+                }
+            });
+        });
+    }
+
+    initMobileAccordion();
+    window.addEventListener('resize', initMobileAccordion);
+
 
 
     // ==========================================
@@ -670,13 +741,35 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ==========================================
-    // FLOATING CTA - Delayed Appearance
+    // FLOATING CTA - Delayed Appearance & Smart Scroll
     // ==========================================
     const floatingCta = document.getElementById('floatingCta');
     if (floatingCta) {
+        let isInitialDelayOver = false;
         setTimeout(() => {
-            floatingCta.classList.add('visible');
+            isInitialDelayOver = true;
+            floatingCta.style.opacity = '1';
+            floatingCta.style.visibility = 'visible';
+            floatingCta.style.transform = 'translateY(0) scale(1)';
         }, 4000); // Show after 4 seconds
+
+        let lastScrollTop = window.scrollY || document.documentElement.scrollTop;
+        window.addEventListener('scroll', () => {
+            if (!isInitialDelayOver) return;
+            const scrollTop = window.scrollY || document.documentElement.scrollTop;
+            if (scrollTop > lastScrollTop && scrollTop > 300) {
+                // Scrolling down, hide it smoothly
+                floatingCta.style.transform = 'translateY(100px) scale(0.8)';
+                floatingCta.style.opacity = '0';
+                floatingCta.style.visibility = 'hidden';
+            } else if (scrollTop < lastScrollTop) {
+                // Scrolling up, show it
+                floatingCta.style.transform = 'translateY(0) scale(1)';
+                floatingCta.style.opacity = '1';
+                floatingCta.style.visibility = 'visible';
+            }
+            lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+        }, { passive: true });
     }
 
     // ==========================================

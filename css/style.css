@@ -504,9 +504,9 @@ h6 {
 .mobile-nav-overlay {
     position: fixed;
     inset: 0;
-    background-color: rgba(10, 10, 10, 0.98);
-    -webkit-backdrop-filter: blur(15px);
-    backdrop-filter: blur(15px);
+    background-color: rgba(10, 10, 10, 0.65);
+    -webkit-backdrop-filter: blur(25px);
+    backdrop-filter: blur(25px);
     z-index: 999;
     display: flex;
     align-items: center;
@@ -514,6 +514,19 @@ h6 {
     opacity: 0;
     pointer-events: none;
     transition: opacity var(--transition-normal);
+}
+
+/* Haptic Feedback System */
+a.nav-link:active,
+.lang-btn:active,
+.mobile-nav-toggle:active,
+.mobile-link:active,
+.cta-link:active,
+.slider-btn:active,
+.sc-item:active,
+.contact-submit:active {
+    transform: scale(0.92) !important;
+    transition: transform 0.1s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
 }
 
 .mobile-nav-links {
@@ -985,14 +998,32 @@ dotlottie-player {
 /* Responsive (Mobil için uyarlamalar) */
 @media (max-width: 991px) {
     .services-display {
-        height: 340px;
+        height: 380px;
         order: -1;
         /* Görsel mobilde listenin üstüne çıksın */
     }
     
     .sc-image-wrapper {
-        height: 180px;
-        border-radius: 12px;
+        height: 220px;
+        border-radius: 24px;
+        border: 8px solid #1a1a1a;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), inset 0 0 0 2px rgba(255, 255, 255, 0.1);
+        position: relative;
+    }
+
+    /* iPhone Notch Simulation */
+    .sc-image-wrapper::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 40%;
+        height: 12px;
+        background-color: #1a1a1a;
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px;
+        z-index: 10;
     }
 
     .sc-desc {
@@ -1063,12 +1094,20 @@ dotlottie-player {
     }
 
     .services-display {
-        height: 280px;
+        height: 320px;
     }
 
     .sc-image-wrapper {
-        height: 140px;
-        border-radius: 8px;
+        height: 180px;
+        border-radius: 20px;
+        border: 6px solid #1a1a1a;
+    }
+
+    .sc-image-wrapper::before {
+        height: 10px;
+        width: 35%;
+        border-bottom-left-radius: 8px;
+        border-bottom-right-radius: 8px;
     }
 
     .sc-desc {
@@ -2470,5 +2509,182 @@ body.modal-active .video-modal-content {
 
     .about-text.reveal-ready {
         transform: translateX(-15px);
+    }
+}
+
+/* ==========================================================================
+   MOBILE ACCORDION SERVICES & TYPOGRAPHY (max 991px)
+   ========================================================================== */
+@media (max-width: 991px) {
+    /* --- Global Mobile Typography --- */
+    html {
+        font-size: 15px;
+    }
+
+    h1, .hero-title {
+        font-size: clamp(2rem, 7vw, 3rem) !important;
+        line-height: 1.1;
+        letter-spacing: -0.02em;
+    }
+
+    h2, .section-title {
+        font-size: clamp(1.6rem, 5vw, 2rem) !important;
+        margin-bottom: 1.5rem;
+    }
+
+    p, .hero-subtitle {
+        font-size: 0.95rem !important;
+        line-height: 1.65;
+    }
+
+    /* --- Accordion Services Section --- */
+
+    /* Hide the separate image/description display panel entirely on mobile */
+    .services-display {
+        display: none !important;
+    }
+
+    .luxury-services-container {
+        padding: 3rem 0;
+    }
+
+    .luxury-services-wrapper {
+        gap: 0;
+    }
+
+    .services-list {
+        border-top: none;
+    }
+
+    /* Each service item: compact accordion header */
+    .sc-item {
+        flex-wrap: wrap;
+        gap: 0.8rem;
+        padding: 1rem 0;
+        cursor: pointer;
+        position: relative;
+        border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .sc-item::before {
+        display: none;
+    }
+
+    .sc-lottie {
+        width: 28px;
+        height: 28px;
+        display: block;
+    }
+
+    dotlottie-player {
+        width: 28px;
+        height: 28px;
+    }
+
+    .sc-num {
+        font-size: 0.75rem;
+        min-width: 1.5rem;
+        color: var(--color-accent);
+    }
+
+    .sc-title {
+        font-size: 0.85rem !important;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        font-weight: 500;
+        color: rgba(255,255,255,0.7);
+        transition: color 0.3s ease;
+        flex: 1;
+        min-width: 0;
+        line-height: 1.3;
+    }
+
+    .sc-item.active .sc-title,
+    .sc-item.accordion-open .sc-title {
+        color: #fff;
+        transform: none;
+    }
+
+    /* Chevron indicator */
+    .sc-item::after {
+        content: '+';
+        font-family: var(--font-sans);
+        font-size: 1.2rem;
+        font-weight: 300;
+        color: var(--color-accent);
+        transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        margin-left: auto;
+        flex-shrink: 0;
+    }
+
+    .sc-item.accordion-open::after {
+        content: '−';
+        transform: rotate(0deg);
+    }
+
+    /* Accordion expand panel */
+    .accordion-panel {
+        width: 100%;
+        max-height: 0;
+        overflow: hidden;
+        opacity: 0;
+        transition: max-height 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+                    opacity 0.4s ease 0.1s;
+    }
+
+    .accordion-panel.open {
+        max-height: 500px;
+        opacity: 1;
+    }
+
+    .accordion-panel-inner {
+        padding: 1rem 0 0.5rem;
+    }
+
+    /* Accordion Image */
+    .accordion-panel .accordion-img {
+        width: 100%;
+        height: 180px;
+        object-fit: cover;
+        border-radius: 16px;
+        border: 4px solid rgba(255,255,255,0.08);
+        margin-bottom: 0.8rem;
+    }
+
+    /* Accordion Description */
+    .accordion-panel .accordion-desc {
+        font-size: 0.85rem;
+        line-height: 1.6;
+        color: rgba(255,255,255,0.55);
+        margin: 0;
+    }
+}
+
+/* Extra small screens: even more compact */
+@media (max-width: 480px) {
+    .sc-lottie {
+        display: none !important;
+    }
+
+    .sc-item {
+        gap: 0.6rem;
+        padding: 0.8rem 0;
+    }
+
+    .sc-title {
+        font-size: 0.8rem !important;
+    }
+
+    .accordion-panel .accordion-img {
+        height: 150px;
+        border-radius: 12px;
+    }
+
+    .accordion-panel .accordion-desc {
+        font-size: 0.8rem;
+    }
+
+    h2, .section-title {
+        font-size: clamp(1.4rem, 5vw, 1.8rem) !important;
     }
 }
