@@ -10,9 +10,9 @@ document.addEventListener('DOMContentLoaded', () => {
             "nav-portfolio": "Portfolio",
             "nav-about": "Über mich",
             "nav-contact": "Kontakt",
-            "hero-title-1": "Ihre Marke.",
-            "hero-title-2": "Premium",
-            "hero-title-3": "Inszeniert.",
+            "hero-title-1": "Ihre Vision.",
+            "hero-title-2": "Filmisch",
+            "hero-title-3": "Vollendet.",
             "hero-subtitle": "Definieren Sie die Geschichte Ihrer Marke durch erstklassige Videoproduktion, Branding und visionäre digitale Lösungen neu.",
             "hero-cta": "Angebot einholen",
             "services-title": "Leistungen",
@@ -61,12 +61,12 @@ document.addEventListener('DOMContentLoaded', () => {
             "form-privacy-2": "gelesen und akzeptiere die Speicherung meiner Daten.",
             "footer-impressum": "Impressum",
             "footer-datenschutz": "Datenschutz",
-            "footer-rights": "© 2026 Impulse Production. Alle Rechte vorbehalten.",
+            "footer-rights": "© 2026 Envisio. Alle Rechte vorbehalten.",
             "cookie-text": "Diese Website verwendet Cookies, um Ihre Erfahrung zu verbessern. Durch die weitere Nutzung der Website stimmen Sie der Verwendung von Cookies zu.",
             "cookie-more": "Mehr erfahren",
             "cookie-accept": "Akzeptieren",
             "testimonials-title": "Was Kunden sagen",
-            "testimonial-quote-1": "\"Impulse Production hat unsere Vision nicht nur verstanden, sondern auf ein Level gehoben, das wir uns nicht vorstellen konnten. Die filmische Qualität ist absolut Weltklasse.\"",
+            "testimonial-quote-1": "\"Envisio hat unsere Vision nicht nur verstanden, sondern auf ein Level gehoben, das wir uns nicht vorstellen konnten. Die filmische Qualität ist absolut Weltklasse.\"",
             "testimonial-author-1": "Marco Rossi",
             "testimonial-role-1": "Inhaber, Fine Dining Group",
             "testimonial-quote-2": "\"Die Zusammenarbeit war hochprofessionell. Unsere neue Landingpage in Kombination mit den Drohnenaufnahmen hat unsere Anfragen verdoppelt.\"",
@@ -83,9 +83,9 @@ document.addEventListener('DOMContentLoaded', () => {
             "nav-portfolio": "Portfolyo",
             "nav-about": "Hakkımda",
             "nav-contact": "İletişim",
-            "hero-title-1": "Markanız.",
-            "hero-title-2": "Premium",
-            "hero-title-3": "Sahnelendi.",
+            "hero-title-1": "Vizyonunuz.",
+            "hero-title-2": "Sinematik",
+            "hero-title-3": "Kusursuzluk.",
             "hero-subtitle": "Birinci sınıf video prodüksiyonu, markalaşma ve vizyoner dijital çözümlerle markanızın hikayesini yeniden tanımlayın.",
             "hero-cta": "Teklif Al",
             "services-title": "Hizmetler",
@@ -134,12 +134,12 @@ document.addEventListener('DOMContentLoaded', () => {
             "form-privacy-2": "verilerimin işlenmesini kabul ediyorum.",
             "footer-impressum": "Künye",
             "footer-datenschutz": "Gizlilik",
-            "footer-rights": "© 2026 Impulse Production. Tüm hakları saklıdır.",
+            "footer-rights": "© 2026 Envisio. Tüm hakları saklıdır.",
             "cookie-text": "Bu web sitesi, size en iyi deneyimi sunmak için çerezleri kullanır. Sitemizi kullanmaya devam ederek çerez kullanımını kabul etmiş sayılırsınız.",
             "cookie-more": "Daha fazla bilgi",
             "cookie-accept": "Kabul Et",
             "testimonials-title": "Müşterilerimiz Ne Diyor?",
-            "testimonial-quote-1": "\"Impulse Production sadece vizyonumuzu anlamakla kalmadı, onu hayal bile edemeyeceğimiz bir seviyeye taşıdı. Sinematik kalite kesinlikle dünya standartlarında.\"",
+            "testimonial-quote-1": "\"Envisio sadece vizyonumuzu anlamakla kalmadı, onu hayal bile edemeyeceğimiz bir seviyeye taşıdı. Sinematik kalite kesinlikle dünya standartlarında.\"",
             "testimonial-author-1": "Marco Rossi",
             "testimonial-role-1": "Sahibi, Fine Dining Group",
             "testimonial-quote-2": "\"İş birliğimiz son derece profesyoneldi. Yeni landing page'imiz ve drone çekimlerimiz sayesinde aldığımız talepler iki katına çıktı.\"",
@@ -293,33 +293,11 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }, observerOptions);
 
-    const animatedElements = document.querySelectorAll('.fade-in-element, .portfolio-item, .about-text, .services-list, .services-display');
+    const animatedElements = document.querySelectorAll('.fade-in-element, .portfolio-item, .about-text, .bento-grid-item');
     animatedElements.forEach(el => {
         el.classList.add('fade-in-element');
         observer.observe(el);
     });
-
-    // Services Hover
-    const serviceItems = document.querySelectorAll('.sc-item');
-    const serviceContents = document.querySelectorAll('.sc-content');
-
-    if (serviceItems.length > 0 && serviceContents.length > 0) {
-        serviceItems[0].classList.add('active');
-        serviceContents[0].classList.add('active');
-
-        serviceItems.forEach((item) => {
-            item.addEventListener('mouseenter', () => {
-                const targetIndex = item.getAttribute('data-index');
-                serviceItems.forEach(i => i.classList.remove('active'));
-                serviceContents.forEach(c => c.classList.remove('active'));
-                item.classList.add('active');
-                const targetContent = document.querySelector(`.sc-content[data-content="${targetIndex}"]`);
-                if (targetContent) {
-                    targetContent.classList.add('active');
-                }
-            });
-        });
-    }
 
     // ==========================================
     // CINEMATIC PORTFOLIO SLIDER
@@ -432,76 +410,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // ==========================================
-    // MOBILE ACCORDION SERVICES
-    // ==========================================
-    function initMobileAccordion() {
-        if (window.innerWidth > 991) return;
-
-        const scItems = document.querySelectorAll('.sc-item');
-        const scContents = document.querySelectorAll('.sc-content');
-
-        scItems.forEach((item) => {
-            // Skip if panel already created
-            if (item.querySelector('.accordion-panel')) return;
-
-            const idx = item.getAttribute('data-index');
-            const content = document.querySelector(`.sc-content[data-content="${idx}"]`);
-            if (!content) return;
-
-            // Extract data from the hidden services-display
-            const img = content.querySelector('.sc-image-wrapper img');
-            const desc = content.querySelector('.sc-desc');
-
-            // Build accordion panel
-            const panel = document.createElement('div');
-            panel.classList.add('accordion-panel');
-            const inner = document.createElement('div');
-            inner.classList.add('accordion-panel-inner');
-
-            if (img) {
-                const imgClone = document.createElement('img');
-                imgClone.src = img.src;
-                imgClone.alt = img.alt;
-                imgClone.classList.add('accordion-img');
-                imgClone.loading = 'lazy';
-                inner.appendChild(imgClone);
-            }
-
-            if (desc) {
-                const descClone = desc.cloneNode(true);
-                descClone.classList.remove('sc-desc');
-                descClone.classList.add('accordion-desc');
-                inner.appendChild(descClone);
-            }
-
-            panel.appendChild(inner);
-            item.appendChild(panel);
-
-            // Click handler
-            item.addEventListener('click', (e) => {
-                if (window.innerWidth > 991) return;
-
-                const isOpen = item.classList.contains('accordion-open');
-
-                // Close all
-                scItems.forEach(other => {
-                    other.classList.remove('accordion-open');
-                    const otherPanel = other.querySelector('.accordion-panel');
-                    if (otherPanel) otherPanel.classList.remove('open');
-                });
-
-                // Open this one (if it wasn't already open)
-                if (!isOpen) {
-                    item.classList.add('accordion-open');
-                    panel.classList.add('open');
-                }
-            });
-        });
-    }
-
-    initMobileAccordion();
-    window.addEventListener('resize', initMobileAccordion);
+    // Services logic removed - using CSS-based Bento Grid now.
 
 
 
@@ -816,14 +725,14 @@ document.addEventListener('DOMContentLoaded', () => {
     // ==========================================
     // ENHANCED SCROLL REVEAL ANIMATIONS
     // ==========================================
-    const revealElements = document.querySelectorAll('.fade-in-element, .section-title, .about-text, .testimonial-card, .sc-item');
+    const revealElements = document.querySelectorAll('.fade-in-element, .section-title, .about-text, .testimonial-card, .bento-item');
 
     if (revealElements.length > 0) {
         const revealObserver = new IntersectionObserver((entries) => {
             entries.forEach((entry, index) => {
                 if (entry.isIntersecting) {
                     // Staggered delay for grouped items
-                    const delay = entry.target.classList.contains('sc-item')
+                    const delay = entry.target.classList.contains('bento-item')
                         ? parseInt(entry.target.dataset.index || 0) * 100
                         : 0;
 

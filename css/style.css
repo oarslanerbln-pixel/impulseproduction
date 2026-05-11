@@ -818,249 +818,162 @@ body.nav-open .hamburger-line:last-child {
     overflow-x: hidden;
 }
 
-@media (min-width: 992px) {
-    .luxury-services-wrapper {
-        flex-direction: row;
-        align-items: flex-start;
-        justify-content: space-between;
-    }
+/* ==========================================================================
+   Bento Grid Services
+   ========================================================================== */
+.bento-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: 280px;
+    gap: 1.5rem;
+    margin-top: 5rem;
 }
 
-/* Sol Taraf: Liste */
-.services-list {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.sc-item {
-    display: flex;
-    align-items: center;
-    gap: 2rem;
-    padding: 2.5rem 0;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+.bento-item {
+    position: relative;
+    border-radius: 2.5rem;
+    overflow: hidden;
+    background: var(--color-bg-alt);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
     cursor: pointer;
-    transition: all var(--transition-normal);
-    position: relative;
-    overflow: hidden;
 }
 
-/* Hover Efekti için Arka Plan Vurgusu */
-.sc-item::before {
-    content: '';
+/* Bento Sizes */
+.bento-large { grid-column: span 2; grid-row: span 2; }
+.bento-wide { grid-column: span 2; grid-row: span 1; }
+.bento-medium { grid-column: span 1; grid-row: span 1; }
+.bento-small { grid-column: span 1; grid-row: span 1; }
+
+/* Background Handling */
+.bento-bg {
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 0%;
-    height: 100%;
-    background: linear-gradient(90deg, rgba(211, 168, 124, 0.05) 0%, transparent 100%);
-    transition: width var(--transition-slow);
+    inset: 0;
     z-index: 0;
+    transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.sc-item:hover::before,
-.sc-item.active::before {
-    width: 100%;
-}
-
-.sc-num {
-    font-family: var(--font-serif);
-    font-size: 1.2rem;
-    color: var(--color-text-muted);
-    font-style: italic;
-    font-weight: 300;
-    transition: color var(--transition-normal);
-    z-index: 1;
-}
-
-/* Lottie Animation Containers */
-.sc-lottie {
-    width: 40px;
-    height: 40px;
-    flex-shrink: 0;
-    z-index: 1;
-    opacity: 0.6;
-    transition: opacity 0.4s ease, transform 0.4s ease;
-}
-
-.sc-item:hover .sc-lottie,
-.sc-item.active .sc-lottie {
-    opacity: 1;
-    transform: scale(1.15);
-}
-
-dotlottie-player {
-    width: 40px;
-    height: 40px;
-}
-
-.sc-title {
-    font-size: clamp(1.8rem, 3vw, 2.8rem);
-    font-weight: 400;
-    text-transform: uppercase;
-    letter-spacing: 0.02em;
-    margin: 0;
-    transition: color var(--transition-normal), transform var(--transition-normal);
-    transform-origin: left center;
-    z-index: 1;
-    color: var(--color-text-muted);
-}
-
-/* Aktif Durum (Sayfada gösterilen öğe) */
-.sc-item.active .sc-num {
-    color: var(--color-accent);
-}
-
-.sc-item.active .sc-title {
-    color: var(--color-text);
-    transform: translateX(20px);
-}
-
-/* Hover Durumu (Interactivity) */
-@media (hover: hover) {
-    .sc-item:hover .sc-title {
-        color: var(--color-text);
-        transform: translateX(10px);
-    }
-}
-
-/* Sağ Taraf: Görsel ve İçerik Gösterimi */
-.services-display {
-    flex: 1;
-    position: relative;
-    height: 600px;
-    /* Sabit bir yükseklik, ihtiyaca göre ayarlanabilir */
-    width: 100%;
-    border-radius: 4px;
-    overflow: hidden;
-}
-
-.sc-content {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.8s ease, visibility 0.8s;
-    display: flex;
-    flex-direction: column;
-}
-
-.sc-content.active {
-    opacity: 1;
-    visibility: visible;
-    z-index: 2;
-}
-
-.sc-image-wrapper {
-    width: 100%;
-    height: 75%;
-    overflow: hidden;
-    background-color: var(--color-bg-alt);
-}
-
-.sc-image-wrapper img {
+.bento-bg img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    filter: brightness(0.4) contrast(1.1) grayscale(40%);
+    transition: filter 0.8s ease;
+}
+
+.bento-item:hover .bento-bg {
     transform: scale(1.1);
-    transition: transform 1.5s cubic-bezier(0.16, 1, 0.3, 1);
-    filter: brightness(0.85);
-    /* Sinematik karanlık */
 }
 
-/* Aktif görselin yavaşça zoom out yapması (Luxury feel) */
-.sc-content.active .sc-image-wrapper img {
-    transform: scale(1);
-    filter: brightness(1);
+.bento-item:hover .bento-bg img {
+    filter: brightness(0.6) contrast(1.2) grayscale(0%);
 }
 
-.sc-desc {
-    margin-top: 2rem;
-    color: var(--color-text-muted);
-    font-size: 1.1rem;
-    line-height: 1.8;
-    transform: translateY(20px);
-    opacity: 0;
-    transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-    transition-delay: 0.2s;
-    /* Görselden hemen sonra gelsin */
+/* Content Overlay */
+.bento-content {
+    position: absolute;
+    inset: 0;
+    padding: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    z-index: 2;
+    background: linear-gradient(to top, rgba(10, 10, 10, 0.95) 0%, transparent 60%);
+    transition: all var(--transition-normal);
 }
 
-.sc-content.active .sc-desc {
-    transform: translateY(0);
+.bento-item:hover .bento-content {
+    background: linear-gradient(to top, rgba(10, 10, 10, 0.98) 0%, rgba(212, 168, 83, 0.05) 100%);
+}
+
+.bento-icon {
+    width: 50px;
+    height: 50px;
+    margin-bottom: auto;
+    opacity: 0.6;
+    filter: drop-shadow(0 0 10px rgba(212, 168, 83, 0.2));
+    transition: all 0.5s ease;
+}
+
+.bento-item:hover .bento-icon {
+    transform: scale(1.1) translateY(-5px);
     opacity: 1;
 }
 
-/* Responsive (Mobil için uyarlamalar) */
-@media (max-width: 991px) {
-    .services-display {
-        height: 380px;
-        order: -1;
-        /* Görsel mobilde listenin üstüne çıksın */
+.bento-text { position: relative; }
+
+.bento-num {
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: var(--color-accent);
+    letter-spacing: 0.3em;
+    display: block;
+    margin-bottom: 0.8rem;
+    opacity: 0.6;
+}
+
+.bento-text h3 {
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    color: var(--color-text);
+    line-height: 1.2;
+}
+
+.bento-large .bento-text h3 { font-size: 2.4rem; }
+
+.bento-text p {
+    font-size: 0.9rem;
+    color: var(--color-text-muted);
+    max-width: 400px;
+    line-height: 1.6;
+    height: 0;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.bento-item:hover .bento-text p {
+    height: auto;
+    margin-top: 1rem;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Responsive Bento */
+@media (max-width: 1100px) {
+    .bento-grid {
+        grid-template-columns: repeat(2, 1fr);
+        grid-auto-rows: 250px;
+    }
+    .bento-large { grid-column: span 2; grid-row: span 2; }
+}
+
+@media (max-width: 768px) {
+    .bento-grid {
+        grid-template-columns: 1fr;
+        grid-auto-rows: auto;
+        gap: 1rem;
     }
     
-    .sc-image-wrapper {
-        height: 220px;
-        border-radius: 24px;
-        border: 8px solid #1a1a1a;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), inset 0 0 0 2px rgba(255, 255, 255, 0.1);
-        position: relative;
+    .bento-item {
+        grid-column: span 1 !important;
+        grid-row: span 1 !important;
+        aspect-ratio: 16/10;
+        border-radius: 1.5rem;
     }
 
-    /* iPhone Notch Simulation */
-    .sc-image-wrapper::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 40%;
-        height: 12px;
-        background-color: #1a1a1a;
-        border-bottom-left-radius: 10px;
-        border-bottom-right-radius: 10px;
-        z-index: 10;
+    .bento-text h3 { font-size: 1.5rem; }
+    .bento-large .bento-text h3 { font-size: 1.8rem; }
+    
+    .bento-text p {
+        height: auto;
+        opacity: 0.8;
+        transform: translateY(0);
+        margin-top: 0.5rem;
     }
-
-    .sc-desc {
-        margin-top: 1rem;
-    }
-
-    .sc-item {
-        gap: 1rem;
-        padding: 1.5rem 0;
-        max-width: 100%;
-        /* Prevent stretching */
-        box-sizing: border-box;
-    }
-
-    .sc-item.active .sc-title {
-        transform: translateX(10px);
-    }
-
-    .sc-title {
-        font-size: clamp(1.2rem, 4vw, 1.8rem);
-        /* Force word break */
-        word-break: break-word;
-        overflow-wrap: break-word;
-        white-space: normal;
-        flex: 1;
-        /* Allow taking remaining space */
-        min-width: 0;
-        /* Fix flex child blowout */
-    }
-
-    .sc-desc {
-        font-size: 0.95rem;
-    }
-
-    .luxury-services-wrapper {
-        gap: 2rem;
-    }
+    
+    .bento-content { padding: 1.5rem; }
 }
 
 /* Extra small mobile: aggressive layout fixes */
@@ -2078,12 +1991,13 @@ body.modal-active .video-modal-content {
     min-height: 100%;
     min-width: 177.77vh;
     /* 16:9 Aspect Ratio */
-    transform: translate(-50%, -50%) scale(1.15);
-    /* Center and zoom to hide Vimeo playbar/edges */
+    transform: translate(-50%, -50%) scale(1.25);
+    /* Center and zoom to fully hide Vimeo controls/playbar */
     pointer-events: none;
     filter: brightness(0.85);
     /* Darken slightly to make text pop */
-    transition: filter 1s ease;
+    transition: filter 1s ease, opacity 0.6s ease;
+    border: none;
 }
 
 .cinematic-slide.active .vimeo-bg-container iframe {
@@ -2201,7 +2115,7 @@ body.modal-active .video-modal-content {
     .cinematic-slider-track {
         height: 60vh;
         height: 60dvh;
-        min-height: auto;
+        min-height: 0;
     }
 
     .cinematic-slide {
@@ -2485,6 +2399,16 @@ body.modal-active .video-modal-content {
 
 .about-text.reveal-ready.revealed {
     transform: translateX(0);
+}
+
+/* Testimonial card staggered delay (moved from inline style) */
+.testimonial-card-delay {
+    transition-delay: 0.2s;
+}
+
+/* Honeypot bot-check field (moved from inline style) */
+.botcheck-hidden {
+    display: none;
 }
 
 /* Testimonial cards get scale effect */
