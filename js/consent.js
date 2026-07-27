@@ -5,8 +5,9 @@
    Every such element ships with data-consent-src instead of src and is only
    unlocked here.
 
-   Covered: Vimeo player iframes, Unsplash images, lottie.host animations and
-   the dotLottie player script on unpkg.
+   Covered: the Vimeo player iframes in the portfolio slider. That is the only
+   third party the site still contacts - the services section was rebuilt
+   without images or Lottie, so nothing else needs a gate.
 
    Withdrawal has to be as easy as giving consent, so the decision is
    re-openable at any time through the "Cookie-Einstellungen" footer link.
@@ -15,10 +16,8 @@
     'use strict';
 
     var STORAGE_KEY = 'envisio_consent_v2';
-    var LOTTIE_PLAYER = 'https://unpkg.com/@dotlottie/player-component@2.7.12/dist/dotlottie-player.mjs';
 
     var listeners = [];
-    var lottieRequested = false;
 
     function stored() {
         try {
@@ -52,35 +51,6 @@
     };
     window.EnvisioConsent = api;
 
-    function loadLottiePlayer() {
-        if (lottieRequested) return;
-        lottieRequested = true;
-        var s = document.createElement('script');
-        s.type = 'module';
-        s.src = LOTTIE_PLAYER;
-        s.crossOrigin = 'anonymous';
-        document.head.appendChild(s);
-    }
-
-    /* Unlock everything except the Vimeo iframes - the slider decides which of
-       those it actually needs, so all four are never loaded at once. */
-    function unlockThirdParty() {
-        document.querySelectorAll('img[data-consent-src]').forEach(function (el) {
-            el.src = el.getAttribute('data-consent-src');
-            el.removeAttribute('data-consent-src');
-            el.classList.add('consent-loaded');
-        });
-
-        var anim = document.querySelectorAll('dotlottie-player[data-consent-src]');
-        if (anim.length) {
-            anim.forEach(function (el) {
-                el.setAttribute('src', el.getAttribute('data-consent-src'));
-                el.removeAttribute('data-consent-src');
-            });
-            loadLottiePlayer();
-        }
-    }
-
     function notify(isGranted) {
         listeners.forEach(function (cb) {
             try {
@@ -94,7 +64,6 @@
     function apply(isGranted) {
         document.body.classList.toggle('consent-granted', isGranted);
         document.body.classList.toggle('consent-denied', !isGranted);
-        if (isGranted) unlockThirdParty();
         notify(isGranted);
     }
 

@@ -67,6 +67,9 @@
             #preloader { display: none !important; }
             .hero-content .reveal-mask > * { opacity: 1 !important; transform: none !important; }
             .fade-in-element, .reveal-ready { opacity: 1 !important; transform: none !important; }
+            .service-panel { grid-template-rows: 1fr !important; }
+            .service-desc { visibility: visible !important; opacity: 1 !important; }
+            .service-toggle { display: none !important; }
         </style>
     </noscript>
 </head>
@@ -241,111 +244,124 @@
         </div>
     </section>
 
-    <!-- Hizmetler Section (Premium Hover Reveal Layout) -->
-    <!-- Hizmetler Section (Bento Grid Layout) -->
+    <!-- Leistungen: editorial index.
+         Deliberately built from type, rules and inline SVG only - no images and
+         no Lottie - so the section renders identically before and after consent
+         and costs nothing to load. -->
     <section class="services section bg-darker parallax-section" id="leistungen" data-parallax-speed="0.2">
         <div class="container">
             <h2 class="section-title fade-in-element" data-i18n="services-title">Leistungen</h2>
-            
-            <div class="bento-grid">
-                <!-- Card 1: Videoproduktion (Large) -->
-                <div class="bento-item bento-large fade-in-element tilt-card">
-                    <div class="bento-bg">
-                        <img class="consent-img" data-consent-src="https://images.unsplash.com/photo-1601506521937-0121a7fc2a6b?q=80&w=1200&auto=format&fit=crop" alt="Video Production">
-                    </div>
-                    <div class="bento-content">
-                        <div class="bento-icon">
-                            <dotlottie-player data-consent-src="https://lottie.host/b13c7f10-8af2-4b22-bc84-3f5919400483/WuxkVrqdRQ.lottie" background="transparent" speed="1" loop autoplay></dotlottie-player>
-                        </div>
-                        <div class="bento-text">
-                            <span class="bento-num">01</span>
-                            <h3 data-i18n="service-title-1">Videoproduktion & Schnitt</h3>
-                            <p data-i18n="service-desc-1">Premium-Videoinhalte, die die visuelle Seele Ihrer Marke einfangen.</p>
-                        </div>
-                    </div>
-                </div>
 
-                <!-- Card 2: Drohnenaufnahmen -->
-                <div class="bento-item bento-medium fade-in-element tilt-card">
-                    <div class="bento-bg">
-                        <img class="consent-img" data-consent-src="https://images.unsplash.com/photo-1508614589041-895b88991e3e?q=80&w=800&auto=format&fit=crop" alt="Drone Cinematography">
+            <ol class="service-index">
+                <li class="service-row is-open fade-in-element">
+                    <h3 class="service-heading">
+                        <button type="button" class="service-trigger" id="service-trigger-1"
+                                aria-expanded="true" aria-controls="service-panel-1">
+                            <span class="service-num" aria-hidden="true">01</span>
+                            <span class="service-name" data-i18n="service-title-1">Videoproduktion &amp; Schnitt</span>
+                            <span class="service-icon" aria-hidden="true">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25"
+                                     stroke-linecap="round" stroke-linejoin="round"><path d="M2 6.5A2.5 2.5 0 0 1 4.5 4h9A2.5 2.5 0 0 1 16 6.5v11A2.5 2.5 0 0 1 13.5 20h-9A2.5 2.5 0 0 1 2 17.5z"/><path d="m16 10 5-3.2v10.4L16 14"/></svg>
+                            </span>
+                            <span class="service-toggle" aria-hidden="true"></span>
+                        </button>
+                    </h3>
+                    <div class="service-panel" id="service-panel-1"
+                         role="region" aria-labelledby="service-trigger-1">
+                        <p class="service-desc" data-i18n="service-desc-1">Premium-Videoinhalte, die die visuelle Seele Ihrer Marke mit High-End-Equipment und filmischen Schnitttechniken einfangen. Wir erzählen Ihre Geschichte mit atemberaubender Visualität.</p>
                     </div>
-                    <div class="bento-content">
-                        <div class="bento-icon">
-                            <dotlottie-player data-consent-src="https://lottie.host/8c5f3666-e7c2-445d-81b3-83a6fc372e3d/dFM3rPAepB.lottie" background="transparent" speed="1" loop autoplay></dotlottie-player>
-                        </div>
-                        <div class="bento-text">
-                            <span class="bento-num">02</span>
-                            <h3 data-i18n="service-title-2">Drohnenaufnahmen</h3>
-                        </div>
+                </li>
+                <li class="service-row fade-in-element">
+                    <h3 class="service-heading">
+                        <button type="button" class="service-trigger" id="service-trigger-2"
+                                aria-expanded="false" aria-controls="service-panel-2">
+                            <span class="service-num" aria-hidden="true">02</span>
+                            <span class="service-name" data-i18n="service-title-2">Drohnenaufnahmen</span>
+                            <span class="service-icon" aria-hidden="true">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25"
+                                     stroke-linecap="round" stroke-linejoin="round"><path d="M12 10.5a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3Z"/><path d="M10.6 10.6 6.8 6.8M13.4 10.6l3.8-3.8M10.6 13.4l-3.8 3.8M13.4 13.4l3.8 3.8"/><circle cx="5" cy="5" r="2.6"/><circle cx="19" cy="5" r="2.6"/><circle cx="5" cy="19" r="2.6"/><circle cx="19" cy="19" r="2.6"/></svg>
+                            </span>
+                            <span class="service-toggle" aria-hidden="true"></span>
+                        </button>
+                    </h3>
+                    <div class="service-panel" id="service-panel-2"
+                         role="region" aria-labelledby="service-trigger-2">
+                        <p class="service-desc" data-i18n="service-desc-2">Wechseln Sie die Perspektive. Verleihen Sie Ihren Projekten filmische Größe und makellose Pracht mit 4K-Luftaufnahmen. Luxuriöse Details aus der Luft für Architektur- und Unternehmenspräsentationen.</p>
                     </div>
-                </div>
-
-                <!-- Card 3: Branding -->
-                <div class="bento-item bento-small fade-in-element tilt-card">
-                    <div class="bento-bg">
-                        <img class="consent-img" data-consent-src="https://images.unsplash.com/photo-1626785774573-4b799315345d?q=80&w=800&auto=format&fit=crop" alt="Branding & Design">
+                </li>
+                <li class="service-row fade-in-element">
+                    <h3 class="service-heading">
+                        <button type="button" class="service-trigger" id="service-trigger-3"
+                                aria-expanded="false" aria-controls="service-panel-3">
+                            <span class="service-num" aria-hidden="true">03</span>
+                            <span class="service-name" data-i18n="service-title-3">Markenbildung (Branding)</span>
+                            <span class="service-icon" aria-hidden="true">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25"
+                                     stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.5 4 7v10l8 4.5 8-4.5V7z"/><path d="M4 7l8 4.5L20 7M12 11.5V21.5"/></svg>
+                            </span>
+                            <span class="service-toggle" aria-hidden="true"></span>
+                        </button>
+                    </h3>
+                    <div class="service-panel" id="service-panel-3"
+                         role="region" aria-labelledby="service-trigger-3">
+                        <p class="service-desc" data-i18n="service-desc-3">Indem wir Ihre Corporate Identity neu erfinden, bauen wir ein einprägsames Premium-Markenimage auf, das sich von Ihren Mitbewerbern abhebt. Eine ganzheitliche Vision von Ihrem Logo bis zur Farbpalette.</p>
                     </div>
-                    <div class="bento-content">
-                        <div class="bento-icon">
-                            <dotlottie-player data-consent-src="https://lottie.host/c9433f24-3bba-4357-9ac7-74c0b3f10d0d/ZnDRoYjfOq.lottie" background="transparent" speed="1" loop autoplay></dotlottie-player>
-                        </div>
-                        <div class="bento-text">
-                            <span class="bento-num">03</span>
-                            <h3 data-i18n="service-title-3">Markenbildung</h3>
-                        </div>
+                </li>
+                <li class="service-row fade-in-element">
+                    <h3 class="service-heading">
+                        <button type="button" class="service-trigger" id="service-trigger-4"
+                                aria-expanded="false" aria-controls="service-panel-4">
+                            <span class="service-num" aria-hidden="true">04</span>
+                            <span class="service-name" data-i18n="service-title-6">Webdesign</span>
+                            <span class="service-icon" aria-hidden="true">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25"
+                                     stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="4" width="19" height="16" rx="2.5"/><path d="M2.5 9h19"/><path d="M6 6.5h.01M8.8 6.5h.01M11.6 6.5h.01"/></svg>
+                            </span>
+                            <span class="service-toggle" aria-hidden="true"></span>
+                        </button>
+                    </h3>
+                    <div class="service-panel" id="service-panel-4"
+                         role="region" aria-labelledby="service-trigger-4">
+                        <p class="service-desc" data-i18n="service-desc-6">Makellos funktionierende digitale Schaufenster, die mit feinen Details verwoben sind und all Ihre Dienstleistungen und Ihre Vision präsentieren. Der Punkt, an dem User Experience (UX) auf luxuriöses Design trifft.</p>
                     </div>
-                </div>
-
-                <!-- Card 4: Webdesign (Wide) -->
-                <div class="bento-item bento-wide fade-in-element tilt-card">
-                    <div class="bento-bg">
-                        <img class="consent-img" data-consent-src="https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?q=80&w=1000&auto=format&fit=crop" alt="Web Design">
+                </li>
+                <li class="service-row fade-in-element">
+                    <h3 class="service-heading">
+                        <button type="button" class="service-trigger" id="service-trigger-5"
+                                aria-expanded="false" aria-controls="service-panel-5">
+                            <span class="service-num" aria-hidden="true">05</span>
+                            <span class="service-name" data-i18n="service-title-4">Landingpage-Erstellung</span>
+                            <span class="service-icon" aria-hidden="true">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25"
+                                     stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.5c3 2.4 4.6 5.6 4.6 9.2 0 2.6-.7 4.9-1.9 6.8H9.3C8.1 16.6 7.4 14.3 7.4 11.7c0-3.6 1.6-6.8 4.6-9.2Z"/><path d="M7.4 12.5 4 15.5l1.2 4 2.9-1.8M16.6 12.5 20 15.5l-1.2 4-2.9-1.8"/><circle cx="12" cy="10" r="1.8"/></svg>
+                            </span>
+                            <span class="service-toggle" aria-hidden="true"></span>
+                        </button>
+                    </h3>
+                    <div class="service-panel" id="service-panel-5"
+                         role="region" aria-labelledby="service-trigger-5">
+                        <p class="service-desc" data-i18n="service-desc-4">Ästhetisch reine, konversionsstarke Landingpages, die extrem schnell laden und Ihre Zielgruppe direkt zum Handeln anregen. Eine digitale Waffe für Ihre Kampagnen.</p>
                     </div>
-                    <div class="bento-content">
-                        <div class="bento-icon">
-                            <dotlottie-player data-consent-src="https://lottie.host/5dbdb52e-5a1d-405e-a9ef-c1c85ccb61ec/WwCKxjPaRm.lottie" background="transparent" speed="1" loop autoplay></dotlottie-player>
-                        </div>
-                        <div class="bento-text">
-                            <span class="bento-num">04</span>
-                            <h3 data-i18n="service-title-6">Webdesign</h3>
-                            <p data-i18n="service-desc-6">Kusursuz kullanıcı deneyimi ile lüks tasarımın buluştuğu nokta.</p>
-                        </div>
+                </li>
+                <li class="service-row fade-in-element">
+                    <h3 class="service-heading">
+                        <button type="button" class="service-trigger" id="service-trigger-6"
+                                aria-expanded="false" aria-controls="service-panel-6">
+                            <span class="service-num" aria-hidden="true">06</span>
+                            <span class="service-name" data-i18n="service-title-5">QR-Code-Design</span>
+                            <span class="service-icon" aria-hidden="true">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25"
+                                     stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.2"/><rect x="14" y="3" width="7" height="7" rx="1.2"/><rect x="3" y="14" width="7" height="7" rx="1.2"/><path d="M14 14h3v3h-3zM20 14h1M14 20h3M20 17v4"/></svg>
+                            </span>
+                            <span class="service-toggle" aria-hidden="true"></span>
+                        </button>
+                    </h3>
+                    <div class="service-panel" id="service-panel-6"
+                         role="region" aria-labelledby="service-trigger-6">
+                        <p class="service-desc" data-i18n="service-desc-5">Speziell für Ihre Marke entwickelte Premium-QR-Code-Lösungen und Menüs, die die physische mit der digitalen Welt auf eleganteste Weise verbinden. Verwandelt gewöhnliche Quadrate in luxuriöse Interaktionen.</p>
                     </div>
-                </div>
-
-                <!-- Card 5: Landingpage -->
-                <div class="bento-item bento-medium fade-in-element tilt-card">
-                    <div class="bento-bg">
-                        <img class="consent-img" data-consent-src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=800&auto=format&fit=crop" alt="Landing Page Design">
-                    </div>
-                    <div class="bento-content">
-                        <div class="bento-icon">
-                            <dotlottie-player data-consent-src="https://lottie.host/a42fb2d1-1e86-4f25-85d2-80f1a65cf82e/C2qCZGMFdx.lottie" background="transparent" speed="1" loop autoplay></dotlottie-player>
-                        </div>
-                        <div class="bento-text">
-                            <span class="bento-num">05</span>
-                            <h3 data-i18n="service-title-4">Landingpages</h3>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Card 6: QR Design -->
-                <div class="bento-item bento-small fade-in-element tilt-card">
-                    <div class="bento-bg">
-                        <img class="consent-img" data-consent-src="https://images.unsplash.com/photo-1611162617474-5b21e879e113?q=80&w=800&auto=format&fit=crop" alt="QR Code Design">
-                    </div>
-                    <div class="bento-content">
-                        <div class="bento-icon">
-                            <dotlottie-player data-consent-src="https://lottie.host/e5be66d1-0e2d-44fb-8a84-62fbd5eb8d1e/8yVLXwuqGp.lottie" background="transparent" speed="1" loop autoplay></dotlottie-player>
-                        </div>
-                        <div class="bento-text">
-                            <span class="bento-num">06</span>
-                            <h3 data-i18n="service-title-5">QR-Code-Design</h3>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                </li>
+            </ol>
         </div>
     </section>
 
@@ -489,7 +505,7 @@
          aria-labelledby="cookieBannerText" hidden>
         <div class="container cookie-container">
             <div class="cookie-content">
-                <p id="cookieBannerText" data-i18n="cookie-text">Diese Website bindet Inhalte von Vimeo, Unsplash und lottie.host ein. Dabei wird Ihre IP-Adresse an diese Anbieter übertragen. Diese Inhalte werden erst nach Ihrer Einwilligung geladen.</p>
+                <p id="cookieBannerText" data-i18n="cookie-text">Im Portfolio binden wir Videos von Vimeo ein. Dabei wird Ihre IP-Adresse an Vimeo übertragen. Die Videos werden erst nach Ihrer Einwilligung geladen.</p>
                 <div class="cookie-actions">
                     <a href="datenschutz.html" class="cookie-link" data-i18n="cookie-more">Mehr erfahren</a>
                     <button id="cookieDecline" class="cookie-btn cookie-btn-secondary" data-i18n="cookie-decline">Ablehnen</button>

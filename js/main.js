@@ -63,7 +63,7 @@ document.addEventListener('DOMContentLoaded', () => {
             "footer-datenschutz": "Datenschutz",
             "footer-rights": "© 2026 Envisio. Alle Rechte vorbehalten.",
             "footer-cookie-settings": "Cookie-Einstellungen",
-            "cookie-text": "Diese Website bindet Inhalte von Vimeo, Unsplash und lottie.host ein. Dabei wird Ihre IP-Adresse an diese Anbieter übertragen. Diese Inhalte werden erst nach Ihrer Einwilligung geladen.",
+            "cookie-text": "Im Portfolio binden wir Videos von Vimeo ein. Dabei wird Ihre IP-Adresse an Vimeo übertragen. Die Videos werden erst nach Ihrer Einwilligung geladen.",
             "cookie-more": "Mehr erfahren",
             "cookie-accept": "Akzeptieren",
             "cookie-decline": "Ablehnen",
@@ -131,7 +131,7 @@ document.addEventListener('DOMContentLoaded', () => {
             "footer-datenschutz": "Gizlilik",
             "footer-rights": "© 2026 Envisio. Tüm hakları saklıdır.",
             "footer-cookie-settings": "Çerez Ayarları",
-            "cookie-text": "Bu web sitesi Vimeo, Unsplash ve lottie.host içeriklerini kullanır. Bu sırada IP adresiniz ilgili sağlayıcılara aktarılır. Bu içerikler yalnızca onayınızdan sonra yüklenir.",
+            "cookie-text": "Portfolyo bölümünde Vimeo videoları kullanıyoruz. Bu sırada IP adresiniz Vimeo'ya aktarılır. Videolar yalnızca onayınızdan sonra yüklenir.",
             "cookie-more": "Daha fazla bilgi",
             "cookie-accept": "Kabul Et",
             "cookie-decline": "Reddet",
@@ -300,7 +300,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }, observerOptions);
 
-    const animatedElements = document.querySelectorAll('.fade-in-element, .portfolio-item, .about-text, .bento-grid-item');
+    const animatedElements = document.querySelectorAll('.fade-in-element, .portfolio-item, .about-text, .service-row');
     animatedElements.forEach(el => {
         el.classList.add('fade-in-element');
         observer.observe(el);
@@ -413,6 +413,31 @@ document.addEventListener('DOMContentLoaded', () => {
                 updateSlider();
             }
         }, {passive: true});
+    }
+
+    // ==========================================
+    // LEISTUNGEN - EDITORIAL INDEX (accordion)
+    // ==========================================
+    const serviceRows = document.querySelectorAll('.service-row');
+
+    if (serviceRows.length) {
+        const setOpen = (row, open) => {
+            const trigger = row.querySelector('.service-trigger');
+            row.classList.toggle('is-open', open);
+            if (trigger) trigger.setAttribute('aria-expanded', String(open));
+        };
+
+        serviceRows.forEach(row => {
+            const trigger = row.querySelector('.service-trigger');
+            if (!trigger) return;
+
+            trigger.addEventListener('click', () => {
+                const willOpen = !row.classList.contains('is-open');
+                // One open at a time keeps the index readable as a whole.
+                serviceRows.forEach(other => setOpen(other, false));
+                setOpen(row, willOpen);
+            });
+        });
     }
 
     // Smooth Scroll
@@ -743,14 +768,14 @@ document.addEventListener('DOMContentLoaded', () => {
     // ==========================================
     // ENHANCED SCROLL REVEAL ANIMATIONS
     // ==========================================
-    const revealElements = document.querySelectorAll('.fade-in-element, .section-title, .about-text, .testimonial-card, .bento-item');
+    const revealElements = document.querySelectorAll('.fade-in-element, .section-title, .about-text, .service-row');
 
     if (revealElements.length > 0) {
         const revealObserver = new IntersectionObserver((entries) => {
             entries.forEach((entry, index) => {
                 if (entry.isIntersecting) {
                     // Staggered delay for grouped items
-                    const delay = entry.target.classList.contains('bento-item')
+                    const delay = entry.target.classList.contains('service-row')
                         ? parseInt(entry.target.dataset.index || 0) * 100
                         : 0;
 
@@ -816,7 +841,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // ==========================================
     // PREMIUM: 3D Parallax Tilt Cards
     // ==========================================
-    const tiltTargets = document.querySelectorAll('.testimonial-card, .cinematic-slide');
+    const tiltTargets = document.querySelectorAll('.cinematic-slide');
 
     tiltTargets.forEach(card => {
         // Only on desktop

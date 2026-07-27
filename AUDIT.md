@@ -40,7 +40,8 @@ detaylı gerekçeler ilgili bölümlerde duruyor.
 | 24 | Tanımsız CSS değişkenleri | ✅ Tanımlandı |
 | 28 | Depo hijyeni (`files.zip`, `fix_css.py`) | ✅ Temizlendi |
 | 6 (video) | 36 MB videonun yeniden kodlanması | ⚠️ **Açık** — ortamda ffmpeg yok, komut aşağıda |
-| — | Unsplash/Lottie'nin yerelleştirilmesi | ⚠️ **Açık** — ağ politikası indirmeyi engelledi |
+| — | Unsplash/Lottie bağımlılığı | ✅ **Ortadan kalktı** — Leistungen bölümü görselsiz/Lottie'siz yeniden tasarlandı |
+| 16 | `prefers-reduced-motion` desteği | ✅ Eklendi |
 | 10-22, 29-35 | Aşama 3-5 (SEO, erişilebilirlik, dönüşüm) | ⏳ Sırada |
 
 ### Ölçülen sonuç
@@ -76,14 +77,15 @@ Hedef 2-4 MB. Yeni dosyaları `index.html` içindeki `<source>` etiketlerine ba�
 Şu an `preload="none"` ve mobilde video hiç yüklenmiyor, yani 36 MB kritik yolda
 değil — ama masaüstünde hâlâ 36 MB.
 
-**2. Unsplash görsellerini ve Lottie animasyonlarını kendinize alın.** Bu oturumun
-ağ politikası `images.unsplash.com`, `unpkg.com` ve `lottie.host` adreslerine 403
-döndürdüğü için dosyaları indiremedim. Şu an bu içerikler rıza kapısının arkasında,
-yani hukuken uyumlu — ancak rıza vermeyen ziyaretçi görselleri görmüyor.
-Dosyaları `assets/img/` altına indirip `data-consent-src` yerine normal `src`
-kullanırsanız hem kapı gereksizleşir hem de görseller herkese görünür. Bir
-prodüksiyon stüdyosunun vitrininde stok fotoğraf yerine kendi işinin olması
-zaten doğrusu.
+**2. `og:image` hâlâ Unsplash'e işaret ediyor** (`index.html:14`). Bu bir meta
+etiketi olduğu için tarayıcı isteği doğurmuyor, yani DSGVO sorunu değil — ama
+paylaşım kartınızda hâlâ stok fotoğraf çıkıyor. Kendi işinizden bir kareyi
+`assets/img/og-cover.jpg` olarak koyup bu satırı güncelleyin. Aşama 3'te
+ele alınacak.
+
+> Not: Leistungen bölümü görselsiz ve Lottie'siz yeniden tasarlandığı için
+> `images.unsplash.com`, `lottie.host` ve `unpkg.com` bağımlılıkları siteden
+> tamamen kalktı. Rıza gerektiren tek üçüncü taraf artık Vimeo (portfolyo).
 
 ---
 
