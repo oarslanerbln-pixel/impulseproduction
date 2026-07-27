@@ -51,6 +51,7 @@
         "image": "https://www.envisio.studio/assets/img/og-cover.png",
         "email": "info@envisio.studio",
         "telephone": "+49 178 7277867",
+        "priceRange": "ab 350 €",
         "areaServed": {
             "@type": "City",
             "name": "Berlin"
@@ -73,7 +74,7 @@
     <!-- <script defer data-domain="envisio.de" src="https://plausible.io/js/script.js"></script> -->
 
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="css/style.min.css?v=13">
+    <link rel="stylesheet" href="css/style.min.css?v=14">
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
 
@@ -125,6 +126,7 @@
             <nav class="nav">
                 <a href="#leistungen" class="nav-link" data-text="Leistungen" data-i18n="nav-services">Leistungen</a>
                 <a href="#portfolio" class="nav-link" data-text="Portfolio" data-i18n="nav-portfolio">Portfolio</a>
+                <a href="#preise" class="nav-link" data-text="Preise" data-i18n="nav-pricing">Preise</a>
                 <a href="#ueber-mich" class="nav-link" data-text="Über mich" data-i18n="nav-about">Über mich</a>
                 <a href="#kontakt" class="nav-link" data-text="Kontakt" data-i18n="nav-contact">Kontakt</a>
                 
@@ -147,6 +149,7 @@
         <nav class="mobile-nav-links">
             <a href="#leistungen" class="mobile-link" data-i18n="nav-services">Leistungen</a>
             <a href="#portfolio" class="mobile-link" data-i18n="nav-portfolio">Portfolio</a>
+            <a href="#preise" class="mobile-link" data-i18n="nav-pricing">Preise</a>
             <a href="#ueber-mich" class="mobile-link" data-i18n="nav-about">Über mich</a>
             <a href="#kontakt" class="mobile-link" data-i18n="nav-contact">Kontakt</a>
         </nav>
@@ -369,7 +372,94 @@
                         <p class="service-desc" data-i18n="service-desc-5">Speziell für Ihre Marke entwickelte Premium-QR-Code-Lösungen und Menüs, die die physische mit der digitalen Welt auf eleganteste Weise verbinden. Verwandelt gewöhnliche Quadrate in luxuriöse Interaktionen.</p>
                     </div>
                 </li>
+                <li data-index="5" class="service-row fade-in-element">
+                    <h3 class="service-heading">
+                        <button type="button" class="service-trigger" id="service-trigger-6"
+                                aria-expanded="false" aria-controls="service-panel-6">
+                            <span class="service-num" aria-hidden="true">06</span>
+                            <span class="service-name" data-i18n="service-title-6">Social Media &amp; Content</span>
+                            <span class="service-icon" aria-hidden="true">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25"
+                                     stroke-linecap="round" stroke-linejoin="round"><path d="M20.5 12a8.5 8.5 0 1 1-4.2-7.34"/><path d="M3.5 20.5 5 16.4"/><circle cx="18.5" cy="5.5" r="2.6"/><path d="M8.5 11.5h7M8.5 14.5h4.5"/></svg>
+                            </span>
+                            <span class="service-toggle" aria-hidden="true"></span>
+                        </button>
+                    </h3>
+                    <div class="service-panel" id="service-panel-6"
+                         role="region" aria-labelledby="service-trigger-6">
+                        <p class="service-desc" data-i18n="service-desc-6">Sichtbarkeit entsteht nicht durch einen einzelnen Beitrag, sondern durch Regelmäßigkeit. Wir übernehmen Planung, Produktion und Veröffentlichung Ihrer Inhalte – damit Ihre Marke präsent bleibt, auch zwischen den großen Projekten.</p>
+                    </div>
+                </li>
             </ol>
+        </div>
+    </section>
+
+    <!-- Preise: Social-Media-Pakete.
+         Nur der Basis-Preis ist veröffentlicht; die oberen Stufen stehen auf
+         "auf Anfrage", bis die Pakete definiert sind. Der § 19 UStG-Hinweis ist
+         Pflicht, weil keine Umsatzsteuer ausgewiesen wird - die Preise sind
+         damit Endpreise. -->
+    <section class="pricing section parallax-section" id="preise" data-parallax-speed="0.18">
+        <div class="container">
+            <h2 class="section-title fade-in-element" data-i18n="pricing-title">Preise</h2>
+            <p class="pricing-intro fade-in-element" data-i18n="pricing-intro">Regelmäßige Social-Media-Betreuung als monatliches Paket. Video, Drohne, Branding und Websites kalkulieren wir weiterhin pro Projekt.</p>
+
+            <ul class="pricing-grid">
+                <li class="pricing-tier fade-in-element">
+                    <h3 class="pricing-name" data-i18n="pricing-tier-1">TIER</h3>
+                    <p class="pricing-price">
+                            <span class="pricing-amount" data-i18n="pricing-price-1">ab 350 €</span>
+                            <span class="pricing-period" data-i18n="pricing-period">pro Monat</span>
+                    </p>
+                    <p class="pricing-lead" data-i18n="pricing-lead-1">LEAD</p>
+                    <!-- TODO (Ömer): Leistungsumfang dieses Pakets hier eintragen.
+                         Struktur steht, Inhalte bewusst leer gelassen - es werden
+                         keine Mengen oder Preise erfunden.
+                    <ul class="pricing-features">
+                        <li>...</li>
+                        <li>...</li>
+                        <li>...</li>
+                    </ul>
+                    -->
+                    <a href="#kontakt" class="btn btn-primary pricing-cta" data-i18n="pricing-cta">Anfragen</a>
+                </li>
+                <li class="pricing-tier pricing-tier-featured fade-in-element">
+                    <h3 class="pricing-name" data-i18n="pricing-tier-2">TIER</h3>
+                    <p class="pricing-price">
+                            <span class="pricing-amount pricing-amount-request" data-i18n="pricing-on-request">auf Anfrage</span>
+                    </p>
+                    <p class="pricing-lead" data-i18n="pricing-lead-2">LEAD</p>
+                    <!-- TODO (Ömer): Leistungsumfang dieses Pakets hier eintragen.
+                         Struktur steht, Inhalte bewusst leer gelassen - es werden
+                         keine Mengen oder Preise erfunden.
+                    <ul class="pricing-features">
+                        <li>...</li>
+                        <li>...</li>
+                        <li>...</li>
+                    </ul>
+                    -->
+                    <a href="#kontakt" class="btn btn-primary pricing-cta" data-i18n="pricing-cta">Anfragen</a>
+                </li>
+                <li class="pricing-tier fade-in-element">
+                    <h3 class="pricing-name" data-i18n="pricing-tier-3">TIER</h3>
+                    <p class="pricing-price">
+                            <span class="pricing-amount pricing-amount-request" data-i18n="pricing-on-request">auf Anfrage</span>
+                    </p>
+                    <p class="pricing-lead" data-i18n="pricing-lead-3">LEAD</p>
+                    <!-- TODO (Ömer): Leistungsumfang dieses Pakets hier eintragen.
+                         Struktur steht, Inhalte bewusst leer gelassen - es werden
+                         keine Mengen oder Preise erfunden.
+                    <ul class="pricing-features">
+                        <li>...</li>
+                        <li>...</li>
+                        <li>...</li>
+                    </ul>
+                    -->
+                    <a href="#kontakt" class="btn btn-primary pricing-cta" data-i18n="pricing-cta">Anfragen</a>
+                </li>
+            </ul>
+
+            <p class="pricing-vat" data-i18n="pricing-vat-note">Gemäß § 19 UStG wird keine Umsatzsteuer berechnet.</p>
         </div>
     </section>
 
@@ -449,6 +539,7 @@
                         <option value="lead_generation" data-i18n="form-option-2">Mehr Buchungen / Anfragen generieren</option>
                         <option value="rebranding" data-i18n="form-option-3">Ein neues, luxuriöses Markenimage (Rebranding)</option>
                         <option value="video_content" data-i18n="form-option-4">Premium Video & Content Erstellung</option>
+                        <option value="social_media" data-i18n="form-option-6">Regelmäßige Social-Media-Betreuung</option>
                         <option value="custom" data-i18n="form-option-5">Individuelle Strategie benötigt</option>
                     </select>
                 </div>
@@ -526,8 +617,8 @@
     </div>
 
     <!-- Custom JS -->
-    <script src="js/consent.min.js?v=13"></script>
-    <script src="js/main.min.js?v=13"></script>
+    <script src="js/consent.min.js?v=14"></script>
+    <script src="js/main.min.js?v=14"></script>
 </body>
 
 </html>
