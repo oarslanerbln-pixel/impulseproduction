@@ -66,7 +66,7 @@ detaylı gerekçeler ilgili bölümlerde duruyor.
 | — | Parallax, portfolyo başlığının `translateX`ini eziyordu | ✅ Düzeltildi (eski hata) |
 | — | ~13,9 KB ölü CSS toplamda | ✅ Temizlendi |
 | 29-35 | Dönüşüm işleri (form, analytics, fiyat/SSS) | ⏳ İçerik kararı bekliyor |
-| — | **`favicon.ico` eski marka logosu (IMPULSE)** | ⚠️ **Yeni bulgu** — aşağıya bakın |
+| — | `favicon.ico` + `apple-touch-icon.png` eski marka logosu | ✅ Envisio monogramıyla değiştirildi |
 
 ### Ölçülen sonuç
 
@@ -81,19 +81,26 @@ detaylı gerekçeler ilgili bölümlerde duruyor.
 | `fonts/` klasörü | 3,6 MB | **312 KB** | **−91%** |
 | `favicon.ico` | 465 KB | **1,4 KB** | **−99,7%** |
 
-### ⚠️ Yeni bulgu: favicon hâlâ eski marka
+### Marka ikonları — Envisio monogramına geçildi
 
-`favicon.ico` dosyası açıldığında içinden **"IMPULSE PRODUCTION"** logosu çıkıyor —
-rebranding sırasında güncellenmemiş. Yani tarayıcı sekmesinde, yer imlerinde ve
-telefon ana ekranında ziyaretçi hâlâ eski markayı görüyor.
+`favicon.ico` ve `apple-touch-icon.png` rebranding'de güncellenmemişti; ikisi de
+**"IMPULSE PRODUCTION"** logosunu taşıyordu. Yani ziyaretçi sekmede, yer imlerinde
+ve telefon ana ekranında hâlâ eski markayı görüyordu.
 
-Bu bir tasarım varlığı olduğu için kendiliğimden değiştirmedim. Envisio logosunun
-kaynak dosyasını (tercihen SVG veya en az 512×512 PNG) verirseniz favicon,
-apple-touch-icon ve OG kartını ondan üretirim.
+Yerlerine sitenin kendi marka işareti kondu: preloader'daki **altın "E" monogramı**
+(Playfair Display 700, `--color-accent`). Uydurma bir logo değil, sayfada zaten
+kullanılan işaretin ta kendisi.
 
-Bu arada `og:image` için sitenin kendi tipografisiyle (Playfair Display + Inter,
-şampanya altını) geçici bir kart ürettim: `assets/img/og-cover.png`. Eski hali
-Unsplash'ten alınmış, başka bir stüdyoya ait bir stok fotoğraftı.
+- `apple-touch-icon.png` — 180×180, preloader'daki `.monogram-border` ile aynı
+  fikirde ince altın çerçeveli
+- `favicon.ico` — 16 ve 32 px, **çerçevesiz ve daha büyük harfli**. O boyutlarda
+  hairline çerçeve harfi boğuyor, sekmede okunaksız hale getiriyordu.
+
+`assets/img/og-cover.png` de aynı tipografiyle üretilmişti; üçü artık tek dil
+konuşuyor.
+
+> Elinizde Envisio'nun asıl logo dosyası (SVG veya 512×512+ PNG) varsa gönderin,
+> üçünü de ondan yeniden üretirim.
 
 ### Kalan iki iş (sizin yapmanız gerekiyor)
 
