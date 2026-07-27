@@ -261,13 +261,12 @@ Sonuç: Türkçe içerik indekslenmiyor, `hreflang` yok, paylaşım kartları he
 
 `index.html:130-133` ile `js/main.js:13-15` çelişiyor; JS her yüklemede HTML'i eziyor. Tarayıcı çevirileri, önizleme botları ve JS'siz tarama hep yanlış metni görüyor.
 
-### 12. Almanca sayfada Türkçe metin
+### 12. Almanca sayfada Türkçe metin — ✅ giderildi
 
-`index.html:297`:
-```html
-<p data-i18n="service-desc-6">Kusursuz kullanıcı deneyimi ile lüks tasarımın buluştuğu nokta.</p>
-```
-Almanca sayfanın HTML kaynağında Türkçe cümle. JS yüklenmeden önce Alman ziyaretçi bunu görür.
+`index.html`'de `service-desc-6` anahtarının altında Türkçe bir cümle duruyordu
+(JS yüklenmeden önce Alman ziyaretçi bunu görüyordu). Leistungen bölümü yeniden
+yazılırken tüm hizmet metinleri Almanca kaynaktan kuruldu; bu anahtar da
+Webdesign/Landingpage birleşmesiyle birlikte kalktı.
 
 ### 13. Kimlik bilgileri kendi içinde çelişiyor
 
