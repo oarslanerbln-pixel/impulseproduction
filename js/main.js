@@ -5,6 +5,10 @@ document.addEventListener('DOMContentLoaded', () => {
     // ==========================================
     const translations = {
         de: {
+            "skip-link": "Zum Inhalt springen",
+            "wa-tooltip": "Kostenlose Beratung",
+            "page-title": "Envisio | Kreatives Produktionsstudio in Berlin",
+            "page-description": "Kreatives Studio für Videoproduktion, Drohnenaufnahmen, Branding und professionelle Websites \u2013 für die Gastronomie und anspruchsvolle Marken.",
             "preloader-subtitle": "Cinematic Visuals & Digital Branding",
             "nav-services": "Leistungen",
             "nav-portfolio": "Portfolio",
@@ -37,9 +41,9 @@ document.addEventListener('DOMContentLoaded', () => {
             "portfolio-item-4-desc": "Unvergessliche Augenblicke festgehalten",
             "about-title": "Über mich",
             "about-text-1": "Es ist nicht wichtig, wie hochwertig Ihr Produkt ist, wenn Sie es nicht der richtigen Zielgruppe auf die richtige Art und Weise präsentieren. Wahre Kunst liegt in der Sichtbarkeit. Ein Meisterwerk, das im Verborgenen bleibt, erreicht niemals die Massen. Mein Hauptfokus liegt darauf, die Qualität Ihrer Arbeit mit der Ästhetik, der Seele und der Leidenschaft Ihrer Marke so filmisch wie möglich in der digitalen Welt zu vereinen.",
-            "about-text-2": "Von auffälligen Video- und Drohnenproduktionen bis hin zu professionellen Websites und ganzheitlichen Branding-Lösungen; ich entwerfe und konzipiere Ihre Projekte, um sie so zu verpacken, dass sie bei Ihrem Publikum einen unvergesslichen Premium-Eindruck hinterlassen. Lassen Sie uns Ihre Vision in eine makellose Präsentation verwandeln und Ihre Reichweite maximieren.",
+            "about-text-2": "Von auffälligen Video- und Drohnenproduktionen bis hin zu professionellen Websites und ganzheitlichen Branding-Lösungen; ich entwerfe und konzipiere Ihre Projekte, um sie so zu verpacken, dass sie bei Ihrem Publikum einen unvergesslichen <strong>Premium</strong>-Eindruck hinterlassen. Lassen Sie uns Ihre Vision in eine makellose Präsentation verwandeln und Ihre Reichweite maximieren.",
             "contact-title": "Kostenlose Erstberatung",
-            "contact-subtitle": "Jede Marke ist einzigartig. Erzählen Sie uns von Ihrer Vision, und wir entwickeln ein maßgeschneidertes digitales Konzept, das Ihr Unternehmen auf das nächste Premium-Level hebt.",
+            "contact-subtitle": "Jede Marke ist einzigartig. Erzählen Sie uns von Ihrer Vision, und wir entwickeln ein maßgeschneidertes digitales Konzept, das Ihr Unternehmen auf das nächste <strong>Premium-Level</strong> hebt.",
             "form-label-name": "Ihr Name / Unternehmen",
             "form-placeholder-name": "Geben Sie Ihren Namen ein",
             "form-label-email": "Ihre E-Mail-Adresse",
@@ -51,8 +55,6 @@ document.addEventListener('DOMContentLoaded', () => {
             "form-option-3": "Ein neues, luxuriöses Markenimage (Rebranding)",
             "form-option-4": "Premium Video & Content Erstellung",
             "form-option-5": "Individuelle Strategie benötigt",
-            "form-label-message": "Erzählen Sie uns mehr über Ihre Ziele (Optional)",
-            "form-placeholder-message": "Z.B.: 'Wir möchten in den nächsten 6 Monaten unsere Reservierungen im Fine-Dining Bereich um 20% steigern...'",
             "form-submit": "Potenzialanalyse anfragen",
             "form-privacy-1": "Ich habe die",
             "form-privacy-link": "Datenschutzerklärung",
@@ -67,10 +69,12 @@ document.addEventListener('DOMContentLoaded', () => {
             "cookie-decline": "Ablehnen",
             "form-sending": "Wird gesendet...",
             "form-success": "Nachricht erhalten!",
-            "wa-contact-label": "WhatsApp Kontakt",
-            "portfolio-play": "Projekt ansehen"
         },
         tr: {
+            "skip-link": "İçeriğe geç",
+            "wa-tooltip": "Ücretsiz Danışmanlık",
+            "page-title": "Envisio | Berlin'de Kreatif Prodüksiyon Stüdyosu",
+            "page-description": "Video prodüksiyon, drone çekimleri, markalaşma ve profesyonel web siteleri için kreatif stüdyo \u2013 gastronomi ve iddialı markalar için.",
             "preloader-subtitle": "Sinematik Görseller & Dijital Markalama",
             "nav-services": "Hizmetler",
             "nav-portfolio": "Portfolyo",
@@ -103,9 +107,9 @@ document.addEventListener('DOMContentLoaded', () => {
             "portfolio-item-4-desc": "Unutulmaz Anlar Kaydedildi",
             "about-title": "Hakkımda",
             "about-text-1": "Ürününüzün ne kadar kaliteli olduğu, onu doğru hedef kitleye doğru şekilde sunmadığınız sürece önemli değildir. Gerçek sanat görünürlükte yatar. Gizli kalan bir şaheser asla kitlelere ulaşamaz. Temel odak noktam, işinizin kalitesini markanızın estetiği, ruhu ve tutkusuyla birleştirerek dijital dünyada mümkün olduğunca sinematik bir şekilde sunmaktır.",
-            "about-text-2": "Dikkat çekici video ve drone prodüksiyonlarından profesyonel web sitelerine ve bütünsel markalaşma çözümlerine kadar; projelerinizi hedef kitlenizde unutulmaz bir premium izlenim bırakacak şekilde tasarlıyor ve kurguluyorum. Vizyonunuzu kusursuz bir sunuma dönüştürelim ve erişiminizi maksimize edelim.",
+            "about-text-2": "Dikkat çekici video ve drone prodüksiyonlarından profesyonel web sitelerine ve bütünsel markalaşma çözümlerine kadar; projelerinizi hedef kitlenizde unutulmaz bir <strong>premium</strong> izlenim bırakacak şekilde tasarlıyor ve kurguluyorum. Vizyonunuzu kusursuz bir sunuma dönüştürelim ve erişiminizi maksimize edelim.",
             "contact-title": "Ücretsiz İlk Danışmanlık",
-            "contact-subtitle": "Her marka benzersizdir. Vizyonunuzu bize anlatın, işletmenizi bir sonraki premium seviyeye taşıyacak size özel bir dijital konsept geliştirelim.",
+            "contact-subtitle": "Her marka benzersizdir. Vizyonunuzu bize anlatın, işletmenizi bir sonraki <strong>premium seviyeye</strong> taşıyacak size özel bir dijital konsept geliştirelim.",
             "form-label-name": "Adınız / Şirketiniz",
             "form-placeholder-name": "Adınızı giriniz",
             "form-label-email": "E-posta Adresiniz",
@@ -117,8 +121,6 @@ document.addEventListener('DOMContentLoaded', () => {
             "form-option-3": "Yeni, Lüks Bir Marka İmajı (Yeniden Markalaşma)",
             "form-option-4": "Premium Video & İçerik Üretimi",
             "form-option-5": "Özel Strateji Gerekiyor",
-            "form-label-message": "Hedefleriniz Hakkında Daha Fazla Bilgi Verin (Opsiyonel)",
-            "form-placeholder-message": "Örn: 'Önümüzdeki 6 ay içinde fine-dining rezervasyonlarımızı %20 artırmak istiyoruz...'",
             "form-submit": "Potansiyel Analizi Talep Et",
             "form-privacy-1": "Okudum ve",
             "form-privacy-link": "Gizlilik Politikasını",
@@ -133,17 +135,26 @@ document.addEventListener('DOMContentLoaded', () => {
             "cookie-decline": "Reddet",
             "form-sending": "Gönderiliyor...",
             "form-success": "Mesajınız Alındı!",
-            "wa-contact-label": "Bizimle Yazışın",
-            "portfolio-play": "Projeyi İzle"
         }
     };
 
+    const SITE_ORIGIN = 'https://www.envisio.studio';
+
     function updateContent(lang) {
+        const dict = translations[lang];
+        if (!dict) return;
+
         // Update attributes based on data-i18n
         document.querySelectorAll('[data-i18n]').forEach(el => {
             const key = el.getAttribute('data-i18n');
-            if (translations[lang] && translations[lang][key]) {
-                el.textContent = translations[lang][key];
+            if (!dict[key]) return;
+            // Only the handful of strings marked data-i18n-html carry inline
+            // markup (<strong>). Everything else stays textContent, so a
+            // translation can never inject an element.
+            if (el.hasAttribute('data-i18n-html')) {
+                el.innerHTML = dict[key];
+            } else {
+                el.textContent = dict[key];
             }
         });
 
@@ -165,11 +176,48 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Update active class on buttons
         document.querySelectorAll('.lang-btn').forEach(btn => {
-            btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
+            const isActive = btn.getAttribute('data-lang') === lang;
+            btn.classList.toggle('active', isActive);
+            btn.setAttribute('aria-pressed', String(isActive));
         });
 
-        // Save preference
-        localStorage.setItem('preferredLang', lang);
+        // Everything a crawler or a screen reader reads outside the body.
+        // Without this the page stayed lang="de" with a German <title> while
+        // showing Turkish copy.
+        document.documentElement.lang = lang;
+        if (dict['page-title']) document.title = dict['page-title'];
+
+        const setMeta = (selector, value) => {
+            const el = document.querySelector(selector);
+            if (el && value) el.setAttribute('content', value);
+        };
+        setMeta('meta[name="description"]', dict['page-description']);
+        setMeta('meta[property="og:description"]', dict['page-description']);
+        setMeta('meta[name="twitter:description"]', dict['page-description']);
+        setMeta('meta[property="og:title"]', dict['page-title']);
+        setMeta('meta[name="twitter:title"]', dict['page-title']);
+        setMeta('meta[property="og:locale"]', lang === 'tr' ? 'tr_TR' : 'de_DE');
+        setMeta('meta[property="og:locale:alternate"]', lang === 'tr' ? 'de_DE' : 'tr_TR');
+
+        // Each language needs its own address, or there is nothing for Google
+        // to index separately and the hreflang pair is meaningless.
+        const url = lang === 'tr' ? SITE_ORIGIN + '/?lang=tr' : SITE_ORIGIN + '/';
+        const canonical = document.getElementById('canonicalLink');
+        if (canonical) canonical.setAttribute('href', url);
+        setMeta('meta[property="og:url"]', url);
+
+        try {
+            const next = lang === 'tr' ? '?lang=tr' : location.pathname;
+            history.replaceState(null, '', next + location.hash);
+        } catch (e) {
+            /* file:// or a blocked history API - the page still works */
+        }
+
+        try {
+            localStorage.setItem('preferredLang', lang);
+        } catch (e) {
+            /* storage unavailable; the URL still carries the choice */
+        }
     }
 
     // Language switcher event listeners
@@ -180,9 +228,13 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Initialize Language
-    const savedLang = localStorage.getItem('preferredLang') || 'de';
-    updateContent(savedLang);
+    // Initialize Language: URL wins, then the stored preference, then German.
+    const urlLang = new URLSearchParams(location.search).get('lang');
+    let savedLang = null;
+    try { savedLang = localStorage.getItem('preferredLang'); } catch (e) { /* ignore */ }
+    const initialLang = translations[urlLang] ? urlLang
+                      : (translations[savedLang] ? savedLang : 'de');
+    updateContent(initialLang);
 
 
     // ==========================================
@@ -280,7 +332,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const scrollPercent = (scrollTop / docHeight) * 100;
             scrollProgress.style.width = scrollPercent + '%';
         }
-    });
+    }, { passive: true });
 
     const observerOptions = {
         root: null,
@@ -458,19 +510,32 @@ document.addEventListener('DOMContentLoaded', () => {
     const mobileToggle = document.querySelector('.mobile-nav-toggle');
     const mobileLinks = document.querySelectorAll('.mobile-link');
 
+    const mobileNav = document.getElementById('mobileNav');
+
+    function setMobileNav(open) {
+        document.body.classList.toggle('nav-open', open);
+        if (mobileToggle) mobileToggle.setAttribute('aria-expanded', String(open));
+        if (mobileNav) mobileNav.setAttribute('aria-hidden', String(!open));
+    }
+
     if (mobileToggle) {
         mobileToggle.addEventListener('click', () => {
-            document.body.classList.toggle('nav-open');
+            setMobileNav(!document.body.classList.contains('nav-open'));
         });
     }
 
     if (mobileLinks.length > 0) {
         mobileLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                document.body.classList.remove('nav-open');
-            });
+            link.addEventListener('click', () => setMobileNav(false));
         });
     }
+
+    document.addEventListener('keydown', (e) => {
+        if (e.key !== 'Escape') return;
+        if (!document.body.classList.contains('nav-open')) return;
+        setMobileNav(false);
+        if (mobileToggle) mobileToggle.focus();
+    });
 
     // Services logic removed - using CSS-based Bento Grid now.
 
@@ -494,13 +559,20 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
+        // Only run the follow loop where there is a real pointer; on touch
+        // devices this was an endless rAF that never moved anything.
         const renderCursor = () => {
             cursorX += (mouseX - cursorX) * 0.2;
             cursorY += (mouseY - cursorY) * 0.2;
             cursor.style.transform = `translate(${cursorX}px, ${cursorY}px)`;
             requestAnimationFrame(renderCursor);
         };
-        requestAnimationFrame(renderCursor);
+
+        if (window.matchMedia('(pointer: fine)').matches) {
+            requestAnimationFrame(renderCursor);
+        } else {
+            cursor.remove();
+        }
 
         const hoverElements = document.querySelectorAll('a, button, input, textarea, select');
         hoverElements.forEach(el => {
@@ -893,11 +965,17 @@ document.addEventListener('DOMContentLoaded', () => {
         if (link.getAttribute('target') === '_blank') return;
 
         link.addEventListener('click', (e) => {
+            // Ctrl/Cmd/Shift/middle-click mean "open elsewhere". Swallowing
+            // those broke opening the legal pages in a new tab entirely.
+            if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0) return;
+
             e.preventDefault();
             transOverlay.classList.add('active');
+            // Matches the CSS transition; 500ms was half a second of dead time
+            // on every navigation.
             setTimeout(() => {
                 window.location.href = href;
-            }, 500);
+            }, 260);
         });
     });
 });

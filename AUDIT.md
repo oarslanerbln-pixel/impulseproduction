@@ -42,7 +42,22 @@ detaylı gerekçeler ilgili bölümlerde duruyor.
 | 6 (video) | 36 MB videonun yeniden kodlanması | ⚠️ **Açık** — ortamda ffmpeg yok, komut aşağıda |
 | — | Unsplash/Lottie bağımlılığı | ✅ **Ortadan kalktı** — Leistungen bölümü görselsiz/Lottie'siz yeniden tasarlandı |
 | 16 | `prefers-reduced-motion` desteği | ✅ Eklendi |
-| 10-22, 29-35 | Aşama 3-5 (SEO, erişilebilirlik, dönüşüm) | ⏳ Sırada |
+| 10 | TR sürümün SEO'ya kapalı olması | ✅ Düzeltildi (`?lang=tr` + hreflang) |
+| 11 | HTML hero metni ≠ ekrandaki metin | ✅ Düzeltildi |
+| 13 | Kimlik çelişkileri (e-posta, sosyal hesaplar) | ✅ Tekleştirildi |
+| 14 | İki `<h1>` | ✅ Tek `<h1>` |
+| 15 | `og:image` stok fotoğraf, twitter card yok | ✅ Kendi OG kartı üretildi |
+| 17 | Sitemap `lastmod` donmuş | ✅ Güncellendi + hreflang eklendi |
+| 18 | `<main>` ve atlama bağlantısı yok | ✅ Eklendi |
+| 19 | Mobil menü ARIA / Escape | ✅ Eklendi |
+| 20 | Dil butonlarında `aria-pressed` | ✅ Eklendi |
+| 22 | Mobil menü + WhatsApp balonu çevrilmiyor | ✅ Düzeltildi |
+| 25 | `<strong>` vurgularının silinmesi | ✅ Düzeltildi (`data-i18n-html`) |
+| 26 | Ctrl/Cmd+tık yeni sekmede açmıyor | ✅ Düzeltildi |
+| 27 | Passive olmayan scroll, sonsuz imleç döngüsü | ✅ Düzeltildi |
+| — | ~10,5 KB ölü CSS + 4 ölü çeviri anahtarı | ✅ Temizlendi |
+| 21, 29-35 | Kalan erişilebilirlik + dönüşüm işleri | ⏳ Sırada |
+| — | **`favicon.ico` eski marka logosu (IMPULSE)** | ⚠️ **Yeni bulgu** — aşağıya bakın |
 
 ### Ölçülen sonuç
 
@@ -56,6 +71,20 @@ detaylı gerekçeler ilgili bölümlerde duruyor.
 | 404 hatası | 1 | **0** | — |
 | `fonts/` klasörü | 3,6 MB | **312 KB** | **−91%** |
 | `favicon.ico` | 465 KB | **1,4 KB** | **−99,7%** |
+
+### ⚠️ Yeni bulgu: favicon hâlâ eski marka
+
+`favicon.ico` dosyası açıldığında içinden **"IMPULSE PRODUCTION"** logosu çıkıyor —
+rebranding sırasında güncellenmemiş. Yani tarayıcı sekmesinde, yer imlerinde ve
+telefon ana ekranında ziyaretçi hâlâ eski markayı görüyor.
+
+Bu bir tasarım varlığı olduğu için kendiliğimden değiştirmedim. Envisio logosunun
+kaynak dosyasını (tercihen SVG veya en az 512×512 PNG) verirseniz favicon,
+apple-touch-icon ve OG kartını ondan üretirim.
+
+Bu arada `og:image` için sitenin kendi tipografisiyle (Playfair Display + Inter,
+şampanya altını) geçici bir kart ürettim: `assets/img/og-cover.png`. Eski hali
+Unsplash'ten alınmış, başka bir stüdyoya ait bir stok fotoğraftı.
 
 ### Kalan iki iş (sizin yapmanız gerekiyor)
 

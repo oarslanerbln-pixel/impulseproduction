@@ -9,14 +9,29 @@
         content="Kreatives Studio für Videoproduktion, Drohnenaufnahmen, Branding und professionelle Websites – für die Gastronomie und anspruchsvolle Marken.">
 
     <!-- Open Graph / Social Media Meta Tags -->
+    <meta property="og:site_name" content="Envisio">
     <meta property="og:title" content="Envisio | Cinematic Visuals">
     <meta property="og:description" content="Premium Videoproduktion, Branding & digitales Design für Gastronomie und anspruchsvolle Marken. Envisio — Ihre Vision, filmisch inszeniert.">
-    <meta property="og:image" content="https://images.unsplash.com/photo-1601506521937-0121a7fc2a6b?q=80&w=1200&auto=format&fit=crop">
-    <meta property="og:url" content="https://www.envisio.studio">
+    <meta property="og:image" content="https://www.envisio.studio/assets/img/og-cover.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Envisio — Cinematic Visuals & Digital Branding">
+    <meta property="og:url" content="https://www.envisio.studio/">
     <meta property="og:type" content="website">
+    <meta property="og:locale" content="de_DE">
+    <meta property="og:locale:alternate" content="tr_TR">
 
-    <!-- Canonical URL -->
-    <link rel="canonical" href="https://www.envisio.studio">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Envisio | Cinematic Visuals">
+    <meta name="twitter:description" content="Premium Videoproduktion, Branding & digitales Design für Gastronomie und anspruchsvolle Marken.">
+    <meta name="twitter:image" content="https://www.envisio.studio/assets/img/og-cover.png">
+
+    <!-- Canonical + language alternates. The Turkish version lives at ?lang=tr;
+         js/main.js keeps canonical and og:url in sync with the active language. -->
+    <link rel="canonical" href="https://www.envisio.studio/" id="canonicalLink">
+    <link rel="alternate" hreflang="de" href="https://www.envisio.studio/">
+    <link rel="alternate" hreflang="tr" href="https://www.envisio.studio/?lang=tr">
+    <link rel="alternate" hreflang="x-default" href="https://www.envisio.studio/">
 
     <!-- Schema.org Structured Data -->
     <script type="application/ld+json">
@@ -33,15 +48,23 @@
             "postalCode": "13627",
             "addressCountry": "DE"
         },
+        "image": "https://www.envisio.studio/assets/img/og-cover.png",
+        "email": "info@envisio.studio",
+        "telephone": "+49 178 7277867",
+        "areaServed": {
+            "@type": "City",
+            "name": "Berlin"
+        },
         "contactPoint": {
             "@type": "ContactPoint",
-            "email": "info@envisio.de",
+            "email": "info@envisio.studio",
+            "telephone": "+49 178 7277867",
             "contactType": "customer service",
             "availableLanguage": ["German", "Turkish"]
         },
         "sameAs": [
-            "https://www.instagram.com/impulse.prod1",
-            "https://vimeo.com/impulseproduction"
+            "https://www.instagram.com/envisio.prod",
+            "https://vimeo.com/envisioproduction"
         ]
     }
     </script>
@@ -50,7 +73,7 @@
     <!-- <script defer data-domain="envisio.de" src="https://plausible.io/js/script.js"></script> -->
 
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="css/style.min.css?v=11">
+    <link rel="stylesheet" href="css/style.min.css?v=12">
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
 
@@ -75,6 +98,8 @@
 </head>
 
 <body>
+    <a class="skip-link" href="#hero" data-i18n="skip-link">Zum Inhalt springen</a>
+
     <!-- Scroll Progress Bar -->
     <div class="scroll-progress"></div>
 
@@ -105,12 +130,12 @@
                 
                 <!-- Language Switcher -->
                 <div class="lang-switcher">
-                    <button class="lang-btn active" data-lang="de">DE</button>
+                    <button class="lang-btn active" data-lang="de" aria-pressed="true" lang="de">DE</button>
                     <span class="lang-divider">|</span>
-                    <button class="lang-btn" data-lang="tr">TR</button>
+                    <button class="lang-btn" data-lang="tr" aria-pressed="false" lang="tr">TR</button>
                 </div>
             </nav>
-            <button class="mobile-nav-toggle" aria-label="Menü">
+            <button class="mobile-nav-toggle" aria-label="Menü" aria-expanded="false" aria-controls="mobileNav">
                 <span class="hamburger-line"></span>
                 <span class="hamburger-line"></span>
             </button>
@@ -118,15 +143,16 @@
     </header>
 
     <!-- Full-Screen Cinematic Mobile Menu -->
-    <div class="mobile-nav-overlay" id="mobileNav">
+    <div class="mobile-nav-overlay" id="mobileNav" aria-hidden="true">
         <nav class="mobile-nav-links">
-            <a href="#leistungen" class="mobile-link">Leistungen</a>
-            <a href="#portfolio" class="mobile-link">Portfolio</a>
-            <a href="#ueber-mich" class="mobile-link">Über mich</a>
-            <a href="#kontakt" class="mobile-link">Kontakt</a>
+            <a href="#leistungen" class="mobile-link" data-i18n="nav-services">Leistungen</a>
+            <a href="#portfolio" class="mobile-link" data-i18n="nav-portfolio">Portfolio</a>
+            <a href="#ueber-mich" class="mobile-link" data-i18n="nav-about">Über mich</a>
+            <a href="#kontakt" class="mobile-link" data-i18n="nav-contact">Kontakt</a>
         </nav>
     </div>
 
+    <main>
     <!-- Hero Section -->
     <section class="hero" id="hero">
         <!-- Golden Particles Canvas -->
@@ -144,12 +170,12 @@
         </div>
 
         <div class="hero-content container">
-            <div class="reveal-mask">
-                <h1 class="hero-title" data-i18n="hero-title-1">Ihre Geschichte</h1>
-            </div>
-            <div class="reveal-mask">
-                <h1 class="hero-title"><span data-i18n="hero-title-2">Filmisch</span> <span class="title-highlight" data-i18n="hero-title-3">Erzählt</span></h1>
-            </div>
+            <!-- One h1 for the page. Both lines live inside it; the reveal masks
+                 became spans so the heading stays a single element. -->
+            <h1 class="hero-title">
+                <span class="reveal-mask"><span class="hero-line" data-i18n="hero-title-1">Ihre Vision.</span></span>
+                <span class="reveal-mask"><span class="hero-line"><span data-i18n="hero-title-2">Filmisch</span> <span class="title-highlight" data-i18n="hero-title-3">Vollendet.</span></span></span>
+            </h1>
             <div class="reveal-mask delay-1">
                 <p class="hero-subtitle" data-i18n="hero-subtitle">Definieren Sie die Geschichte Ihrer Marke durch erstklassige Videoproduktion, Branding und visionäre digitale Lösungen neu.</p>
             </div>
@@ -359,7 +385,7 @@
                     Arbeit mit der Ästhetik, der Seele und der Leidenschaft Ihrer Marke so filmisch wie möglich in der
                     digitalen Welt zu vereinen.
                 </p>
-                <p class="about-text delay-200" data-i18n="about-text-2">
+                <p class="about-text delay-200" data-i18n="about-text-2" data-i18n-html>
                     Von auffälligen Video- und Drohnenproduktionen bis hin zu professionellen Websites und
                     ganzheitlichen Branding-Lösungen; ich entwerfe und konzipiere Ihre Projekte, um sie so zu verpacken,
                     dass sie bei Ihrem Publikum einen unvergesslichen <strong>Premium</strong>-Eindruck hinterlassen.
@@ -392,7 +418,7 @@
         <div class="container contact-container">
             <div class="contact-header">
                 <h2 class="section-title" data-i18n="contact-title">Kostenlose Erstberatung</h2>
-                <p data-i18n="contact-subtitle">Jede Marke ist einzigartig. Erzählen Sie uns von Ihrer Vision, und wir entwickeln ein maßgeschneidertes digitales Konzept, das Ihr Unternehmen auf das nächste <strong>Premium-Level</strong> hebt.</p>
+                <p data-i18n="contact-subtitle" data-i18n-html>Jede Marke ist einzigartig. Erzählen Sie uns von Ihrer Vision, und wir entwickeln ein maßgeschneidertes digitales Konzept, das Ihr Unternehmen auf das nächste <strong>Premium-Level</strong> hebt.</p>
                 <div class="contact-mail-wrapper">
                     <a href="mailto:info@envisio.studio" class="cta-link contact-mail-cta">
                         <span class="cta-line"></span>
@@ -448,12 +474,14 @@
         </div>
     </section>
 
+    </main>
+
     <!-- Footer -->
     <!-- Premium Floating WhatsApp CTA -->
     <div class="floating-cta" id="floatingCta">
         <!-- Kostenlose Beratung Tooltip -->
         <div class="floating-cta-tooltip">
-            <span>Kostenlose Beratung</span>
+            <span data-i18n="wa-tooltip">Kostenlose Beratung</span>
             <div class="tooltip-arrow"></div>
         </div>
         <!-- WhatsApp Button -->
@@ -498,8 +526,8 @@
     </div>
 
     <!-- Custom JS -->
-    <script src="js/consent.min.js?v=11"></script>
-    <script src="js/main.min.js?v=11"></script>
+    <script src="js/consent.min.js?v=12"></script>
+    <script src="js/main.min.js?v=12"></script>
 </body>
 
 </html>
