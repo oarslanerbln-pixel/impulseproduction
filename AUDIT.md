@@ -102,6 +102,29 @@ konuşuyor.
 > Elinizde Envisio'nun asıl logo dosyası (SVG veya 512×512+ PNG) varsa gönderin,
 > üçünü de ondan yeniden üretirim.
 
+### ⚠️ Barındırıcı beyanı düzeltildi — ama iki şeyi teyit etmelisiniz
+
+Site **GitHub Pages'te değil, Vercel'de** barındırılıyor (proje:
+`oarslanerbln-pixels-projects/impulseproduction.studio`). `datenschutz.html`
+barındırıcı olarak GitHub Pages'i gösteriyordu; bu, Art. 13 DSGVO açısından
+yanlış beyandı. Vercel Inc. olarak güncellendi: CDN üzerinden dağıtım,
+Server-Logfile işleme, hukuki dayanak Art. 6 Abs. 1 lit. f, ABD aktarımı ve
+Vercel gizlilik politikası bağlantısı.
+
+**Sizin teyit etmeniz gereken iki nokta:**
+
+1. **AVV (Auftragsverarbeitungsvertrag).** Metin, Vercel ile Art. 28 DSGVO
+   kapsamında bir sözleşmenizin *bulunduğunu* beyan ediyor. Vercel bunu
+   panelden sunuyor (Settings → Legal / DPA). Henüz imzalamadıysanız, metin
+   yayına girmeden önce imzalayın — aksi halde beyan gerçeği yansıtmaz.
+2. **Vercel adresi.** `340 S Lemon Ave #4133, Walnut, CA 91789, USA` yazdım.
+   Vercel'in güncel gizlilik politikasındaki adresle karşılaştırın; şirketler
+   adres değiştirebiliyor ve bu ortamdan doğrulayamadım.
+
+**Vercel Analytics / Speed Insights:** Sunulan HTML'de bu betiklerin izine
+rastlamadım, yani kapalı görünüyorlar. Vercel panelinden açarsanız
+`datenschutz.html`'e ayrı bir bölüm gerekir — ikisi de ziyaretçi verisi işler.
+
 ### Kalan iki iş (sizin yapmanız gerekiyor)
 
 **1. Hero videosunu yeniden kodlayın.** Bu ortamda ffmpeg yok. Yerel makinenizde:
