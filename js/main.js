@@ -5,9 +5,30 @@ document.addEventListener('DOMContentLoaded', () => {
     // ==========================================
     const translations = {
         de: {
+            "skip-link": "Zum Inhalt springen",
+            "wa-tooltip": "Kostenlose Beratung",
+            "page-title": "Envisio | Kreatives Produktionsstudio in Berlin",
+            "page-description": "Kreatives Studio für Videoproduktion, Drohnenaufnahmen, Branding und professionelle Websites \u2013 für die Gastronomie und anspruchsvolle Marken.",
             "preloader-subtitle": "Cinematic Visuals & Digital Branding",
             "nav-services": "Leistungen",
             "nav-portfolio": "Portfolio",
+            "nav-pricing": "Preise",
+            "service-title-6": "Social Media & Content",
+            "service-desc-6": "Sichtbarkeit entsteht nicht durch einen einzelnen Beitrag, sondern durch Regelmäßigkeit. Wir übernehmen Planung, Produktion und Veröffentlichung Ihrer Inhalte \u2013 damit Ihre Marke präsent bleibt, auch zwischen den großen Projekten.",
+            "pricing-title": "Preise",
+            "pricing-intro": "Regelmäßige Social-Media-Betreuung als monatliches Paket. Video, Drohne, Branding und Websites kalkulieren wir weiterhin pro Projekt.",
+            "pricing-tier-1": "Basis",
+            "pricing-tier-2": "Plus",
+            "pricing-tier-3": "Premium",
+            "pricing-lead-1": "Der Einstieg in regelmäßige Sichtbarkeit.",
+            "pricing-lead-2": "Mehr Frequenz, mehr Bewegtbild, laufende Betreuung.",
+            "pricing-lead-3": "Voller Umfang inklusive Video- und Drohnenproduktion.",
+            "pricing-price-1": "ab 350 €",
+            "pricing-period": "pro Monat",
+            "pricing-on-request": "auf Anfrage",
+            "pricing-cta": "Anfragen",
+            "pricing-vat-note": "Gemäß § 19 UStG wird keine Umsatzsteuer berechnet.",
+            "form-option-6": "Regelmäßige Social-Media-Betreuung",
             "nav-about": "Über mich",
             "nav-contact": "Kontakt",
             "hero-title-1": "Ihre Vision.",
@@ -19,15 +40,13 @@ document.addEventListener('DOMContentLoaded', () => {
             "service-title-1": "Videoproduktion & Schnitt",
             "service-title-2": "Drohnenaufnahmen",
             "service-title-3": "Markenbildung (Branding)",
-            "service-title-4": "Landingpage-Erstellung",
+            "service-title-4": "Professionelle Websites & Mobile",
             "service-title-5": "QR-Code-Design",
-            "service-title-6": "Webdesign",
             "service-desc-1": "Premium-Videoinhalte, die die visuelle Seele Ihrer Marke mit High-End-Equipment und filmischen Schnitttechniken einfangen. Wir erzählen Ihre Geschichte mit atemberaubender Visualität.",
             "service-desc-2": "Wechseln Sie die Perspektive. Verleihen Sie Ihren Projekten filmische Größe und makellose Pracht mit 4K-Luftaufnahmen. Luxuriöse Details aus der Luft für Architektur- und Unternehmenspräsentationen.",
             "service-desc-3": "Indem wir Ihre Corporate Identity neu erfinden, bauen wir ein einprägsames Premium-Markenimage auf, das sich von Ihren Mitbewerbern abhebt. Eine ganzheitliche Vision von Ihrem Logo bis zur Farbpalette.",
-            "service-desc-4": "Ästhetisch reine, konversionsstarke Landingpages, die extrem schnell laden und Ihre Zielgruppe direkt zum Handeln anregen. Eine digitale Waffe für Ihre Kampagnen.",
+            "service-desc-4": "Ein digitales Schaufenster, das auf jedem Bildschirm makellos funktioniert \u2013 vom Desktop bis zum Smartphone. Schnelle Ladezeiten, klare Nutzerf\u00fchrung und ein Design, das Ihre Besucher direkt zur Anfrage f\u00fchrt. Der Punkt, an dem User Experience auf luxuri\u00f6ses Design trifft.",
             "service-desc-5": "Speziell für Ihre Marke entwickelte Premium-QR-Code-Lösungen und Menüs, die die physische mit der digitalen Welt auf eleganteste Weise verbinden. Verwandelt gewöhnliche Quadrate in luxuriöse Interaktionen.",
-            "service-desc-6": "Makellos funktionierende digitale Schaufenster, die mit feinen Details verwoben sind und all Ihre Dienstleistungen und Ihre Vision präsentieren. Der Punkt, an dem User Experience (UX) auf luxuriöses Design trifft.",
             "portfolio-title": "Portfolio",
             "portfolio-item-1-title": "Fine Dining & Kulinarik",
             "portfolio-item-1-desc": "Exklusive Restaurant-Präsentation",
@@ -39,9 +58,9 @@ document.addEventListener('DOMContentLoaded', () => {
             "portfolio-item-4-desc": "Unvergessliche Augenblicke festgehalten",
             "about-title": "Über mich",
             "about-text-1": "Es ist nicht wichtig, wie hochwertig Ihr Produkt ist, wenn Sie es nicht der richtigen Zielgruppe auf die richtige Art und Weise präsentieren. Wahre Kunst liegt in der Sichtbarkeit. Ein Meisterwerk, das im Verborgenen bleibt, erreicht niemals die Massen. Mein Hauptfokus liegt darauf, die Qualität Ihrer Arbeit mit der Ästhetik, der Seele und der Leidenschaft Ihrer Marke so filmisch wie möglich in der digitalen Welt zu vereinen.",
-            "about-text-2": "Von auffälligen Video- und Drohnenproduktionen bis hin zu konversionsstarken Landingpages und ganzheitlichen Branding-Lösungen; ich entwerfe und konzipiere Ihre Projekte, um sie so zu verpacken, dass sie bei Ihrem Publikum einen unvergesslichen Premium-Eindruck hinterlassen. Lassen Sie uns Ihre Vision in eine makellose Präsentation verwandeln und Ihre Reichweite maximieren.",
+            "about-text-2": "Von auffälligen Video- und Drohnenproduktionen bis hin zu professionellen Websites und ganzheitlichen Branding-Lösungen; ich entwerfe und konzipiere Ihre Projekte, um sie so zu verpacken, dass sie bei Ihrem Publikum einen unvergesslichen <strong>Premium</strong>-Eindruck hinterlassen. Lassen Sie uns Ihre Vision in eine makellose Präsentation verwandeln und Ihre Reichweite maximieren.",
             "contact-title": "Kostenlose Erstberatung",
-            "contact-subtitle": "Jede Marke ist einzigartig. Erzählen Sie uns von Ihrer Vision, und wir entwickeln ein maßgeschneidertes digitales Konzept, das Ihr Unternehmen auf das nächste Premium-Level hebt.",
+            "contact-subtitle": "Jede Marke ist einzigartig. Erzählen Sie uns von Ihrer Vision, und wir entwickeln ein maßgeschneidertes digitales Konzept, das Ihr Unternehmen auf das nächste <strong>Premium-Level</strong> hebt.",
             "form-label-name": "Ihr Name / Unternehmen",
             "form-placeholder-name": "Geben Sie Ihren Namen ein",
             "form-label-email": "Ihre E-Mail-Adresse",
@@ -53,8 +72,6 @@ document.addEventListener('DOMContentLoaded', () => {
             "form-option-3": "Ein neues, luxuriöses Markenimage (Rebranding)",
             "form-option-4": "Premium Video & Content Erstellung",
             "form-option-5": "Individuelle Strategie benötigt",
-            "form-label-message": "Erzählen Sie uns mehr über Ihre Ziele (Optional)",
-            "form-placeholder-message": "Z.B.: 'Wir möchten in den nächsten 6 Monaten unsere Reservierungen im Fine-Dining Bereich um 20% steigern...'",
             "form-submit": "Potenzialanalyse anfragen",
             "form-privacy-1": "Ich habe die",
             "form-privacy-link": "Datenschutzerklärung",
@@ -62,25 +79,43 @@ document.addEventListener('DOMContentLoaded', () => {
             "footer-impressum": "Impressum",
             "footer-datenschutz": "Datenschutz",
             "footer-rights": "© 2026 Envisio. Alle Rechte vorbehalten.",
-            "cookie-text": "Diese Website verwendet Cookies, um Ihre Erfahrung zu verbessern. Durch die weitere Nutzung der Website stimmen Sie der Verwendung von Cookies zu.",
+            "footer-cookie-settings": "Cookie-Einstellungen",
+            "cookie-text": "Im Portfolio binden wir Videos von Vimeo ein. Dabei wird Ihre IP-Adresse an Vimeo übertragen. Die Videos werden erst nach Ihrer Einwilligung geladen.",
             "cookie-more": "Mehr erfahren",
             "cookie-accept": "Akzeptieren",
-            "testimonials-title": "Was Kunden sagen",
-            "testimonial-quote-1": "\"Envisio hat unsere Vision nicht nur verstanden, sondern auf ein Level gehoben, das wir uns nicht vorstellen konnten. Die filmische Qualität ist absolut Weltklasse.\"",
-            "testimonial-author-1": "Marco Rossi",
-            "testimonial-role-1": "Inhaber, Fine Dining Group",
-            "testimonial-quote-2": "\"Die Zusammenarbeit war hochprofessionell. Unsere neue Landingpage in Kombination mit den Drohnenaufnahmen hat unsere Anfragen verdoppelt.\"",
-            "testimonial-author-2": "Sarah Schmidt",
-            "testimonial-role-2": "Marketing Direktorin, Luxury Estate",
+            "cookie-decline": "Ablehnen",
+            "video-consent-note": "Dieses Video wird von Vimeo geladen. Dabei wird Ihre IP-Adresse an Vimeo übertragen.",
+            "video-consent-btn": "Video laden",
+            "form-error": "Da ist etwas schiefgelaufen. Schreiben Sie uns gerne direkt an info@envisio.studio.",
+            "form-error-short": "Fehler!",
             "form-sending": "Wird gesendet...",
             "form-success": "Nachricht erhalten!",
-            "wa-contact-label": "WhatsApp Kontakt",
-            "portfolio-play": "Projekt ansehen"
         },
         tr: {
+            "skip-link": "İçeriğe geç",
+            "wa-tooltip": "Ücretsiz Danışmanlık",
+            "page-title": "Envisio | Berlin'de Kreatif Prodüksiyon Stüdyosu",
+            "page-description": "Video prodüksiyon, drone çekimleri, markalaşma ve profesyonel web siteleri için kreatif stüdyo \u2013 gastronomi ve iddialı markalar için.",
             "preloader-subtitle": "Sinematik Görseller & Dijital Markalama",
             "nav-services": "Hizmetler",
             "nav-portfolio": "Portfolyo",
+            "nav-pricing": "Fiyatlar",
+            "service-title-6": "Sosyal Medya & İçerik",
+            "service-desc-6": "Görünürlük tek bir paylaşımla değil, düzenlilikle oluşur. İçeriklerinizin planlamasını, üretimini ve yayınlanmasını üstleniyoruz \u2013 böylece markanız büyük projeler arasında da gündemde kalır.",
+            "pricing-title": "Fiyatlar",
+            "pricing-intro": "Düzenli sosyal medya yönetimi aylık paket olarak. Video, drone, markalaşma ve web sitelerini proje bazında fiyatlandırmaya devam ediyoruz.",
+            "pricing-tier-1": "Basis",
+            "pricing-tier-2": "Plus",
+            "pricing-tier-3": "Premium",
+            "pricing-lead-1": "Düzenli görünürlüğe ilk adım.",
+            "pricing-lead-2": "Daha yüksek frekans, daha çok video, sürekli takip.",
+            "pricing-lead-3": "Video ve drone prodüksiyonu dahil tam kapsam.",
+            "pricing-price-1": "aylık 350 €'dan",
+            "pricing-period": "başlayan fiyatlarla",
+            "pricing-on-request": "Teklif alın",
+            "pricing-cta": "Teklif Al",
+            "pricing-vat-note": "§ 19 UStG uyarınca KDV hesaplanmaz.",
+            "form-option-6": "Düzenli Sosyal Medya Yönetimi",
             "nav-about": "Hakkımda",
             "nav-contact": "İletişim",
             "hero-title-1": "Vizyonunuz.",
@@ -92,15 +127,13 @@ document.addEventListener('DOMContentLoaded', () => {
             "service-title-1": "Video Prodüksiyon & Kurgu",
             "service-title-2": "Drone Çekimleri",
             "service-title-3": "Markalaşma (Branding)",
-            "service-title-4": "Landing Page Tasarımı",
+            "service-title-4": "Profesyonel Web Sitesi & Mobil",
             "service-title-5": "QR Kod Tasarımı",
-            "service-title-6": "Web Tasarımı",
             "service-desc-1": "Üst düzey ekipman ve sinematik kurgu teknikleriyle markanızın görsel ruhunu yakalayan premium video içerikleri. Hikayenizi çarpıcı bir görsellikle anlatıyoruz.",
             "service-desc-2": "Perspektifinizi değiştirin. 4K hava çekimleriyle projelerinize sinematik bir boyut ve kusursuz bir ihtişam katın. Mimari ve kurumsal sunumlar için havadan lüks detaylar.",
             "service-desc-3": "Kurumsal kimliğinizi yeniden icat ederek, rakiplerinizden ayrılan unutulmaz bir premium marka imajı inşa ediyoruz. Logodan renk paletine kadar bütünsel bir vizyon.",
-            "service-desc-4": "Son derece hızlı yüklenen ve hedef kitlenizi doğrudan harekete geçiren, estetik açıdan saf ve dönüşüm odaklı açılış sayfaları. Kampanyalarınız için dijital bir güç.",
+            "service-desc-4": "Her ekranda kusursuz çalışan bir dijital vitrin \u2013 masaüstünden akıllı telefona. Hızlı yüklenme, net kullanıcı akışı ve ziyaretçinizi doğrudan talebe yönlendiren bir tasarım. Kullanıcı deneyiminin lüks tasarımla buluştuğu nokta.",
             "service-desc-5": "Fiziksel dünyayı dijital dünyayla en zarif şekilde birleştiren, markanıza özel geliştirilmiş premium QR kod çözümleri ve menüler. Sıradan kareleri lüks etkileşimlere dönüştürür.",
-            "service-desc-6": "İnce detaylarla örülmüş, tüm hizmetlerinizi ve vizyonunuzu sergileyen kusursuz çalışan dijital vitrinler. Kullanıcı deneyiminin (UX) lüks tasarımla buluştuğu nokta.",
             "portfolio-title": "Portfolyo",
             "portfolio-item-1-title": "Fine Dining & Mutfak Sanatı",
             "portfolio-item-1-desc": "Özel Restoran Sunumu",
@@ -112,9 +145,9 @@ document.addEventListener('DOMContentLoaded', () => {
             "portfolio-item-4-desc": "Unutulmaz Anlar Kaydedildi",
             "about-title": "Hakkımda",
             "about-text-1": "Ürününüzün ne kadar kaliteli olduğu, onu doğru hedef kitleye doğru şekilde sunmadığınız sürece önemli değildir. Gerçek sanat görünürlükte yatar. Gizli kalan bir şaheser asla kitlelere ulaşamaz. Temel odak noktam, işinizin kalitesini markanızın estetiği, ruhu ve tutkusuyla birleştirerek dijital dünyada mümkün olduğunca sinematik bir şekilde sunmaktır.",
-            "about-text-2": "Dikkat çekici video ve drone prodüksiyonlarından dönüşüm odaklı landing pagelere ve bütünsel markalaşma çözümlerine kadar; projelerinizi hedef kitlenizde unutulmaz bir premium izlenim bırakacak şekilde tasarlıyor ve kurguluyorum. Vizyonunuzu kusursuz bir sunuma dönüştürelim ve erişiminizi maksimize edelim.",
+            "about-text-2": "Dikkat çekici video ve drone prodüksiyonlarından profesyonel web sitelerine ve bütünsel markalaşma çözümlerine kadar; projelerinizi hedef kitlenizde unutulmaz bir <strong>premium</strong> izlenim bırakacak şekilde tasarlıyor ve kurguluyorum. Vizyonunuzu kusursuz bir sunuma dönüştürelim ve erişiminizi maksimize edelim.",
             "contact-title": "Ücretsiz İlk Danışmanlık",
-            "contact-subtitle": "Her marka benzersizdir. Vizyonunuzu bize anlatın, işletmenizi bir sonraki premium seviyeye taşıyacak size özel bir dijital konsept geliştirelim.",
+            "contact-subtitle": "Her marka benzersizdir. Vizyonunuzu bize anlatın, işletmenizi bir sonraki <strong>premium seviyeye</strong> taşıyacak size özel bir dijital konsept geliştirelim.",
             "form-label-name": "Adınız / Şirketiniz",
             "form-placeholder-name": "Adınızı giriniz",
             "form-label-email": "E-posta Adresiniz",
@@ -126,8 +159,6 @@ document.addEventListener('DOMContentLoaded', () => {
             "form-option-3": "Yeni, Lüks Bir Marka İmajı (Yeniden Markalaşma)",
             "form-option-4": "Premium Video & İçerik Üretimi",
             "form-option-5": "Özel Strateji Gerekiyor",
-            "form-label-message": "Hedefleriniz Hakkında Daha Fazla Bilgi Verin (Opsiyonel)",
-            "form-placeholder-message": "Örn: 'Önümüzdeki 6 ay içinde fine-dining rezervasyonlarımızı %20 artırmak istiyoruz...'",
             "form-submit": "Potansiyel Analizi Talep Et",
             "form-privacy-1": "Okudum ve",
             "form-privacy-link": "Gizlilik Politikasını",
@@ -135,29 +166,37 @@ document.addEventListener('DOMContentLoaded', () => {
             "footer-impressum": "Künye",
             "footer-datenschutz": "Gizlilik",
             "footer-rights": "© 2026 Envisio. Tüm hakları saklıdır.",
-            "cookie-text": "Bu web sitesi, size en iyi deneyimi sunmak için çerezleri kullanır. Sitemizi kullanmaya devam ederek çerez kullanımını kabul etmiş sayılırsınız.",
+            "footer-cookie-settings": "Çerez Ayarları",
+            "cookie-text": "Portfolyo bölümünde Vimeo videoları kullanıyoruz. Bu sırada IP adresiniz Vimeo'ya aktarılır. Videolar yalnızca onayınızdan sonra yüklenir.",
             "cookie-more": "Daha fazla bilgi",
             "cookie-accept": "Kabul Et",
-            "testimonials-title": "Müşterilerimiz Ne Diyor?",
-            "testimonial-quote-1": "\"Envisio sadece vizyonumuzu anlamakla kalmadı, onu hayal bile edemeyeceğimiz bir seviyeye taşıdı. Sinematik kalite kesinlikle dünya standartlarında.\"",
-            "testimonial-author-1": "Marco Rossi",
-            "testimonial-role-1": "Sahibi, Fine Dining Group",
-            "testimonial-quote-2": "\"İş birliğimiz son derece profesyoneldi. Yeni landing page'imiz ve drone çekimlerimiz sayesinde aldığımız talepler iki katına çıktı.\"",
-            "testimonial-author-2": "Sarah Schmidt",
-            "testimonial-role-2": "Pazarlama Direktörü, Luxury Estate",
+            "cookie-decline": "Reddet",
+            "video-consent-note": "Bu video Vimeo üzerinden yüklenir. Bu sırada IP adresiniz Vimeo'ya aktarılır.",
+            "video-consent-btn": "Videoyu yükle",
+            "form-error": "Bir şeyler ters gitti. Doğrudan info@envisio.studio adresine yazabilirsiniz.",
+            "form-error-short": "Hata!",
             "form-sending": "Gönderiliyor...",
             "form-success": "Mesajınız Alındı!",
-            "wa-contact-label": "Bizimle Yazışın",
-            "portfolio-play": "Projeyi İzle"
         }
     };
 
+    const SITE_ORIGIN = 'https://www.envisio.studio';
+
     function updateContent(lang) {
+        const dict = translations[lang];
+        if (!dict) return;
+
         // Update attributes based on data-i18n
         document.querySelectorAll('[data-i18n]').forEach(el => {
             const key = el.getAttribute('data-i18n');
-            if (translations[lang] && translations[lang][key]) {
-                el.textContent = translations[lang][key];
+            if (!dict[key]) return;
+            // Only the handful of strings marked data-i18n-html carry inline
+            // markup (<strong>). Everything else stays textContent, so a
+            // translation can never inject an element.
+            if (el.hasAttribute('data-i18n-html')) {
+                el.innerHTML = dict[key];
+            } else {
+                el.textContent = dict[key];
             }
         });
 
@@ -179,11 +218,48 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Update active class on buttons
         document.querySelectorAll('.lang-btn').forEach(btn => {
-            btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
+            const isActive = btn.getAttribute('data-lang') === lang;
+            btn.classList.toggle('active', isActive);
+            btn.setAttribute('aria-pressed', String(isActive));
         });
 
-        // Save preference
-        localStorage.setItem('preferredLang', lang);
+        // Everything a crawler or a screen reader reads outside the body.
+        // Without this the page stayed lang="de" with a German <title> while
+        // showing Turkish copy.
+        document.documentElement.lang = lang;
+        if (dict['page-title']) document.title = dict['page-title'];
+
+        const setMeta = (selector, value) => {
+            const el = document.querySelector(selector);
+            if (el && value) el.setAttribute('content', value);
+        };
+        setMeta('meta[name="description"]', dict['page-description']);
+        setMeta('meta[property="og:description"]', dict['page-description']);
+        setMeta('meta[name="twitter:description"]', dict['page-description']);
+        setMeta('meta[property="og:title"]', dict['page-title']);
+        setMeta('meta[name="twitter:title"]', dict['page-title']);
+        setMeta('meta[property="og:locale"]', lang === 'tr' ? 'tr_TR' : 'de_DE');
+        setMeta('meta[property="og:locale:alternate"]', lang === 'tr' ? 'de_DE' : 'tr_TR');
+
+        // Each language needs its own address, or there is nothing for Google
+        // to index separately and the hreflang pair is meaningless.
+        const url = lang === 'tr' ? SITE_ORIGIN + '/?lang=tr' : SITE_ORIGIN + '/';
+        const canonical = document.getElementById('canonicalLink');
+        if (canonical) canonical.setAttribute('href', url);
+        setMeta('meta[property="og:url"]', url);
+
+        try {
+            const next = lang === 'tr' ? '?lang=tr' : location.pathname;
+            history.replaceState(null, '', next + location.hash);
+        } catch (e) {
+            /* file:// or a blocked history API - the page still works */
+        }
+
+        try {
+            localStorage.setItem('preferredLang', lang);
+        } catch (e) {
+            /* storage unavailable; the URL still carries the choice */
+        }
     }
 
     // Language switcher event listeners
@@ -194,9 +270,13 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Initialize Language
-    const savedLang = localStorage.getItem('preferredLang') || 'de';
-    updateContent(savedLang);
+    // Initialize Language: URL wins, then the stored preference, then German.
+    const urlLang = new URLSearchParams(location.search).get('lang');
+    let savedLang = null;
+    try { savedLang = localStorage.getItem('preferredLang'); } catch (e) { /* ignore */ }
+    const initialLang = translations[urlLang] ? urlLang
+                      : (translations[savedLang] ? savedLang : 'de');
+    updateContent(initialLang);
 
 
     // ==========================================
@@ -206,52 +286,69 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (preloader) {
         // Sequentially add classes for staggered animation
-        setTimeout(() => {
-            preloader.classList.add('show-i');
-        }, 400);
+        setTimeout(() => preloader.classList.add('show-i'), 150);
+        setTimeout(() => preloader.classList.add('show-rest'), 400);
+        setTimeout(() => preloader.classList.add('show-subtitle'), 650);
 
-        setTimeout(() => {
-            preloader.classList.add('show-rest');
-        }, 1300);
+        // Only ever show the preloader once per session.
+        const seen = sessionStorage.getItem('preloaderSeen') === '1';
+        const MIN_STAY = seen ? 0 : 800;
+        // Hard ceiling: the preloader must disappear even if `load` never
+        // fires, which happens whenever a third party hangs instead of failing.
+        const MAX_STAY = seen ? 0 : 2500;
 
-        setTimeout(() => {
-            preloader.classList.add('show-subtitle');
-        }, 2100);
+        const startTime = Date.now();
+        let dismissed = false;
 
-        // Transition to main content after everything is loaded
-        window.addEventListener('load', () => {
-            // Ensure minimum display time (3.5s) for the brand impact
-            const minStayTime = 3500;
-            const startTime = parseInt(sessionStorage.getItem('preloaderStartTime')) || Date.now();
-            const elapsed = Date.now() - startTime;
-            const remaining = Math.max(0, minStayTime - elapsed);
+        const revealSite = () => {
+            if (dismissed) return;
+            dismissed = true;
+            sessionStorage.setItem('preloaderSeen', '1');
 
+            preloader.classList.add('fade-out');
             setTimeout(() => {
-                preloader.classList.add('fade-out');
-                
-                setTimeout(() => {
-                    preloader.style.display = 'none';
-                    document.body.classList.add('preloader-done');
-                    
-                    // Trigger hero reveal
-                    const hero = document.getElementById('hero');
-                    if (hero) hero.classList.add('is-loaded');
+                preloader.style.display = 'none';
+                document.body.classList.add('preloader-done');
 
-                    // PLAY LOCAL HERO VIDEO
-                    const heroVideo = document.getElementById('heroVideo');
-                    if (heroVideo) {
-                        heroVideo.play().catch(err => {
-                            console.log("Autoplay blocked or video missing:", err);
-                        });
-                    }
-                }, 1200);
-            }, remaining);
-        });
+                const hero = document.getElementById('hero');
+                if (hero) hero.classList.add('is-loaded');
 
-        // Track start time if not already tracked
-        if (!sessionStorage.getItem('preloaderStartTime')) {
-            sessionStorage.setItem('preloaderStartTime', Date.now());
+                startHeroVideo();
+            }, 500);
+        };
+
+        const dismissAfterMinimum = () => {
+            setTimeout(revealSite, Math.max(0, MIN_STAY - (Date.now() - startTime)));
+        };
+
+        if (document.readyState === 'complete') {
+            dismissAfterMinimum();
+        } else {
+            window.addEventListener('load', dismissAfterMinimum);
         }
+        setTimeout(revealSite, MAX_STAY); // fail-safe, independent of `load`
+    }
+
+    // The hero video is 36 MB, so it is never fetched on small screens - the
+    // CSS poster/gradient stands in for it there.
+    function startHeroVideo() {
+        const heroVideo = document.getElementById('heroVideo');
+        if (!heroVideo) return;
+
+        const tooSmall = window.matchMedia('(max-width: 768px)').matches;
+        const savesData = navigator.connection && navigator.connection.saveData;
+        const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+        if (tooSmall || savesData || reduceMotion) {
+            heroVideo.remove();
+            document.body.classList.add('hero-video-skipped');
+            return;
+        }
+
+        heroVideo.load(); // preload="none" means nothing has been fetched yet
+        heroVideo.play().catch(err => {
+            console.log('Hero video autoplay unavailable:', err);
+        });
     }
 
 
@@ -277,7 +374,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const scrollPercent = (scrollTop / docHeight) * 100;
             scrollProgress.style.width = scrollPercent + '%';
         }
-    });
+    }, { passive: true });
 
     const observerOptions = {
         root: null,
@@ -285,19 +382,26 @@ document.addEventListener('DOMContentLoaded', () => {
         threshold: 0.15
     };
 
+    // A single observer drives both reveal systems. There used to be two of
+    // them watching an almost identical element set, each adding its own class.
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-            }
+            if (!entry.isIntersecting) return;
+
+            const delay = parseInt(entry.target.dataset.index || 0, 10) * 90;
+            window.setTimeout(() => {
+                entry.target.classList.add('visible', 'revealed');
+            }, delay);
+
+            observer.unobserve(entry.target);
         });
     }, observerOptions);
 
-    const animatedElements = document.querySelectorAll('.fade-in-element, .portfolio-item, .about-text, .bento-grid-item');
-    animatedElements.forEach(el => {
-        el.classList.add('fade-in-element');
-        observer.observe(el);
-    });
+    document.querySelectorAll('.fade-in-element, .section-title, .about-text, .service-row')
+        .forEach(el => {
+            el.classList.add('fade-in-element', 'reveal-ready');
+            observer.observe(el);
+        });
 
     // ==========================================
     // CINEMATIC PORTFOLIO SLIDER
@@ -312,28 +416,116 @@ document.addEventListener('DOMContentLoaded', () => {
         let currentSlide = 0;
         const totalSlides = slides.length;
 
-        // Create dots
+        // Create dots as real buttons - as <div>s they could not be reached or
+        // activated with a keyboard.
         slides.forEach((_, index) => {
-            const dot = document.createElement('div');
+            const dot = document.createElement('button');
+            dot.type = 'button';
             dot.classList.add('slider-dot');
             if (index === 0) dot.classList.add('active');
+            dot.setAttribute('aria-label', 'Slide ' + (index + 1));
+            dot.setAttribute('aria-current', index === 0 ? 'true' : 'false');
             dot.addEventListener('click', () => goToSlide(index));
             dotsContainer.appendChild(dot);
         });
-        const dots = document.querySelectorAll('.slider-dot');
+        dotsContainer.setAttribute('role', 'tablist');
+        const dots = dotsContainer.querySelectorAll('.slider-dot');
+
+        // Previously all four Vimeo players loaded at once with autoplay=1.
+        // Now at most one player exists: the visible one, and only once the
+        // visitor has consented to Vimeo embeds.
+        // Two-click solution: without consent the slide shows a button that
+        // both explains the transfer and, when pressed, permits it. Previously
+        // a visitor who declined just got an empty slide.
+        function ensurePlaceholder(slide) {
+            let ph = slide.querySelector('.slide-consent');
+            if (ph) return ph;
+
+            ph = document.createElement('div');
+            ph.className = 'slide-consent';
+
+            const note = document.createElement('p');
+            note.className = 'slide-consent-note';
+            note.setAttribute('data-i18n', 'video-consent-note');
+            note.textContent = translations[currentLang()]['video-consent-note'];
+
+            const btn = document.createElement('button');
+            btn.type = 'button';
+            btn.className = 'slide-consent-btn';
+            btn.setAttribute('data-i18n', 'video-consent-btn');
+            btn.textContent = translations[currentLang()]['video-consent-btn'];
+            btn.addEventListener('click', () => {
+                if (window.EnvisioConsent) window.EnvisioConsent.grant();
+            });
+
+            ph.appendChild(note);
+            ph.appendChild(btn);
+            slide.appendChild(ph);
+            return ph;
+        }
+
+        function currentLang() {
+            return document.documentElement.lang === 'tr' ? 'tr' : 'de';
+        }
+
+        function syncSlideVideos() {
+            const allowed = window.EnvisioConsent && window.EnvisioConsent.granted();
+
+            slides.forEach((slide, index) => {
+                const iframe = slide.querySelector('iframe.lazy-vimeo');
+                if (!iframe) return;
+
+                if (!allowed) {
+                    iframe.removeAttribute('src');
+                    ensurePlaceholder(slide).hidden = false;
+                    return;
+                }
+
+                const ph = slide.querySelector('.slide-consent');
+                if (ph) ph.hidden = true;
+
+                if (index === currentSlide) {
+                    const src = iframe.getAttribute('data-consent-src');
+                    if (src && iframe.getAttribute('src') !== src) {
+                        iframe.setAttribute('src', src.replace('autoplay=0', 'autoplay=1'));
+                    }
+                } else if (iframe.hasAttribute('src')) {
+                    // Dropping src tears the player down, which is the only way
+                    // to stop playback without pulling in the Vimeo Player SDK.
+                    iframe.removeAttribute('src');
+                }
+            });
+        }
 
         function updateSlider() {
             // Move track
             sliderTrack.style.transform = `translateX(-${currentSlide * 100}%)`;
-            
+
             // Update classes
             slides.forEach((slide, index) => {
                 slide.classList.toggle('active', index === currentSlide);
             });
             dots.forEach((dot, index) => {
-                dot.classList.toggle('active', index === currentSlide);
+                const isCurrent = index === currentSlide;
+                dot.classList.toggle('active', isCurrent);
+                dot.setAttribute('aria-current', String(isCurrent));
             });
+
+            slides.forEach((slide, index) => {
+                // Off-screen slides must not be reachable by tab.
+                slide.setAttribute('aria-hidden', String(index !== currentSlide));
+            });
+
+            syncSlideVideos();
         }
+
+        if (window.EnvisioConsent) {
+            window.EnvisioConsent.onChange(syncSlideVideos);
+        }
+
+        // onChange only fires once a decision exists, so on a first visit the
+        // slides would otherwise sit empty until the visitor touched something.
+        updateSlider();
 
         function goToSlide(index) {
             currentSlide = index;
@@ -350,6 +542,22 @@ document.addEventListener('DOMContentLoaded', () => {
         if (nextBtn) {
             nextBtn.addEventListener('click', () => {
                 currentSlide = (currentSlide + 1) % totalSlides;
+                updateSlider();
+            });
+        }
+
+        // Arrow keys once the slider has focus.
+        const sliderRegion = sliderTrack.closest('.cinematic-slider-container');
+        if (sliderRegion) {
+            sliderRegion.setAttribute('role', 'region');
+            sliderRegion.setAttribute('aria-roledescription', 'Karussell');
+            sliderRegion.setAttribute('aria-label', 'Portfolio');
+            sliderRegion.addEventListener('keydown', (e) => {
+                if (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') return;
+                e.preventDefault();
+                currentSlide = e.key === 'ArrowRight'
+                    ? (currentSlide + 1) % totalSlides
+                    : (currentSlide - 1 + totalSlides) % totalSlides;
                 updateSlider();
             });
         }
@@ -374,6 +582,31 @@ document.addEventListener('DOMContentLoaded', () => {
         }, {passive: true});
     }
 
+    // ==========================================
+    // LEISTUNGEN - EDITORIAL INDEX (accordion)
+    // ==========================================
+    const serviceRows = document.querySelectorAll('.service-row');
+
+    if (serviceRows.length) {
+        const setOpen = (row, open) => {
+            const trigger = row.querySelector('.service-trigger');
+            row.classList.toggle('is-open', open);
+            if (trigger) trigger.setAttribute('aria-expanded', String(open));
+        };
+
+        serviceRows.forEach(row => {
+            const trigger = row.querySelector('.service-trigger');
+            if (!trigger) return;
+
+            trigger.addEventListener('click', () => {
+                const willOpen = !row.classList.contains('is-open');
+                // One open at a time keeps the index readable as a whole.
+                serviceRows.forEach(other => setOpen(other, false));
+                setOpen(row, willOpen);
+            });
+        });
+    }
+
     // Smooth Scroll
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
@@ -396,19 +629,58 @@ document.addEventListener('DOMContentLoaded', () => {
     const mobileToggle = document.querySelector('.mobile-nav-toggle');
     const mobileLinks = document.querySelectorAll('.mobile-link');
 
+    const mobileNav = document.getElementById('mobileNav');
+
+    function setMobileNav(open) {
+        document.body.classList.toggle('nav-open', open);
+        if (mobileToggle) mobileToggle.setAttribute('aria-expanded', String(open));
+        if (mobileNav) mobileNav.setAttribute('aria-hidden', String(!open));
+    }
+
     if (mobileToggle) {
         mobileToggle.addEventListener('click', () => {
-            document.body.classList.toggle('nav-open');
+            const open = !document.body.classList.contains('nav-open');
+            setMobileNav(open);
+            if (open && mobileNav) {
+                const first = mobileNav.querySelector('a[href]');
+                if (first) first.focus();
+            }
         });
     }
 
     if (mobileLinks.length > 0) {
         mobileLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                document.body.classList.remove('nav-open');
-            });
+            link.addEventListener('click', () => setMobileNav(false));
         });
     }
+
+    document.addEventListener('keydown', (e) => {
+        if (!document.body.classList.contains('nav-open')) return;
+
+        if (e.key === 'Escape') {
+            setMobileNav(false);
+            if (mobileToggle) mobileToggle.focus();
+            return;
+        }
+
+        // Keep Tab inside the open overlay; otherwise focus wanders onto the
+        // page behind it, which is invisible while the menu covers the screen.
+        if (e.key !== 'Tab' || !mobileNav) return;
+
+        const focusable = mobileNav.querySelectorAll('a[href], button:not([disabled])');
+        if (!focusable.length) return;
+
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+
+        if (e.shiftKey && document.activeElement === first) {
+            e.preventDefault();
+            last.focus();
+        } else if (!e.shiftKey && document.activeElement === last) {
+            e.preventDefault();
+            first.focus();
+        }
+    });
 
     // Services logic removed - using CSS-based Bento Grid now.
 
@@ -432,13 +704,20 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
+        // Only run the follow loop where there is a real pointer; on touch
+        // devices this was an endless rAF that never moved anything.
         const renderCursor = () => {
             cursorX += (mouseX - cursorX) * 0.2;
             cursorY += (mouseY - cursorY) * 0.2;
             cursor.style.transform = `translate(${cursorX}px, ${cursorY}px)`;
             requestAnimationFrame(renderCursor);
         };
-        requestAnimationFrame(renderCursor);
+
+        if (window.matchMedia('(pointer: fine)').matches) {
+            requestAnimationFrame(renderCursor);
+        } else {
+            cursor.remove();
+        }
 
         const hoverElements = document.querySelectorAll('a, button, input, textarea, select');
         hoverElements.forEach(el => {
@@ -514,12 +793,33 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
         function init() { for (let i = 0; i < particleCount; i++) particles.push(new Particle()); }
+
+        // Exposed so the IntersectionObserver below can stop the loop once the
+        // hero scrolls away, instead of burning a frame budget for the whole
+        // length of the page.
+        const state = {
+            running: true,
+            frame: null,
+            resume() {
+                if (state.frame === null && state.running) animate();
+            }
+        };
+        window.envisioParticles = state;
+
         function animate() {
+            if (!state.running) { state.frame = null; return; }
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             particles.forEach(p => { p.update(); p.draw(); });
-            requestAnimationFrame(animate);
+            state.frame = requestAnimationFrame(animate);
         }
-        init(); animate();
+
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            state.running = false;
+            canvas.remove();
+        } else {
+            init();
+            animate();
+        }
     }
 
     // 6. Web3Forms AJAX Submission
@@ -529,9 +829,28 @@ document.addEventListener('DOMContentLoaded', () => {
             e.preventDefault();
             const btn = contactForm.querySelector('button[type="submit"]');
             const originalText = btn.textContent;
-            const currentLang = localStorage.getItem('preferredLang') || 'de';
+            const currentLang = document.documentElement.lang === 'tr' ? 'tr' : 'de';
+
+            // A button label change is not reliably announced; this region is.
+            let status = document.getElementById('formStatus');
+            if (!status) {
+                status = document.createElement('p');
+                status.id = 'formStatus';
+                status.className = 'form-status';
+                status.setAttribute('role', 'status');
+                status.setAttribute('aria-live', 'polite');
+                contactForm.appendChild(status);
+            }
+
+            const say = (key, fallback, tone) => {
+                status.textContent = (translations[currentLang] || {})[key] || fallback;
+                status.classList.toggle('is-error', tone === 'error');
+                status.classList.toggle('is-success', tone === 'success');
+            };
+
             btn.disabled = true;
             btn.textContent = translations[currentLang]["form-sending"] || "Sending...";
+            say('form-sending', 'Sending...', null);
 
             const formData = new FormData(contactForm);
             const object = Object.fromEntries(formData);
@@ -551,6 +870,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (response.status === 200) {
                     btn.textContent = translations[currentLang]["form-success"] || "Success!";
                     btn.style.backgroundColor = '#10b981';
+                    say('form-success', 'Success!', 'success');
                     contactForm.reset();
                     setTimeout(() => {
                         btn.textContent = originalText;
@@ -563,8 +883,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             } catch (error) {
                 console.error("Email Error:", error);
-                btn.textContent = "Error!";
+                btn.textContent = translations[currentLang]["form-error-short"] || "Error!";
                 btn.style.backgroundColor = "#ef4444";
+                say('form-error', 'Something went wrong. Please email us directly.', 'error');
                 setTimeout(() => {
                     btn.textContent = originalText;
                     btn.style.backgroundColor = '';
@@ -591,61 +912,17 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 8. Magnetic WhatsApp Button
-    const waFloat = document.querySelector('.whatsapp-float');
-    if (waFloat) {
-        document.addEventListener('mousemove', (e) => {
-            const rect = waFloat.getBoundingClientRect();
-            const waX = rect.left + rect.width / 2;
-            const waY = rect.top + rect.height / 2;
-            
-            const distX = e.clientX - waX;
-            const distY = e.clientY - waY;
-            const distance = Math.sqrt(distX * distX + distY * distY);
-            
-            if (distance < 150) {
-                const moveX = (e.clientX - waX) * 0.15;
-                const moveY = (e.clientY - waY) * 0.15;
-                waFloat.style.transform = `translate(${moveX}px, ${moveY}px) scale(1.05)`;
-            } else {
-                waFloat.style.transform = 'translate(0, 0) scale(1)';
-            }
-        });
-    }
-
-    // --- Lazy Loading for Vimeo Iframes ---
-    const vimeoObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const iframe = entry.target;
-                const src = iframe.getAttribute('data-src');
-                if (src) {
-                    iframe.setAttribute('src', src);
-                    iframe.removeAttribute('data-src');
-                }
-                vimeoObserver.unobserve(iframe);
-            }
-        });
-    }, { rootMargin: '200px' });
-
-    document.querySelectorAll('.lazy-vimeo').forEach(iframe => {
-        vimeoObserver.observe(iframe);
-    });
-
-    // --- Particle System Optimization ---
+    // --- Particle System: stop the rAF loop while the hero is off-screen ---
+    // (This previously drove window.pJSDom from particles.js, a library that is
+    //  not loaded here, so it never did anything.)
     const particlesCanvas = document.getElementById('particles-canvas');
-    if (particlesCanvas) {
+    if (particlesCanvas && typeof window.envisioParticles === 'object') {
         const particlesObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
-                if (window.pJSDom && window.pJSDom[0]) {
-                    if (entry.isIntersecting) {
-                        window.pJSDom[0].pJS.particles.move.enable = true;
-                    } else {
-                        window.pJSDom[0].pJS.particles.move.enable = false;
-                    }
-                }
+                window.envisioParticles.running = entry.isIntersecting;
+                if (entry.isIntersecting) window.envisioParticles.resume();
             });
-        }, { threshold: 0.1 });
+        }, { threshold: 0 });
         particlesObserver.observe(particlesCanvas);
     }
 
@@ -689,26 +966,43 @@ document.addEventListener('DOMContentLoaded', () => {
     if (parallaxSections.length > 0 && window.innerWidth > 768) {
         // Scroll-based parallax for section content
         let ticking = false;
+        let parallaxCache = [];
+
+        const measureParallax = () => {
+            parallaxCache = [];
+            parallaxSections.forEach(section => {
+                // .portfolio-header-container is centred with translateX(-50%);
+                // writing translateY over that transform shoved the heading to
+                // the right edge, so the slider container is preferred there.
+                const content = section.querySelector('.cinematic-slider-container')
+                    || section.querySelector('.container:not(.portfolio-header-container)');
+                if (!content) return;
+                content.style.transform = '';
+                const rect = section.getBoundingClientRect();
+                parallaxCache.push({
+                    content: content,
+                    top: rect.top + window.scrollY,
+                    height: rect.height,
+                    speed: parseFloat(section.dataset.parallaxSpeed) || 0.2
+                });
+            });
+        };
+
+        measureParallax();
+        window.addEventListener('resize', measureParallax, { passive: true });
 
         const updateParallax = () => {
             const scrollY = window.scrollY;
             const windowHeight = window.innerHeight;
 
-            parallaxSections.forEach(section => {
-                const rect = section.getBoundingClientRect();
-                const sectionTop = rect.top + scrollY;
-                const speed = parseFloat(section.dataset.parallaxSpeed) || 0.2;
-
-                // Only apply when section is near viewport
-                if (rect.bottom > 0 && rect.top < windowHeight) {
-                    const offset = (scrollY - sectionTop + windowHeight) * speed;
-
-                    // Apply subtle parallax to inner content
-                    const content = section.querySelector('.container, .cinematic-slider-container');
-                    if (content) {
-                        content.style.transform = `translateY(${offset * 0.15}px)`;
-                    }
-                }
+            // Offsets and the inner element are resolved once (see cache below)
+            // instead of calling getBoundingClientRect for every section on
+            // every frame, which forced a layout each time.
+            parallaxCache.forEach(item => {
+                const top = item.top - scrollY;
+                if (top + item.height < 0 || top > windowHeight) return;
+                const offset = (scrollY - item.top + windowHeight) * item.speed;
+                item.content.style.transform = `translateY(${offset * 0.15}px)`;
             });
 
             ticking = false;
@@ -720,38 +1014,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 ticking = true;
             }
         }, { passive: true });
-    }
-
-    // ==========================================
-    // ENHANCED SCROLL REVEAL ANIMATIONS
-    // ==========================================
-    const revealElements = document.querySelectorAll('.fade-in-element, .section-title, .about-text, .testimonial-card, .bento-item');
-
-    if (revealElements.length > 0) {
-        const revealObserver = new IntersectionObserver((entries) => {
-            entries.forEach((entry, index) => {
-                if (entry.isIntersecting) {
-                    // Staggered delay for grouped items
-                    const delay = entry.target.classList.contains('bento-item')
-                        ? parseInt(entry.target.dataset.index || 0) * 100
-                        : 0;
-
-                    setTimeout(() => {
-                        entry.target.classList.add('revealed');
-                    }, delay);
-
-                    revealObserver.unobserve(entry.target);
-                }
-            });
-        }, {
-            threshold: 0.15,
-            rootMargin: '0px 0px -50px 0px'
-        });
-
-        revealElements.forEach(el => {
-            el.classList.add('reveal-ready');
-            revealObserver.observe(el);
-        });
     }
 
     // ==========================================
@@ -798,7 +1060,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // ==========================================
     // PREMIUM: 3D Parallax Tilt Cards
     // ==========================================
-    const tiltTargets = document.querySelectorAll('.testimonial-card, .cinematic-slide');
+    const tiltTargets = document.querySelectorAll('.cinematic-slide');
 
     tiltTargets.forEach(card => {
         // Only on desktop
@@ -854,11 +1116,17 @@ document.addEventListener('DOMContentLoaded', () => {
         if (link.getAttribute('target') === '_blank') return;
 
         link.addEventListener('click', (e) => {
+            // Ctrl/Cmd/Shift/middle-click mean "open elsewhere". Swallowing
+            // those broke opening the legal pages in a new tab entirely.
+            if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0) return;
+
             e.preventDefault();
             transOverlay.classList.add('active');
+            // Matches the CSS transition; 500ms was half a second of dead time
+            // on every navigation.
             setTimeout(() => {
                 window.location.href = href;
-            }, 500);
+            }, 260);
         });
     });
 });

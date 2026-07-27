@@ -4,7 +4,7 @@
 /* Fonts */
 @font-face {
     font-family: 'Inter';
-    src: url('../fonts/Inter-normal-300.ttf') format('truetype');
+    src: url('../fonts/Inter-normal-300.woff2') format('woff2');
     font-weight: 300;
     font-display: swap;
     font-style: normal;
@@ -12,7 +12,7 @@
 
 @font-face {
     font-family: 'Inter';
-    src: url('../fonts/Inter-normal-400.ttf') format('truetype');
+    src: url('../fonts/Inter-normal-400.woff2') format('woff2');
     font-weight: 400;
     font-display: swap;
     font-style: normal;
@@ -20,7 +20,7 @@
 
 @font-face {
     font-family: 'Inter';
-    src: url('../fonts/Inter-normal-700.ttf') format('truetype');
+    src: url('../fonts/Inter-normal-700.woff2') format('woff2');
     font-weight: 700;
     font-display: swap;
     font-style: normal;
@@ -28,7 +28,7 @@
 
 @font-face {
     font-family: 'Inter';
-    src: url('../fonts/Inter-normal-800.ttf') format('truetype');
+    src: url('../fonts/Inter-normal-800.woff2') format('woff2');
     font-weight: 800;
     font-display: swap;
     font-style: normal;
@@ -36,7 +36,7 @@
 
 @font-face {
     font-family: 'Inter';
-    src: url('../fonts/Inter-normal-900.ttf') format('truetype');
+    src: url('../fonts/Inter-normal-900.woff2') format('woff2');
     font-weight: 900;
     font-display: swap;
     font-style: normal;
@@ -44,7 +44,7 @@
 
 @font-face {
     font-family: 'Playfair Display';
-    src: url('../fonts/PlayfairDisplay-normal-400.ttf') format('truetype');
+    src: url('../fonts/PlayfairDisplay-normal-400.woff2') format('woff2');
     font-weight: 400;
     font-display: swap;
     font-style: normal;
@@ -52,7 +52,7 @@
 
 @font-face {
     font-family: 'Playfair Display';
-    src: url('../fonts/PlayfairDisplay-normal-600.ttf') format('truetype');
+    src: url('../fonts/PlayfairDisplay-normal-600.woff2') format('woff2');
     font-weight: 600;
     font-display: swap;
     font-style: normal;
@@ -60,7 +60,7 @@
 
 @font-face {
     font-family: 'Playfair Display';
-    src: url('../fonts/PlayfairDisplay-normal-700.ttf') format('truetype');
+    src: url('../fonts/PlayfairDisplay-normal-700.woff2') format('woff2');
     font-weight: 700;
     font-display: swap;
     font-style: normal;
@@ -68,7 +68,7 @@
 
 @font-face {
     font-family: 'Playfair Display';
-    src: url('../fonts/PlayfairDisplay-italic-400.ttf') format('truetype');
+    src: url('../fonts/PlayfairDisplay-italic-400.woff2') format('woff2');
     font-weight: 400;
     font-display: swap;
     font-style: italic;
@@ -86,6 +86,13 @@
 
     --font-sans: 'Inter', sans-serif;
     --font-serif: 'Playfair Display', serif;
+    /* Aliases: these names were used throughout the stylesheet but never
+       defined, so every rule referencing them fell back to inherit. */
+    --font-heading: var(--font-serif);
+    --font-secondary: var(--font-sans);
+
+    --text-white: #ffffff;
+    --text-light: var(--color-text);
 
     --transition-fast: 0.2s ease;
     --transition-normal: 0.4s cubic-bezier(0.16, 1, 0.3, 1);
@@ -135,8 +142,6 @@ body {
     width: 100%;
     position: relative;
 }
-
-
 
 img,
 video {
@@ -319,10 +324,6 @@ h6 {
 
 .delay-200 {
     transition-delay: 0.2s;
-}
-
-.delay-300 {
-    transition-delay: 0.3s;
 }
 
 .section {
@@ -522,9 +523,7 @@ a.nav-link:active,
 .mobile-nav-toggle:active,
 .mobile-link:active,
 .cta-link:active,
-.slider-btn:active,
-.sc-item:active,
-.contact-submit:active {
+.slider-btn:active{
     transform: scale(0.92) !important;
     transition: transform 0.1s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
 }
@@ -648,7 +647,14 @@ body.nav-open .hamburger-line:last-child {
     width: 100%;
     height: 100%;
     z-index: -1;
+    /* Paints instantly and stands in for the hero video wherever the video is
+       not loaded: mobile, reduced motion, save-data, or before playback starts.
+       Replaces the remote Unsplash poster that used to sit here. */
     background-color: #0a0a0a;
+    background-image:
+        radial-gradient(ellipse 90% 60% at 50% 0%, rgba(211, 168, 124, 0.18), transparent 70%),
+        radial-gradient(ellipse 70% 50% at 15% 100%, rgba(211, 168, 124, 0.10), transparent 65%),
+        linear-gradient(160deg, #14100c 0%, #0a0a0a 55%, #0d0b09 100%);
 }
 
 /* Hero Video (Local MP4) */
@@ -663,24 +669,6 @@ body.nav-open .hamburger-line:last-child {
     z-index: -1;
     pointer-events: none;
 }
-
-.hero-video-iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    transform: scale(1.1);
-    filter: grayscale(20%) contrast(1.2);
-    transition: transform 3.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 1s ease;
-    z-index: -1;
-    pointer-events: none;
-}
-
-.hero.is-loaded .hero-video-iframe {
-    transform: scale(1);
-}
-
 
 .overlay {
     position: absolute;
@@ -699,9 +687,14 @@ body.nav-open .hamburger-line:last-child {
 
 /* Masking container for text reveal */
 .reveal-mask {
+    display: block;
     overflow: hidden;
     position: relative;
     padding-bottom: 0.1em;
+}
+
+.hero-line {
+    display: block;
 }
 
 .reveal-mask>* {
@@ -804,233 +797,202 @@ body.nav-open .hamburger-line:last-child {
 }
 
 /* ==========================================================================
-   Services Section (Concept 3: Luxury Asymmetric Hover Reveal)
+   Leistungen - editorial index
+   Type, rules and inline SVG only: no images, no Lottie, nothing third-party,
+   so the section looks the same before and after consent.
    ========================================================================== */
-.luxury-services-container {
-    padding: 6rem 0;
+.service-index {
+    list-style: none;
+    margin: clamp(1.5rem, 4vw, 2.5rem) 0 0;
+    padding: 0;
+    border-top: 1px solid var(--color-border);
 }
 
-.luxury-services-wrapper {
-    display: flex;
-    flex-direction: column;
-    gap: 4rem;
-    margin-top: 4rem;
-    overflow-x: hidden;
-}
-
-/* ==========================================================================
-   Bento Grid Services
-   ========================================================================== */
-.bento-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-auto-rows: 280px;
-    gap: 1.5rem;
-    margin-top: 5rem;
-}
-
-.bento-item {
+.service-row {
     position: relative;
-    border-radius: 2.5rem;
-    overflow: hidden;
-    background: var(--color-bg-alt);
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-    cursor: pointer;
+    border-bottom: 1px solid var(--color-border);
 }
 
-/* Bento Sizes */
-.bento-large { grid-column: span 2; grid-row: span 2; }
-.bento-wide { grid-column: span 2; grid-row: span 1; }
-.bento-medium { grid-column: span 1; grid-row: span 1; }
-.bento-small { grid-column: span 1; grid-row: span 1; }
-
-/* Background Handling */
-.bento-bg {
+/* Gold rule drawn across the row on hover and while open. */
+.service-row::after {
+    content: '';
     position: absolute;
-    inset: 0;
-    z-index: 0;
-    transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.bento-bg img {
+    left: 0;
+    bottom: -1px;
     width: 100%;
-    height: 100%;
-    object-fit: cover;
-    filter: brightness(0.4) contrast(1.1) grayscale(40%);
-    transition: filter 0.8s ease;
+    height: 1px;
+    background: var(--color-accent);
+    transform: scaleX(0);
+    transform-origin: left center;
+    transition: transform var(--transition-slow);
 }
 
-.bento-item:hover .bento-bg {
-    transform: scale(1.1);
+.service-row:hover::after,
+.service-row:focus-within::after,
+.service-row.is-open::after {
+    transform: scaleX(1);
 }
 
-.bento-item:hover .bento-bg img {
-    filter: brightness(0.6) contrast(1.2) grayscale(0%);
+.service-heading {
+    margin: 0;
+    font: inherit;
 }
 
-/* Content Overlay */
-.bento-content {
-    position: absolute;
-    inset: 0;
-    padding: 2.5rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    z-index: 2;
-    background: linear-gradient(to top, rgba(10, 10, 10, 0.95) 0%, transparent 60%);
-    transition: all var(--transition-normal);
-}
-
-.bento-item:hover .bento-content {
-    background: linear-gradient(to top, rgba(10, 10, 10, 0.98) 0%, rgba(212, 168, 83, 0.05) 100%);
-}
-
-.bento-icon {
-    width: 50px;
-    height: 50px;
-    margin-bottom: auto;
-    opacity: 0.6;
-    filter: drop-shadow(0 0 10px rgba(212, 168, 83, 0.2));
-    transition: all 0.5s ease;
-}
-
-.bento-item:hover .bento-icon {
-    transform: scale(1.1) translateY(-5px);
-    opacity: 1;
-}
-
-.bento-text { position: relative; }
-
-.bento-num {
-    font-size: 0.7rem;
-    font-weight: 600;
-    color: var(--color-accent);
-    letter-spacing: 0.3em;
-    display: block;
-    margin-bottom: 0.8rem;
-    opacity: 0.6;
-}
-
-.bento-text h3 {
-    font-size: 1.4rem;
-    font-weight: 700;
-    margin-bottom: 0.5rem;
+.service-trigger {
+    display: grid;
+    grid-template-columns: auto 1fr auto auto;
+    align-items: center;
+    gap: clamp(1rem, 3vw, 2.5rem);
+    width: 100%;
+    padding: clamp(1.5rem, 3vw, 2.4rem) 0;
+    background: none;
+    border: 0;
     color: var(--color-text);
-    line-height: 1.2;
+    font-family: inherit;
+    text-align: left;
+    cursor: pointer;
+    transition: padding var(--transition-normal), color var(--transition-normal);
 }
 
-.bento-large .bento-text h3 { font-size: 2.4rem; }
+.service-trigger:hover,
+.service-row.is-open .service-trigger {
+    padding-left: clamp(0.5rem, 2vw, 1.5rem);
+}
 
-.bento-text p {
-    font-size: 0.9rem;
+.service-trigger:focus-visible {
+    outline: 1px solid var(--color-accent);
+    outline-offset: 4px;
+}
+
+.service-num {
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.2em;
     color: var(--color-text-muted);
-    max-width: 400px;
-    line-height: 1.6;
-    height: 0;
-    opacity: 0;
-    transform: translateY(20px);
-    transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: color var(--transition-normal);
 }
 
-.bento-item:hover .bento-text p {
+.service-row:hover .service-num,
+.service-row.is-open .service-num {
+    color: var(--color-accent);
+}
+
+.service-name {
+    font-family: var(--font-serif);
+    font-size: clamp(1.5rem, 4.2vw, 3rem);
+    font-weight: 400;
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+}
+
+.service-row.is-open .service-name {
+    color: var(--color-accent);
+}
+
+.service-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: clamp(28px, 5vw, 44px);
+    color: var(--color-text-muted);
+    opacity: 0.45;
+    transform: translateY(6px);
+    transition: opacity var(--transition-normal), transform var(--transition-normal), color var(--transition-normal);
+}
+
+.service-icon svg {
+    width: 100%;
     height: auto;
-    margin-top: 1rem;
+}
+
+.service-row:hover .service-icon,
+.service-row.is-open .service-icon {
+    color: var(--color-accent);
     opacity: 1;
     transform: translateY(0);
 }
 
-/* Responsive Bento */
-@media (max-width: 1100px) {
-    .bento-grid {
-        grid-template-columns: repeat(2, 1fr);
-        grid-auto-rows: 250px;
-    }
-    .bento-large { grid-column: span 2; grid-row: span 2; }
+/* Plus / minus built from two bars - no icon font, no extra request. */
+.service-toggle {
+    position: relative;
+    width: 14px;
+    height: 14px;
+    flex-shrink: 0;
 }
 
-@media (max-width: 768px) {
-    .bento-grid {
-        grid-template-columns: 1fr;
-        grid-auto-rows: auto;
+.service-toggle::before,
+.service-toggle::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: var(--color-text-muted);
+    transition: transform var(--transition-normal), background-color var(--transition-normal);
+}
+
+.service-toggle::after {
+    transform: rotate(90deg);
+}
+
+.service-row:hover .service-toggle::before,
+.service-row:hover .service-toggle::after {
+    background-color: var(--color-accent);
+}
+
+.service-row.is-open .service-toggle::before,
+.service-row.is-open .service-toggle::after {
+    background-color: var(--color-accent);
+    transform: rotate(180deg);
+}
+
+/* grid-template-rows animates to auto height without measuring in JS. */
+.service-panel {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows var(--transition-normal);
+}
+
+.service-row.is-open .service-panel {
+    grid-template-rows: 1fr;
+}
+
+.service-desc {
+    overflow: hidden;
+    max-width: 62ch;
+    margin: 0;
+    padding-left: clamp(0.5rem, 2vw, 1.5rem);
+    color: var(--color-text-muted);
+    font-size: clamp(0.95rem, 1.4vw, 1.05rem);
+    line-height: 1.75;
+    /* visibility keeps the collapsed copy out of the accessibility tree */
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity var(--transition-normal), visibility 0s 0.4s;
+}
+
+.service-row.is-open .service-desc {
+    visibility: visible;
+    opacity: 1;
+    padding-bottom: clamp(1.5rem, 3vw, 2.5rem);
+    transition: opacity var(--transition-normal) 0.1s, visibility 0s;
+}
+
+@media (max-width: 600px) {
+    .service-trigger {
+        grid-template-columns: auto 1fr auto;
         gap: 1rem;
     }
-    
-    .bento-item {
-        grid-column: span 1 !important;
-        grid-row: span 1 !important;
-        aspect-ratio: 16/10;
-        border-radius: 1.5rem;
-    }
 
-    .bento-text h3 { font-size: 1.5rem; }
-    .bento-large .bento-text h3 { font-size: 1.8rem; }
-    
-    .bento-text p {
-        height: auto;
-        opacity: 0.8;
-        transform: translateY(0);
-        margin-top: 0.5rem;
-    }
-    
-    .bento-content { padding: 1.5rem; }
-}
-
-/* Extra small mobile: aggressive layout fixes */
-@media (max-width: 480px) {
-    .sc-item {
-        gap: 0.6rem;
-        padding: 1.2rem 0;
-        flex-wrap: nowrap;
-        /* Keep items mostly single line with flex */
-        width: 100vw;
-        max-width: 100%;
-    }
-
-    .sc-lottie {
+    /* The illustrative icon is the first thing to go when space is tight;
+       the number and the toggle carry the structure. */
+    .service-icon {
         display: none;
     }
-
-    .sc-title {
-        font-size: clamp(1rem, 5vw, 1.4rem);
-        word-break: break-word;
-        overflow-wrap: break-word;
-        hyphens: auto;
-        white-space: normal;
-        flex: 1;
-        min-width: 0;
-    }
-
-    .sc-num {
-        font-size: 1rem;
-        min-width: 2rem;
-    }
-
-    .services-display {
-        height: 320px;
-    }
-
-    .sc-image-wrapper {
-        height: 180px;
-        border-radius: 20px;
-        border: 6px solid #1a1a1a;
-    }
-
-    .sc-image-wrapper::before {
-        height: 10px;
-        width: 35%;
-        border-bottom-left-radius: 8px;
-        border-bottom-right-radius: 8px;
-    }
-
-    .sc-desc {
-        margin-top: 0.8rem;
-        font-size: 0.9rem;
-    }
-
-    .luxury-services-container {
-        padding: 3rem 0;
-    }
+}
+/* Extra small mobile: aggressive layout fixes */
+@media (max-width: 480px) {
 
     .section-title {
         font-size: 2rem;
@@ -1039,77 +1001,6 @@ body.nav-open .hamburger-line:last-child {
     .hero-title {
         line-height: 1.05;
     }
-
-    .portfolio-info {
-        padding: 1.5rem 1rem 1rem;
-    }
-
-    .portfolio-info h3 {
-        font-size: 1.1rem;
-    }
-
-    .testimonial-card {
-        padding: 1.5rem;
-    }
-}
-
-/* ==========================================================================
-   Portfolio Section
-   ========================================================================== */
-.portfolio-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(min(350px, 100%), 1fr));
-    gap: 2rem;
-    margin-top: 4rem;
-}
-
-.portfolio-item {
-    position: relative;
-    cursor: pointer;
-    overflow: hidden;
-    border-radius: 4px;
-    transition: opacity 0.8s ease, filter 0.8s ease, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-/* Portfolio Cinematic Focus (Scroll-Driven) */
-.portfolio-grid.has-focus .portfolio-item:not(.is-focused) {
-    opacity: 0.3;
-    filter: blur(5px);
-    transform: scale(0.95);
-}
-
-.portfolio-item.is-focused {
-    transform: scale(1.03);
-    z-index: 10;
-}
-
-.portfolio-item.is-focused .portfolio-hover-video {
-    opacity: 1;
-}
-
-.portfolio-item.is-focused .portfolio-overlay {
-    opacity: 1;
-    background-color: rgba(10, 10, 10, 0.3);
-}
-
-.portfolio-item.is-focused .play-icon {
-    opacity: 0;
-    transform: scale(0.5);
-}
-
-.portfolio-media {
-    position: relative;
-    aspect-ratio: 16/9;
-    overflow: hidden;
-}
-
-.portfolio-placeholder {
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(45deg, #0a0a0a 25%, #151515 50%, #0a0a0a 75%);
-    background-size: 200% 200%;
-    animation: placeholder-shimmer 3s infinite linear;
-    transition: transform var(--transition-slow);
 }
 
 @keyframes placeholder-shimmer {
@@ -1120,98 +1011,6 @@ body.nav-open .hamburger-line:last-child {
     100% {
         background-position: 200% 0;
     }
-}
-
-.portfolio-hover-video {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    opacity: 0;
-    transition: opacity var(--transition-normal);
-    z-index: 0;
-    pointer-events: none;
-    /* Allows click to pass to parent item */
-}
-
-.portfolio-item:hover .portfolio-placeholder {
-    transform: scale(1.05);
-}
-
-.portfolio-item.is-playing .portfolio-hover-video {
-    opacity: 1;
-}
-
-.portfolio-overlay {
-    position: absolute;
-    inset: 0;
-    background-color: rgba(10, 10, 10, 0.8);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    opacity: 0;
-    transition: opacity var(--transition-normal);
-    z-index: 1;
-}
-
-.portfolio-item:hover .portfolio-overlay {
-    opacity: 1;
-}
-
-.play-icon {
-    width: 60px;
-    height: 60px;
-    background-color: rgba(255, 255, 255, 0.1);
-    -webkit-backdrop-filter: blur(5px);
-    backdrop-filter: blur(5px);
-    border: 1px solid var(--color-accent);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.2rem;
-    color: var(--color-accent);
-    padding-left: 4px;
-    /* offset for triangle */
-    transition: transform var(--transition-fast), background-color var(--transition-fast), opacity var(--transition-fast);
-}
-
-.portfolio-item:hover .play-icon {
-    transform: scale(1.1) translateY(-15px);
-    background-color: var(--color-accent);
-    color: var(--color-bg);
-}
-
-.portfolio-info {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    padding: 2.5rem 2rem 1.5rem;
-    background: linear-gradient(to top, rgba(10, 10, 10, 0.95) 20%, transparent);
-    transform: translateY(100%);
-    transition: transform var(--transition-normal);
-    z-index: 2;
-}
-
-.portfolio-item:hover .portfolio-info {
-    transform: translateY(0);
-}
-
-.portfolio-info h3 {
-    font-size: 1.4rem;
-    margin-bottom: 0.25rem;
-    color: #fff;
-}
-
-.portfolio-info p {
-    font-size: 0.85rem;
-    color: var(--color-accent);
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    font-weight: 500;
 }
 
 /* ==========================================================================
@@ -1357,103 +1156,6 @@ body.nav-open .hamburger-line:last-child {
 }
 
 /* ==========================================================================
-   Testimonials Section
-   ========================================================================== */
-.testimonials-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 2rem;
-    margin-top: 3rem;
-    max-width: 1000px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-@media (min-width: 768px) {
-    .testimonials-grid {
-        grid-template-columns: 1fr 1fr;
-    }
-}
-
-.testimonial-card {
-    background: rgba(20, 20, 20, 0.6);
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    border-radius: 12px;
-    padding: 2.5rem;
-    position: relative;
-    overflow: hidden;
-    transition: transform var(--transition-normal), box-shadow var(--transition-normal), border-color var(--transition-normal);
-}
-
-.testimonial-card::before {
-    content: '"';
-    position: absolute;
-    top: 10px;
-    left: 20px;
-    font-family: var(--font-serif);
-    font-size: 6rem;
-    color: rgba(212, 168, 83, 0.1);
-    /* Accent color with low opacity */
-    line-height: 1;
-    z-index: 0;
-}
-
-.testimonial-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-    border-color: rgba(212, 168, 83, 0.3);
-}
-
-.testimonial-quote {
-    font-size: 1.1rem;
-    line-height: 1.7;
-    color: var(--color-text);
-    margin-bottom: 2rem;
-    position: relative;
-    z-index: 1;
-    font-style: italic;
-    font-family: var(--font-serif);
-}
-
-.testimonial-author {
-    display: flex;
-    align-items: center;
-    gap: 1.2rem;
-    position: relative;
-    z-index: 1;
-    border-top: 1px solid var(--color-border);
-    padding-top: 1.5rem;
-}
-
-.author-avatar {
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 2px solid var(--color-accent);
-    filter: grayscale(20%);
-    transition: filter var(--transition-fast);
-}
-
-.testimonial-card:hover .author-avatar {
-    filter: grayscale(0%);
-}
-
-.author-info h4 {
-    margin: 0 0 0.2rem 0;
-    font-size: 1rem;
-    color: var(--color-text);
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-}
-
-.author-info p {
-    margin: 0;
-    font-size: 0.85rem;
-    color: var(--color-text-muted);
-}
-
-/* ==========================================================================
    Animations
    ========================================================================== */
 @keyframes fadeInUp {
@@ -1509,8 +1211,7 @@ body.nav-open .hamburger-line:last-child {
     button,
     input,
     select,
-    textarea,
-    .portfolio-item {
+    textarea{
         cursor: none !important;
     }
 }
@@ -1618,116 +1319,6 @@ body.cursor-active .custom-cursor {
 
 .magnetic:hover {
     transition: transform 0.1s linear;
-}
-
-/* ==========================================================================
-   Video Modal functionality
-   ========================================================================== */
-.video-modal {
-    position: fixed;
-    inset: 0;
-    z-index: 10000;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.5s ease;
-}
-
-body.modal-active {
-    overflow: hidden;
-}
-
-body.modal-active .video-modal {
-    opacity: 1;
-    pointer-events: auto;
-}
-
-.video-modal-overlay {
-    position: absolute;
-    inset: 0;
-    background-color: rgba(0, 0, 0, 0.9);
-    -webkit-backdrop-filter: blur(10px);
-    backdrop-filter: blur(10px);
-}
-
-.video-modal-content {
-    position: relative;
-    width: 90%;
-    max-width: 1200px;
-    z-index: 2;
-    transform: scale(0.95);
-    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-body.modal-active .video-modal-content {
-    transform: scale(1);
-}
-
-.video-modal-container {
-    position: relative;
-    padding-bottom: 56.25%;
-    /* 16:9 Aspect Ratio */
-    height: 0;
-    background: #000;
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
-}
-
-.video-modal-container iframe,
-.video-modal-container video {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    border: none;
-}
-
-.video-modal-close {
-    position: absolute;
-    top: -40px;
-    right: 0;
-    background: transparent;
-    border: none;
-    color: #fff;
-    font-size: 2rem;
-    font-weight: 300;
-    cursor: none;
-    /* Let custom cursor handle it */
-    transition: color 0.3s ease;
-    line-height: 1;
-    padding: 10px;
-}
-
-.video-modal-close:hover {
-    color: var(--color-accent);
-}
-
-@media (max-width: 768px) {
-    .video-modal-content {
-        width: 100%;
-        border-radius: 0;
-    }
-
-    .video-modal-container {
-        border-radius: 0;
-    }
-
-    .video-modal-close {
-        top: 10px;
-        right: 10px;
-        z-index: 10;
-        background: rgba(0, 0, 0, 0.5);
-        border-radius: 50%;
-        width: 40px;
-        height: 40px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
 }
 
 .footer-links {
@@ -1897,6 +1488,35 @@ body.modal-active .video-modal-content {
 .cookie-btn:hover {
     background-color: var(--color-text);
     transform: translateY(-2px);
+}
+
+/* Declining has to be as easy as accepting (Art. 7 (3) DSGVO), so this is a
+   real button of the same size - only the fill is quieter. */
+.cookie-btn-secondary {
+    background-color: transparent;
+    color: var(--color-text);
+    border: 1px solid var(--color-border);
+}
+
+.cookie-btn-secondary:hover {
+    background-color: transparent;
+    border-color: var(--color-text);
+    color: var(--color-text);
+}
+
+.cookie-actions .cookie-btn {
+    flex: 0 0 auto;
+}
+
+@media (max-width: 640px) {
+    .cookie-actions {
+        gap: 0.75rem;
+        flex-wrap: wrap;
+    }
+
+    .cookie-actions .cookie-btn {
+        flex: 1 1 0;
+    }
 }
 
 /* Video Modal Duplicate Block Removed - see line ~1500 for active styles */
@@ -2353,35 +1973,6 @@ body.modal-active .video-modal-content {
     transform: translateY(0);
 }
 
-/* Staggered delays for service items */
-.sc-item.reveal-ready {
-    transition-delay: calc(var(--stagger-index, 0) * 0.1s);
-}
-
-.sc-item[data-index="0"] {
-    --stagger-index: 0;
-}
-
-.sc-item[data-index="1"] {
-    --stagger-index: 1;
-}
-
-.sc-item[data-index="2"] {
-    --stagger-index: 2;
-}
-
-.sc-item[data-index="3"] {
-    --stagger-index: 3;
-}
-
-.sc-item[data-index="4"] {
-    --stagger-index: 4;
-}
-
-.sc-item[data-index="5"] {
-    --stagger-index: 5;
-}
-
 /* Section titles get a special slide-up with slight scale */
 .section-title.reveal-ready {
     transform: translateY(60px) scale(0.95);
@@ -2401,24 +1992,9 @@ body.modal-active .video-modal-content {
     transform: translateX(0);
 }
 
-/* Testimonial card staggered delay (moved from inline style) */
-.testimonial-card-delay {
-    transition-delay: 0.2s;
-}
-
 /* Honeypot bot-check field (moved from inline style) */
 .botcheck-hidden {
     display: none;
-}
-
-/* Testimonial cards get scale effect */
-.testimonial-card.reveal-ready {
-    transform: translateY(50px) scale(0.95);
-    transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.34, 1.56, 0.64, 1);
-}
-
-.testimonial-card.reveal-ready.revealed {
-    transform: translateY(0) scale(1);
 }
 
 /* Disable parallax on mobile for performance */
@@ -2461,152 +2037,14 @@ body.modal-active .video-modal-content {
         line-height: 1.65;
     }
 
-    /* --- Accordion Services Section --- */
-
-    /* Hide the separate image/description display panel entirely on mobile */
-    .services-display {
-        display: none !important;
-    }
-
-    .luxury-services-container {
-        padding: 3rem 0;
-    }
-
-    .luxury-services-wrapper {
-        gap: 0;
-    }
-
-    .services-list {
-        border-top: none;
-    }
-
-    /* Each service item: compact accordion header */
-    .sc-item {
-        flex-wrap: wrap;
-        gap: 0.8rem;
-        padding: 1rem 0;
-        cursor: pointer;
-        position: relative;
-        border-bottom: 1px solid rgba(255,255,255,0.08);
-    }
-
-    .sc-item::before {
-        display: none;
-    }
-
-    .sc-lottie {
-        width: 28px;
-        height: 28px;
-        display: block;
-    }
-
     dotlottie-player {
         width: 28px;
         height: 28px;
-    }
-
-    .sc-num {
-        font-size: 0.75rem;
-        min-width: 1.5rem;
-        color: var(--color-accent);
-    }
-
-    .sc-title {
-        font-size: 0.85rem !important;
-        text-transform: uppercase;
-        letter-spacing: 0.06em;
-        font-weight: 500;
-        color: rgba(255,255,255,0.7);
-        transition: color 0.3s ease;
-        flex: 1;
-        min-width: 0;
-        line-height: 1.3;
-    }
-
-    .sc-item.active .sc-title,
-    .sc-item.accordion-open .sc-title {
-        color: #fff;
-        transform: none;
-    }
-
-    /* Chevron indicator */
-    .sc-item::after {
-        content: '+';
-        font-family: var(--font-sans);
-        font-size: 1.2rem;
-        font-weight: 300;
-        color: var(--color-accent);
-        transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-        margin-left: auto;
-        flex-shrink: 0;
-    }
-
-    .sc-item.accordion-open::after {
-        content: '−';
-        transform: rotate(0deg);
-    }
-
-    /* Accordion expand panel */
-    .accordion-panel {
-        width: 100%;
-        max-height: 0;
-        overflow: hidden;
-        opacity: 0;
-        transition: max-height 0.5s cubic-bezier(0.16, 1, 0.3, 1),
-                    opacity 0.4s ease 0.1s;
-    }
-
-    .accordion-panel.open {
-        max-height: 500px;
-        opacity: 1;
-    }
-
-    .accordion-panel-inner {
-        padding: 1rem 0 0.5rem;
-    }
-
-    /* Accordion Image */
-    .accordion-panel .accordion-img {
-        width: 100%;
-        height: 180px;
-        object-fit: cover;
-        border-radius: 16px;
-        border: 4px solid rgba(255,255,255,0.08);
-        margin-bottom: 0.8rem;
-    }
-
-    /* Accordion Description */
-    .accordion-panel .accordion-desc {
-        font-size: 0.85rem;
-        line-height: 1.6;
-        color: rgba(255,255,255,0.55);
-        margin: 0;
     }
 }
 
 /* Extra small screens: even more compact */
 @media (max-width: 480px) {
-    .sc-lottie {
-        display: none !important;
-    }
-
-    .sc-item {
-        gap: 0.6rem;
-        padding: 0.8rem 0;
-    }
-
-    .sc-title {
-        font-size: 0.8rem !important;
-    }
-
-    .accordion-panel .accordion-img {
-        height: 150px;
-        border-radius: 12px;
-    }
-
-    .accordion-panel .accordion-desc {
-        font-size: 0.8rem;
-    }
 
     h2, .section-title {
         font-size: clamp(1.4rem, 5vw, 1.8rem) !important;
@@ -2642,11 +2080,6 @@ body.modal-active .video-modal-content {
     will-change: transform;
 }
 
-.tilt-card .tilt-inner {
-    transform: translateZ(30px);
-    transition: transform 0.3s ease;
-}
-
 .tilt-card .tilt-shine {
     position: absolute;
     inset: 0;
@@ -2676,7 +2109,7 @@ body.modal-active .video-modal-content {
     z-index: 99999;
     pointer-events: none;
     opacity: 0;
-    transition: opacity 0.5s ease;
+    transition: opacity 0.26s ease;
 }
 
 .page-transition-overlay.active {
@@ -2695,5 +2128,292 @@ body {
     }
     to {
         opacity: 1;
+    }
+}
+/* ==========================================================================
+   Reduced motion
+   The site leans hard on parallax, tilt, particles and a custom cursor. For
+   visitors who ask their OS for reduced motion, keep the layout and the colour
+   language but drop the movement (WCAG 2.3.3).
+   ========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+
+    /* Reveal-on-scroll must not leave content stuck at opacity 0. */
+    .fade-in-element,
+    .reveal-ready,
+    .service-row,
+    .hero-content .reveal-mask > * {
+        opacity: 1 !important;
+        transform: none !important;
+    }
+
+    .custom-cursor {
+        display: none !important;
+    }
+
+    .hero-particles {
+        display: none !important;
+    }
+
+    /* The accordion still opens, it just does not animate open. */
+    .service-desc {
+        transition: none !important;
+    }
+}
+
+/* ==========================================================================
+   Skip link
+   Off-screen until focused, so keyboard users can jump past the header.
+   ========================================================================== */
+.skip-link {
+    position: absolute;
+    left: -9999px;
+    top: 0;
+    z-index: 100000;
+    padding: 0.9rem 1.4rem;
+    background: var(--color-accent);
+    color: var(--color-bg);
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+}
+
+.skip-link:focus {
+    left: 1rem;
+    top: 1rem;
+}
+
+/* ==========================================================================
+   Focus visibility
+   The stylesheet had three :focus rules in total, so keyboard users could not
+   tell where they were. One ring, applied to everything interactive.
+   ========================================================================== */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+[tabindex]:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 3px;
+    border-radius: 2px;
+}
+
+/* Suppress the ring for pointer users only - never remove it outright. */
+a:focus:not(:focus-visible),
+button:focus:not(:focus-visible) {
+    outline: none;
+}
+
+.slider-dot:focus-visible,
+.slider-btn:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 4px;
+}
+
+/* ==========================================================================
+   Portfolio: consent placeholder (two-click solution)
+   ========================================================================== */
+.slide-consent {
+    position: absolute;
+    inset: 0;
+    /* Above .slide-overlay so the button is clickable, but transparent to the
+       pointer and fading out at the bottom so the slide title stays readable. */
+    z-index: 3;
+    pointer-events: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+    padding: 2rem 2rem clamp(8rem, 22vh, 14rem);
+    text-align: center;
+    background:
+        radial-gradient(ellipse 90% 60% at 50% 0%, rgba(211, 168, 124, 0.12), transparent 70%),
+        linear-gradient(to bottom, #16120e 0%, rgba(13, 13, 13, 0.85) 45%, transparent 100%);
+}
+
+.slide-consent > * {
+    pointer-events: auto;
+}
+
+.slide-consent[hidden] {
+    display: none;
+}
+
+.slide-consent-note {
+    max-width: 38ch;
+    margin: 0;
+    color: var(--color-text-muted);
+    font-size: 0.9rem;
+    line-height: 1.7;
+}
+
+.slide-consent-btn {
+    padding: 0.85rem 1.8rem;
+    background: transparent;
+    border: 1px solid var(--color-accent);
+    color: var(--color-accent);
+    font-family: inherit;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background-color var(--transition-fast), color var(--transition-fast);
+}
+
+.slide-consent-btn:hover {
+    background: var(--color-accent);
+    color: var(--color-bg);
+}
+
+/* ==========================================================================
+   Contact form status (role="status", announced on submit)
+   ========================================================================== */
+.form-status {
+    margin-top: 1rem;
+    min-height: 1.4em;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: var(--color-text-muted);
+}
+
+.form-status.is-success {
+    color: #34d399;
+}
+
+.form-status.is-error {
+    color: #f87171;
+}
+
+/* ==========================================================================
+   Preise - Social-Media-Pakete
+   Same visual language as the Leistungen index: hairlines, Playfair for the
+   figure, gold only as an accent. No images, nothing third-party.
+   ========================================================================== */
+.pricing-intro {
+    max-width: 62ch;
+    margin: 0 auto clamp(2.5rem, 5vw, 4rem);
+    color: var(--color-text-muted);
+    font-size: clamp(0.95rem, 1.4vw, 1.05rem);
+    line-height: 1.75;
+    text-align: center;
+}
+
+.pricing-grid {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    margin: 0;
+    padding: 0;
+    /* The 1px gap plus this background paints the dividers, so the tiers read
+       as one block of rules rather than three separate boxes. */
+    background: var(--color-border);
+    border: 1px solid var(--color-border);
+}
+
+.pricing-tier {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    padding: clamp(2rem, 4vw, 3rem) clamp(1.5rem, 3vw, 2.5rem);
+    background: var(--color-bg);
+}
+
+/* Middle tier is emphasised, but carries no "most popular" claim - that would
+   be an assertion we have no data for. */
+.pricing-tier-featured {
+    background: var(--color-bg-alt);
+    box-shadow: inset 0 2px 0 0 var(--color-accent);
+}
+
+.pricing-name {
+    margin: 0;
+    font-family: var(--font-sans);
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+}
+
+.pricing-tier-featured .pricing-name {
+    color: var(--color-accent);
+}
+
+.pricing-price {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    margin: 0;
+}
+
+.pricing-amount {
+    font-family: var(--font-serif);
+    font-size: clamp(1.9rem, 3.4vw, 2.6rem);
+    font-weight: 400;
+    line-height: 1;
+    color: var(--color-text);
+}
+
+.pricing-amount-request {
+    font-size: clamp(1.3rem, 2.2vw, 1.7rem);
+    color: var(--color-text-muted);
+}
+
+.pricing-period {
+    font-size: 0.8rem;
+    letter-spacing: 0.08em;
+    color: var(--color-text-muted);
+}
+
+.pricing-lead {
+    flex: 1;
+    margin: 0;
+    color: var(--color-text-muted);
+    font-size: 0.92rem;
+    line-height: 1.7;
+}
+
+.pricing-features {
+    margin: 0;
+    padding: 0 0 0 1.1rem;
+    color: var(--color-text-muted);
+    font-size: 0.9rem;
+    line-height: 1.9;
+}
+
+.pricing-cta {
+    align-self: flex-start;
+    text-align: center;
+}
+
+.pricing-vat {
+    margin: clamp(1.5rem, 3vw, 2.5rem) 0 0;
+    color: var(--color-text-muted);
+    font-size: 0.8rem;
+    line-height: 1.6;
+    text-align: center;
+}
+
+@media (max-width: 860px) {
+    .pricing-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .pricing-cta {
+        align-self: stretch;
     }
 }
