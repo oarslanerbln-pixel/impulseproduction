@@ -50,11 +50,25 @@
     <!-- <script defer data-domain="envisio.de" src="https://plausible.io/js/script.js"></script> -->
 
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="css/style.min.css?v=10">
+    <link rel="stylesheet" href="css/style.min.css?v=11">
     <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
 
-    <!-- Lottie Player -->
-    <script src="https://unpkg.com/@dotlottie/player-component@2.7.12/dist/dotlottie-player.mjs" type="module"></script>
+    <!-- Preload the two fonts needed for the first paint -->
+    <link rel="preload" href="fonts/Inter-normal-400.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="fonts/PlayfairDisplay-normal-700.woff2" as="font" type="font/woff2" crossorigin>
+
+    <!-- The Lottie player is a third-party CDN script and is injected by
+         js/consent.js only after the visitor has given consent. -->
+
+    <noscript>
+        <!-- Without JS nothing can dismiss the preloader, so never show it. -->
+        <style>
+            #preloader { display: none !important; }
+            .hero-content .reveal-mask > * { opacity: 1 !important; transform: none !important; }
+            .fade-in-element, .reveal-ready { opacity: 1 !important; transform: none !important; }
+        </style>
+    </noscript>
 </head>
 
 <body>
@@ -116,11 +130,12 @@
         <canvas id="particles-canvas" class="hero-particles"></canvas>
         <div class="video-container">
             <!-- Local Hero Video Background - Optimized -->
-            <video id="heroVideo" class="hero-video" autoplay muted loop poster="https://images.unsplash.com/photo-1492691523567-6170c81bf5d3?q=80&w=2070&auto=format&fit=crop">
-                <!-- Web Optimized Alternative -->
+            <!-- playsinline is required or iOS Safari refuses to autoplay inline.
+                 preload="none" keeps the 36 MB download off the critical path;
+                 js/main.js starts playback once the preloader is gone. On small
+                 screens the video is never loaded at all (see main.js). -->
+            <video id="heroVideo" class="hero-video" autoplay muted loop playsinline preload="none">
                 <source src="assets/video/hero-bg-opt.mp4" type="video/mp4">
-                <!-- Original High-Res Fallback -->
-                <source src="assets/video/hero-bg.mov" type="video/mp4">
             </video>
             <div class="overlay"></div>
         </div>
@@ -160,7 +175,7 @@
                 <div class="cinematic-slide active" data-vimeo-id="1167534607">
                     <!-- Vimeo Background Player -->
                     <div class="vimeo-bg-container">
-                        <iframe src="https://player.vimeo.com/video/1167534607?autoplay=1&loop=1&muted=1&title=0&byline=0&portrait=0&autopause=0&dnt=1&controls=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen title="Fine Dining Portfolio Video"></iframe>
+                        <iframe class="lazy-vimeo" data-consent-src="https://player.vimeo.com/video/1167534607?autoplay=0&loop=1&muted=1&title=0&byline=0&portrait=0&autopause=0&dnt=1&controls=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen title="Fine Dining Portfolio Video"></iframe>
                     </div>
                     <div class="slide-overlay">
                         <div class="slide-content">
@@ -173,7 +188,7 @@
                 <!-- Project 2 -->
                 <div class="cinematic-slide" data-vimeo-id="1167534525">
                     <div class="vimeo-bg-container">
-                        <iframe src="https://player.vimeo.com/video/1167534525?autoplay=1&loop=1&muted=1&title=0&byline=0&portrait=0&autopause=0&dnt=1&controls=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen title="Drone Shots Portfolio Video"></iframe>
+                        <iframe class="lazy-vimeo" data-consent-src="https://player.vimeo.com/video/1167534525?autoplay=0&loop=1&muted=1&title=0&byline=0&portrait=0&autopause=0&dnt=1&controls=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen title="Drone Shots Portfolio Video"></iframe>
                     </div>
                     <div class="slide-overlay">
                         <div class="slide-content">
@@ -186,7 +201,7 @@
                 <!-- Project 3 -->
                 <div class="cinematic-slide" data-vimeo-id="1167533982">
                     <div class="vimeo-bg-container">
-                        <iframe src="https://player.vimeo.com/video/1167533982?autoplay=1&loop=1&muted=1&title=0&byline=0&portrait=0&autopause=0&dnt=1&controls=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen title="Orient-Küche Portfolio Video"></iframe>
+                        <iframe class="lazy-vimeo" data-consent-src="https://player.vimeo.com/video/1167533982?autoplay=0&loop=1&muted=1&title=0&byline=0&portrait=0&autopause=0&dnt=1&controls=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen title="Orient-Küche Portfolio Video"></iframe>
                     </div>
                     <div class="slide-overlay">
                         <div class="slide-content">
@@ -199,7 +214,7 @@
                 <!-- Project 4 -->
                 <div class="cinematic-slide" data-vimeo-id="1167533825">
                     <div class="vimeo-bg-container">
-                        <iframe src="https://player.vimeo.com/video/1167533825?autoplay=1&loop=1&muted=1&title=0&byline=0&portrait=0&autopause=0&dnt=1&controls=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen title="Event-Locations Portfolio Video"></iframe>
+                        <iframe class="lazy-vimeo" data-consent-src="https://player.vimeo.com/video/1167533825?autoplay=0&loop=1&muted=1&title=0&byline=0&portrait=0&autopause=0&dnt=1&controls=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen title="Event-Locations Portfolio Video"></iframe>
                     </div>
                     <div class="slide-overlay">
                         <div class="slide-content">
@@ -236,11 +251,11 @@
                 <!-- Card 1: Videoproduktion (Large) -->
                 <div class="bento-item bento-large fade-in-element tilt-card">
                     <div class="bento-bg">
-                        <img src="https://images.unsplash.com/photo-1601506521937-0121a7fc2a6b?q=80&w=1200&auto=format&fit=crop" alt="Video Production">
+                        <img class="consent-img" data-consent-src="https://images.unsplash.com/photo-1601506521937-0121a7fc2a6b?q=80&w=1200&auto=format&fit=crop" alt="Video Production">
                     </div>
                     <div class="bento-content">
                         <div class="bento-icon">
-                            <dotlottie-player src="https://lottie.host/b13c7f10-8af2-4b22-bc84-3f5919400483/WuxkVrqdRQ.lottie" background="transparent" speed="1" loop autoplay></dotlottie-player>
+                            <dotlottie-player data-consent-src="https://lottie.host/b13c7f10-8af2-4b22-bc84-3f5919400483/WuxkVrqdRQ.lottie" background="transparent" speed="1" loop autoplay></dotlottie-player>
                         </div>
                         <div class="bento-text">
                             <span class="bento-num">01</span>
@@ -253,11 +268,11 @@
                 <!-- Card 2: Drohnenaufnahmen -->
                 <div class="bento-item bento-medium fade-in-element tilt-card">
                     <div class="bento-bg">
-                        <img src="https://images.unsplash.com/photo-1508614589041-895b88991e3e?q=80&w=800&auto=format&fit=crop" alt="Drone Cinematography">
+                        <img class="consent-img" data-consent-src="https://images.unsplash.com/photo-1508614589041-895b88991e3e?q=80&w=800&auto=format&fit=crop" alt="Drone Cinematography">
                     </div>
                     <div class="bento-content">
                         <div class="bento-icon">
-                            <dotlottie-player src="https://lottie.host/8c5f3666-e7c2-445d-81b3-83a6fc372e3d/dFM3rPAepB.lottie" background="transparent" speed="1" loop autoplay></dotlottie-player>
+                            <dotlottie-player data-consent-src="https://lottie.host/8c5f3666-e7c2-445d-81b3-83a6fc372e3d/dFM3rPAepB.lottie" background="transparent" speed="1" loop autoplay></dotlottie-player>
                         </div>
                         <div class="bento-text">
                             <span class="bento-num">02</span>
@@ -269,11 +284,11 @@
                 <!-- Card 3: Branding -->
                 <div class="bento-item bento-small fade-in-element tilt-card">
                     <div class="bento-bg">
-                        <img src="https://images.unsplash.com/photo-1626785774573-4b799315345d?q=80&w=800&auto=format&fit=crop" alt="Branding & Design">
+                        <img class="consent-img" data-consent-src="https://images.unsplash.com/photo-1626785774573-4b799315345d?q=80&w=800&auto=format&fit=crop" alt="Branding & Design">
                     </div>
                     <div class="bento-content">
                         <div class="bento-icon">
-                            <dotlottie-player src="https://lottie.host/c9433f24-3bba-4357-9ac7-74c0b3f10d0d/ZnDRoYjfOq.lottie" background="transparent" speed="1" loop autoplay></dotlottie-player>
+                            <dotlottie-player data-consent-src="https://lottie.host/c9433f24-3bba-4357-9ac7-74c0b3f10d0d/ZnDRoYjfOq.lottie" background="transparent" speed="1" loop autoplay></dotlottie-player>
                         </div>
                         <div class="bento-text">
                             <span class="bento-num">03</span>
@@ -285,11 +300,11 @@
                 <!-- Card 4: Webdesign (Wide) -->
                 <div class="bento-item bento-wide fade-in-element tilt-card">
                     <div class="bento-bg">
-                        <img src="https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?q=80&w=1000&auto=format&fit=crop" alt="Web Design">
+                        <img class="consent-img" data-consent-src="https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?q=80&w=1000&auto=format&fit=crop" alt="Web Design">
                     </div>
                     <div class="bento-content">
                         <div class="bento-icon">
-                            <dotlottie-player src="https://lottie.host/5dbdb52e-5a1d-405e-a9ef-c1c85ccb61ec/WwCKxjPaRm.lottie" background="transparent" speed="1" loop autoplay></dotlottie-player>
+                            <dotlottie-player data-consent-src="https://lottie.host/5dbdb52e-5a1d-405e-a9ef-c1c85ccb61ec/WwCKxjPaRm.lottie" background="transparent" speed="1" loop autoplay></dotlottie-player>
                         </div>
                         <div class="bento-text">
                             <span class="bento-num">04</span>
@@ -302,11 +317,11 @@
                 <!-- Card 5: Landingpage -->
                 <div class="bento-item bento-medium fade-in-element tilt-card">
                     <div class="bento-bg">
-                        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=800&auto=format&fit=crop" alt="Landing Page Design">
+                        <img class="consent-img" data-consent-src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=800&auto=format&fit=crop" alt="Landing Page Design">
                     </div>
                     <div class="bento-content">
                         <div class="bento-icon">
-                            <dotlottie-player src="https://lottie.host/a42fb2d1-1e86-4f25-85d2-80f1a65cf82e/C2qCZGMFdx.lottie" background="transparent" speed="1" loop autoplay></dotlottie-player>
+                            <dotlottie-player data-consent-src="https://lottie.host/a42fb2d1-1e86-4f25-85d2-80f1a65cf82e/C2qCZGMFdx.lottie" background="transparent" speed="1" loop autoplay></dotlottie-player>
                         </div>
                         <div class="bento-text">
                             <span class="bento-num">05</span>
@@ -318,11 +333,11 @@
                 <!-- Card 6: QR Design -->
                 <div class="bento-item bento-small fade-in-element tilt-card">
                     <div class="bento-bg">
-                        <img src="https://images.unsplash.com/photo-1611162617474-5b21e879e113?q=80&w=800&auto=format&fit=crop" alt="QR Code Design">
+                        <img class="consent-img" data-consent-src="https://images.unsplash.com/photo-1611162617474-5b21e879e113?q=80&w=800&auto=format&fit=crop" alt="QR Code Design">
                     </div>
                     <div class="bento-content">
                         <div class="bento-icon">
-                            <dotlottie-player src="https://lottie.host/e5be66d1-0e2d-44fb-8a84-62fbd5eb8d1e/8yVLXwuqGp.lottie" background="transparent" speed="1" loop autoplay></dotlottie-player>
+                            <dotlottie-player data-consent-src="https://lottie.host/e5be66d1-0e2d-44fb-8a84-62fbd5eb8d1e/8yVLXwuqGp.lottie" background="transparent" speed="1" loop autoplay></dotlottie-player>
                         </div>
                         <div class="bento-text">
                             <span class="bento-num">06</span>
@@ -356,36 +371,23 @@
         </div>
     </section>
 
-    <!-- Testimonials Section -->
-    <section class="testimonials section parallax-section" id="referenzen" data-parallax-speed="0.2">
-        <div class="container">
-            <h2 class="section-title fade-in-element" data-i18n="testimonials-title">Was Kunden sagen</h2>
-            <div class="testimonials-grid">
-                <!-- Testimonial 1 -->
-                <div class="testimonial-card fade-in-element">
-                    <p class="testimonial-quote" data-i18n="testimonial-quote-1">"Envisio hat unsere Vision nicht nur verstanden, sondern auf ein Level gehoben, das wir uns nicht vorstellen konnten. Die filmische Qualität ist absolut Weltklasse."</p>
-                    <div class="testimonial-author">
-                        <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=150&h=150&fit=crop" alt="Marco Rossi" class="author-avatar" loading="lazy">
-                        <div class="author-info">
-                            <h4 data-i18n="testimonial-author-1">Marco Rossi</h4>
-                            <p data-i18n="testimonial-role-1">Inhaber, Fine Dining Group</p>
-                        </div>
-                    </div>
-                </div>
-                <!-- Testimonial 2 -->
-                <div class="testimonial-card fade-in-element testimonial-card-delay">
-                    <p class="testimonial-quote" data-i18n="testimonial-quote-2">"Die Zusammenarbeit war hochprofessionell. Unsere neue Landingpage in Kombination mit den Drohnenaufnahmen hat unsere Anfragen verdoppelt."</p>
-                    <div class="testimonial-author">
-                        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=150&h=150&fit=crop" alt="Sarah Schmidt" class="author-avatar" loading="lazy">
-                        <div class="author-info">
-                            <h4 data-i18n="testimonial-author-2">Sarah Schmidt</h4>
-                            <p data-i18n="testimonial-role-2">Marketing Direktorin, Luxury Estate</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+    <!-- Referenzen / Testimonials
+         =========================================================
+         Removed: the two testimonials previously shown here were invented and
+         illustrated with stock portraits. Fabricated reviews are misleading
+         advertising under UWG section 5 and are explicitly prohibited by EU
+         Directive 2019/2161, so they must not be republished.
+
+         To bring the section back, add real quotes with written permission from
+         the client (name, role, company). The markup, the CSS (.testimonials,
+         .testimonial-card) and the i18n keys (testimonials-title,
+         testimonial-quote-1/2, testimonial-author-1/2, testimonial-role-1/2)
+         are all still in place - only the content was taken out.
+
+         Legally safe alternative if a client will not be named: an anonymised
+         but truthful result, e.g. "Fine-dining client, Berlin - enquiries up
+         40% within three months. References available on request."
+         ========================================================= -->
 
     <!-- İletişim Formu Section -->
     <section class="contact section bg-darker parallax-section" id="kontakt" data-parallax-speed="0.15">
@@ -474,29 +476,32 @@
                 <a href="impressum.html" data-i18n="footer-impressum">Impressum</a>
                 <span class="footer-separator">|</span>
                 <a href="datenschutz.html" data-i18n="footer-datenschutz">Datenschutz</a>
+                <span class="footer-separator">|</span>
+                <!-- Withdrawing consent must be as easy as giving it (Art. 7 (3) DSGVO). -->
+                <a href="#" id="cookieSettings" data-i18n="footer-cookie-settings">Cookie-Einstellungen</a>
             </div>
             <p data-i18n="footer-rights">&copy; 2026 Envisio. Alle Rechte vorbehalten.</p>
         </div>
     </footer>
 
-
-
-    <!-- Cookie Consent Banner -->
-    <div id="cookieBanner" class="cookie-banner">
+    <!-- Consent Banner -->
+    <div id="cookieBanner" class="cookie-banner" role="dialog" aria-modal="false"
+         aria-labelledby="cookieBannerText" hidden>
         <div class="container cookie-container">
             <div class="cookie-content">
-                <p data-i18n="cookie-text">Diese Website verwendet Cookies, um Ihre Erfahrung zu verbessern. Durch die weitere Nutzung der Website stimmen Sie der Verwendung von Cookies zu.</p>
+                <p id="cookieBannerText" data-i18n="cookie-text">Diese Website bindet Inhalte von Vimeo, Unsplash und lottie.host ein. Dabei wird Ihre IP-Adresse an diese Anbieter übertragen. Diese Inhalte werden erst nach Ihrer Einwilligung geladen.</p>
                 <div class="cookie-actions">
                     <a href="datenschutz.html" class="cookie-link" data-i18n="cookie-more">Mehr erfahren</a>
+                    <button id="cookieDecline" class="cookie-btn cookie-btn-secondary" data-i18n="cookie-decline">Ablehnen</button>
                     <button id="cookieAccept" class="cookie-btn" data-i18n="cookie-accept">Akzeptieren</button>
                 </div>
             </div>
         </div>
     </div>
-    
+
     <!-- Custom JS -->
-    <script src="js/cookie-banner.min.js"></script>
-    <script src="js/main.min.js?v=10"></script>
+    <script src="js/consent.min.js?v=11"></script>
+    <script src="js/main.min.js?v=11"></script>
 </body>
 
 </html>

@@ -62,16 +62,11 @@ document.addEventListener('DOMContentLoaded', () => {
             "footer-impressum": "Impressum",
             "footer-datenschutz": "Datenschutz",
             "footer-rights": "© 2026 Envisio. Alle Rechte vorbehalten.",
-            "cookie-text": "Diese Website verwendet Cookies, um Ihre Erfahrung zu verbessern. Durch die weitere Nutzung der Website stimmen Sie der Verwendung von Cookies zu.",
+            "footer-cookie-settings": "Cookie-Einstellungen",
+            "cookie-text": "Diese Website bindet Inhalte von Vimeo, Unsplash und lottie.host ein. Dabei wird Ihre IP-Adresse an diese Anbieter übertragen. Diese Inhalte werden erst nach Ihrer Einwilligung geladen.",
             "cookie-more": "Mehr erfahren",
             "cookie-accept": "Akzeptieren",
-            "testimonials-title": "Was Kunden sagen",
-            "testimonial-quote-1": "\"Envisio hat unsere Vision nicht nur verstanden, sondern auf ein Level gehoben, das wir uns nicht vorstellen konnten. Die filmische Qualität ist absolut Weltklasse.\"",
-            "testimonial-author-1": "Marco Rossi",
-            "testimonial-role-1": "Inhaber, Fine Dining Group",
-            "testimonial-quote-2": "\"Die Zusammenarbeit war hochprofessionell. Unsere neue Landingpage in Kombination mit den Drohnenaufnahmen hat unsere Anfragen verdoppelt.\"",
-            "testimonial-author-2": "Sarah Schmidt",
-            "testimonial-role-2": "Marketing Direktorin, Luxury Estate",
+            "cookie-decline": "Ablehnen",
             "form-sending": "Wird gesendet...",
             "form-success": "Nachricht erhalten!",
             "wa-contact-label": "WhatsApp Kontakt",
@@ -135,16 +130,11 @@ document.addEventListener('DOMContentLoaded', () => {
             "footer-impressum": "Künye",
             "footer-datenschutz": "Gizlilik",
             "footer-rights": "© 2026 Envisio. Tüm hakları saklıdır.",
-            "cookie-text": "Bu web sitesi, size en iyi deneyimi sunmak için çerezleri kullanır. Sitemizi kullanmaya devam ederek çerez kullanımını kabul etmiş sayılırsınız.",
+            "footer-cookie-settings": "Çerez Ayarları",
+            "cookie-text": "Bu web sitesi Vimeo, Unsplash ve lottie.host içeriklerini kullanır. Bu sırada IP adresiniz ilgili sağlayıcılara aktarılır. Bu içerikler yalnızca onayınızdan sonra yüklenir.",
             "cookie-more": "Daha fazla bilgi",
             "cookie-accept": "Kabul Et",
-            "testimonials-title": "Müşterilerimiz Ne Diyor?",
-            "testimonial-quote-1": "\"Envisio sadece vizyonumuzu anlamakla kalmadı, onu hayal bile edemeyeceğimiz bir seviyeye taşıdı. Sinematik kalite kesinlikle dünya standartlarında.\"",
-            "testimonial-author-1": "Marco Rossi",
-            "testimonial-role-1": "Sahibi, Fine Dining Group",
-            "testimonial-quote-2": "\"İş birliğimiz son derece profesyoneldi. Yeni landing page'imiz ve drone çekimlerimiz sayesinde aldığımız talepler iki katına çıktı.\"",
-            "testimonial-author-2": "Sarah Schmidt",
-            "testimonial-role-2": "Pazarlama Direktörü, Luxury Estate",
+            "cookie-decline": "Reddet",
             "form-sending": "Gönderiliyor...",
             "form-success": "Mesajınız Alındı!",
             "wa-contact-label": "Bizimle Yazışın",
@@ -206,52 +196,69 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (preloader) {
         // Sequentially add classes for staggered animation
-        setTimeout(() => {
-            preloader.classList.add('show-i');
-        }, 400);
+        setTimeout(() => preloader.classList.add('show-i'), 150);
+        setTimeout(() => preloader.classList.add('show-rest'), 400);
+        setTimeout(() => preloader.classList.add('show-subtitle'), 650);
 
-        setTimeout(() => {
-            preloader.classList.add('show-rest');
-        }, 1300);
+        // Only ever show the preloader once per session.
+        const seen = sessionStorage.getItem('preloaderSeen') === '1';
+        const MIN_STAY = seen ? 0 : 800;
+        // Hard ceiling: the preloader must disappear even if `load` never
+        // fires, which happens whenever a third party hangs instead of failing.
+        const MAX_STAY = seen ? 0 : 2500;
 
-        setTimeout(() => {
-            preloader.classList.add('show-subtitle');
-        }, 2100);
+        const startTime = Date.now();
+        let dismissed = false;
 
-        // Transition to main content after everything is loaded
-        window.addEventListener('load', () => {
-            // Ensure minimum display time (3.5s) for the brand impact
-            const minStayTime = 3500;
-            const startTime = parseInt(sessionStorage.getItem('preloaderStartTime')) || Date.now();
-            const elapsed = Date.now() - startTime;
-            const remaining = Math.max(0, minStayTime - elapsed);
+        const revealSite = () => {
+            if (dismissed) return;
+            dismissed = true;
+            sessionStorage.setItem('preloaderSeen', '1');
 
+            preloader.classList.add('fade-out');
             setTimeout(() => {
-                preloader.classList.add('fade-out');
-                
-                setTimeout(() => {
-                    preloader.style.display = 'none';
-                    document.body.classList.add('preloader-done');
-                    
-                    // Trigger hero reveal
-                    const hero = document.getElementById('hero');
-                    if (hero) hero.classList.add('is-loaded');
+                preloader.style.display = 'none';
+                document.body.classList.add('preloader-done');
 
-                    // PLAY LOCAL HERO VIDEO
-                    const heroVideo = document.getElementById('heroVideo');
-                    if (heroVideo) {
-                        heroVideo.play().catch(err => {
-                            console.log("Autoplay blocked or video missing:", err);
-                        });
-                    }
-                }, 1200);
-            }, remaining);
-        });
+                const hero = document.getElementById('hero');
+                if (hero) hero.classList.add('is-loaded');
 
-        // Track start time if not already tracked
-        if (!sessionStorage.getItem('preloaderStartTime')) {
-            sessionStorage.setItem('preloaderStartTime', Date.now());
+                startHeroVideo();
+            }, 500);
+        };
+
+        const dismissAfterMinimum = () => {
+            setTimeout(revealSite, Math.max(0, MIN_STAY - (Date.now() - startTime)));
+        };
+
+        if (document.readyState === 'complete') {
+            dismissAfterMinimum();
+        } else {
+            window.addEventListener('load', dismissAfterMinimum);
         }
+        setTimeout(revealSite, MAX_STAY); // fail-safe, independent of `load`
+    }
+
+    // The hero video is 36 MB, so it is never fetched on small screens - the
+    // CSS poster/gradient stands in for it there.
+    function startHeroVideo() {
+        const heroVideo = document.getElementById('heroVideo');
+        if (!heroVideo) return;
+
+        const tooSmall = window.matchMedia('(max-width: 768px)').matches;
+        const savesData = navigator.connection && navigator.connection.saveData;
+        const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+        if (tooSmall || savesData || reduceMotion) {
+            heroVideo.remove();
+            document.body.classList.add('hero-video-skipped');
+            return;
+        }
+
+        heroVideo.load(); // preload="none" means nothing has been fetched yet
+        heroVideo.play().catch(err => {
+            console.log('Hero video autoplay unavailable:', err);
+        });
     }
 
 
@@ -322,10 +329,38 @@ document.addEventListener('DOMContentLoaded', () => {
         });
         const dots = document.querySelectorAll('.slider-dot');
 
+        // Previously all four Vimeo players loaded at once with autoplay=1.
+        // Now at most one player exists: the visible one, and only once the
+        // visitor has consented to Vimeo embeds.
+        function syncSlideVideos() {
+            const allowed = window.EnvisioConsent && window.EnvisioConsent.granted();
+
+            slides.forEach((slide, index) => {
+                const iframe = slide.querySelector('iframe.lazy-vimeo');
+                if (!iframe) return;
+
+                if (!allowed) {
+                    iframe.removeAttribute('src');
+                    return;
+                }
+
+                if (index === currentSlide) {
+                    const src = iframe.getAttribute('data-consent-src');
+                    if (src && iframe.getAttribute('src') !== src) {
+                        iframe.setAttribute('src', src.replace('autoplay=0', 'autoplay=1'));
+                    }
+                } else if (iframe.hasAttribute('src')) {
+                    // Dropping src tears the player down, which is the only way
+                    // to stop playback without pulling in the Vimeo Player SDK.
+                    iframe.removeAttribute('src');
+                }
+            });
+        }
+
         function updateSlider() {
             // Move track
             sliderTrack.style.transform = `translateX(-${currentSlide * 100}%)`;
-            
+
             // Update classes
             slides.forEach((slide, index) => {
                 slide.classList.toggle('active', index === currentSlide);
@@ -333,6 +368,12 @@ document.addEventListener('DOMContentLoaded', () => {
             dots.forEach((dot, index) => {
                 dot.classList.toggle('active', index === currentSlide);
             });
+
+            syncSlideVideos();
+        }
+
+        if (window.EnvisioConsent) {
+            window.EnvisioConsent.onChange(syncSlideVideos);
         }
 
         function goToSlide(index) {
@@ -514,12 +555,33 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
         function init() { for (let i = 0; i < particleCount; i++) particles.push(new Particle()); }
+
+        // Exposed so the IntersectionObserver below can stop the loop once the
+        // hero scrolls away, instead of burning a frame budget for the whole
+        // length of the page.
+        const state = {
+            running: true,
+            frame: null,
+            resume() {
+                if (state.frame === null && state.running) animate();
+            }
+        };
+        window.envisioParticles = state;
+
         function animate() {
+            if (!state.running) { state.frame = null; return; }
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             particles.forEach(p => { p.update(); p.draw(); });
-            requestAnimationFrame(animate);
+            state.frame = requestAnimationFrame(animate);
         }
-        init(); animate();
+
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            state.running = false;
+            canvas.remove();
+        } else {
+            init();
+            animate();
+        }
     }
 
     // 6. Web3Forms AJAX Submission
@@ -591,61 +653,17 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 8. Magnetic WhatsApp Button
-    const waFloat = document.querySelector('.whatsapp-float');
-    if (waFloat) {
-        document.addEventListener('mousemove', (e) => {
-            const rect = waFloat.getBoundingClientRect();
-            const waX = rect.left + rect.width / 2;
-            const waY = rect.top + rect.height / 2;
-            
-            const distX = e.clientX - waX;
-            const distY = e.clientY - waY;
-            const distance = Math.sqrt(distX * distX + distY * distY);
-            
-            if (distance < 150) {
-                const moveX = (e.clientX - waX) * 0.15;
-                const moveY = (e.clientY - waY) * 0.15;
-                waFloat.style.transform = `translate(${moveX}px, ${moveY}px) scale(1.05)`;
-            } else {
-                waFloat.style.transform = 'translate(0, 0) scale(1)';
-            }
-        });
-    }
-
-    // --- Lazy Loading for Vimeo Iframes ---
-    const vimeoObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const iframe = entry.target;
-                const src = iframe.getAttribute('data-src');
-                if (src) {
-                    iframe.setAttribute('src', src);
-                    iframe.removeAttribute('data-src');
-                }
-                vimeoObserver.unobserve(iframe);
-            }
-        });
-    }, { rootMargin: '200px' });
-
-    document.querySelectorAll('.lazy-vimeo').forEach(iframe => {
-        vimeoObserver.observe(iframe);
-    });
-
-    // --- Particle System Optimization ---
+    // --- Particle System: stop the rAF loop while the hero is off-screen ---
+    // (This previously drove window.pJSDom from particles.js, a library that is
+    //  not loaded here, so it never did anything.)
     const particlesCanvas = document.getElementById('particles-canvas');
-    if (particlesCanvas) {
+    if (particlesCanvas && typeof window.envisioParticles === 'object') {
         const particlesObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
-                if (window.pJSDom && window.pJSDom[0]) {
-                    if (entry.isIntersecting) {
-                        window.pJSDom[0].pJS.particles.move.enable = true;
-                    } else {
-                        window.pJSDom[0].pJS.particles.move.enable = false;
-                    }
-                }
+                window.envisioParticles.running = entry.isIntersecting;
+                if (entry.isIntersecting) window.envisioParticles.resume();
             });
-        }, { threshold: 0.1 });
+        }, { threshold: 0 });
         particlesObserver.observe(particlesCanvas);
     }
 

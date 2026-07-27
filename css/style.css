@@ -4,7 +4,7 @@
 /* Fonts */
 @font-face {
     font-family: 'Inter';
-    src: url('../fonts/Inter-normal-300.ttf') format('truetype');
+    src: url('../fonts/Inter-normal-300.woff2') format('woff2');
     font-weight: 300;
     font-display: swap;
     font-style: normal;
@@ -12,7 +12,7 @@
 
 @font-face {
     font-family: 'Inter';
-    src: url('../fonts/Inter-normal-400.ttf') format('truetype');
+    src: url('../fonts/Inter-normal-400.woff2') format('woff2');
     font-weight: 400;
     font-display: swap;
     font-style: normal;
@@ -20,7 +20,7 @@
 
 @font-face {
     font-family: 'Inter';
-    src: url('../fonts/Inter-normal-700.ttf') format('truetype');
+    src: url('../fonts/Inter-normal-700.woff2') format('woff2');
     font-weight: 700;
     font-display: swap;
     font-style: normal;
@@ -28,7 +28,7 @@
 
 @font-face {
     font-family: 'Inter';
-    src: url('../fonts/Inter-normal-800.ttf') format('truetype');
+    src: url('../fonts/Inter-normal-800.woff2') format('woff2');
     font-weight: 800;
     font-display: swap;
     font-style: normal;
@@ -36,7 +36,7 @@
 
 @font-face {
     font-family: 'Inter';
-    src: url('../fonts/Inter-normal-900.ttf') format('truetype');
+    src: url('../fonts/Inter-normal-900.woff2') format('woff2');
     font-weight: 900;
     font-display: swap;
     font-style: normal;
@@ -44,7 +44,7 @@
 
 @font-face {
     font-family: 'Playfair Display';
-    src: url('../fonts/PlayfairDisplay-normal-400.ttf') format('truetype');
+    src: url('../fonts/PlayfairDisplay-normal-400.woff2') format('woff2');
     font-weight: 400;
     font-display: swap;
     font-style: normal;
@@ -52,7 +52,7 @@
 
 @font-face {
     font-family: 'Playfair Display';
-    src: url('../fonts/PlayfairDisplay-normal-600.ttf') format('truetype');
+    src: url('../fonts/PlayfairDisplay-normal-600.woff2') format('woff2');
     font-weight: 600;
     font-display: swap;
     font-style: normal;
@@ -60,7 +60,7 @@
 
 @font-face {
     font-family: 'Playfair Display';
-    src: url('../fonts/PlayfairDisplay-normal-700.ttf') format('truetype');
+    src: url('../fonts/PlayfairDisplay-normal-700.woff2') format('woff2');
     font-weight: 700;
     font-display: swap;
     font-style: normal;
@@ -68,7 +68,7 @@
 
 @font-face {
     font-family: 'Playfair Display';
-    src: url('../fonts/PlayfairDisplay-italic-400.ttf') format('truetype');
+    src: url('../fonts/PlayfairDisplay-italic-400.woff2') format('woff2');
     font-weight: 400;
     font-display: swap;
     font-style: italic;
@@ -86,6 +86,13 @@
 
     --font-sans: 'Inter', sans-serif;
     --font-serif: 'Playfair Display', serif;
+    /* Aliases: these names were used throughout the stylesheet but never
+       defined, so every rule referencing them fell back to inherit. */
+    --font-heading: var(--font-serif);
+    --font-secondary: var(--font-sans);
+
+    --text-white: #ffffff;
+    --text-light: var(--color-text);
 
     --transition-fast: 0.2s ease;
     --transition-normal: 0.4s cubic-bezier(0.16, 1, 0.3, 1);
@@ -648,7 +655,14 @@ body.nav-open .hamburger-line:last-child {
     width: 100%;
     height: 100%;
     z-index: -1;
+    /* Paints instantly and stands in for the hero video wherever the video is
+       not loaded: mobile, reduced motion, save-data, or before playback starts.
+       Replaces the remote Unsplash poster that used to sit here. */
     background-color: #0a0a0a;
+    background-image:
+        radial-gradient(ellipse 90% 60% at 50% 0%, rgba(211, 168, 124, 0.18), transparent 70%),
+        radial-gradient(ellipse 70% 50% at 15% 100%, rgba(211, 168, 124, 0.10), transparent 65%),
+        linear-gradient(160deg, #14100c 0%, #0a0a0a 55%, #0d0b09 100%);
 }
 
 /* Hero Video (Local MP4) */
@@ -851,6 +865,12 @@ body.nav-open .hamburger-line:last-child {
     inset: 0;
     z-index: 0;
     transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+    /* Card imagery comes from a third party, so it stays behind consent. This
+       gradient is what the card looks like until then - designed to read as
+       intentional rather than as a missing image. */
+    background-image:
+        radial-gradient(ellipse 120% 90% at 30% 0%, rgba(211, 168, 124, 0.14), transparent 65%),
+        linear-gradient(155deg, #1a1611 0%, #121212 60%, #0d0d0d 100%);
 }
 
 .bento-bg img {
@@ -858,7 +878,20 @@ body.nav-open .hamburger-line:last-child {
     height: 100%;
     object-fit: cover;
     filter: brightness(0.4) contrast(1.1) grayscale(40%);
-    transition: filter 0.8s ease;
+    transition: filter 0.8s ease, opacity 0.6s ease;
+}
+
+/* Not yet unlocked: no src, so keep the element from rendering as a broken image. */
+.bento-bg img[data-consent-src] {
+    opacity: 0;
+}
+
+.consent-img {
+    opacity: 0;
+}
+
+.consent-img.consent-loaded {
+    opacity: 1;
 }
 
 .bento-item:hover .bento-bg {
@@ -1897,6 +1930,35 @@ body.modal-active .video-modal-content {
 .cookie-btn:hover {
     background-color: var(--color-text);
     transform: translateY(-2px);
+}
+
+/* Declining has to be as easy as accepting (Art. 7 (3) DSGVO), so this is a
+   real button of the same size - only the fill is quieter. */
+.cookie-btn-secondary {
+    background-color: transparent;
+    color: var(--color-text);
+    border: 1px solid var(--color-border);
+}
+
+.cookie-btn-secondary:hover {
+    background-color: transparent;
+    border-color: var(--color-text);
+    color: var(--color-text);
+}
+
+.cookie-actions .cookie-btn {
+    flex: 0 0 auto;
+}
+
+@media (max-width: 640px) {
+    .cookie-actions {
+        gap: 0.75rem;
+        flex-wrap: wrap;
+    }
+
+    .cookie-actions .cookie-btn {
+        flex: 1 1 0;
+    }
 }
 
 /* Video Modal Duplicate Block Removed - see line ~1500 for active styles */

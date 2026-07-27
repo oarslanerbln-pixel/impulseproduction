@@ -20,6 +20,73 @@ Aşağıdaki P0 maddeleri düzeltilmeden reklam bütçesi harcamak, dolu kovaya 
 
 ---
 
+## Uygulama Durumu (2026-07-27)
+
+Aşama 1 ve 2 uygulandı. Aşağıdaki tabloda her maddenin güncel durumu var;
+detaylı gerekçeler ilgili bölümlerde duruyor.
+
+| # | Bulgu | Durum |
+|---|---|---|
+| 1 | Preloader kilidi / JS'siz boş sayfa | ✅ Düzeltildi |
+| 2 | Rıza öncesi üçüncü taraf yüklemesi | ✅ Düzeltildi |
+| 3 | Uydurma referanslar | ✅ Kaldırıldı |
+| 4 | `playsinline` yok, ölü `.mov` kaynağı | ✅ Düzeltildi |
+| 5 | TTF yerine woff2 | ✅ Düzeltildi |
+| 6 | Sahte `.min` dosyaları | ✅ Düzeltildi |
+| 7 | 455 KB favicon | ✅ Düzeltildi |
+| 8 | Kullanılmayan font aileleri | ✅ Kaldırıldı |
+| 9 | 4 Vimeo iframe'i aynı anda | ✅ Düzeltildi (en fazla 1) |
+| 23 | Üç ölü kod bloğu | ✅ Kaldırıldı / düzeltildi |
+| 24 | Tanımsız CSS değişkenleri | ✅ Tanımlandı |
+| 28 | Depo hijyeni (`files.zip`, `fix_css.py`) | ✅ Temizlendi |
+| 6 (video) | 36 MB videonun yeniden kodlanması | ⚠️ **Açık** — ortamda ffmpeg yok, komut aşağıda |
+| — | Unsplash/Lottie'nin yerelleştirilmesi | ⚠️ **Açık** — ağ politikası indirmeyi engelledi |
+| 10-22, 29-35 | Aşama 3-5 (SEO, erişilebilirlik, dönüşüm) | ⏳ Sırada |
+
+### Ölçülen sonuç
+
+| | Önce | Sonra | Fark |
+|---|---|---|---|
+| Transfer (mobil, video hariç) | 2.260 KB | **391 KB** | **−83%** |
+| İçerik görünene kadar | 5.132 ms | **1.369 ms** | **−73%** |
+| Rıza öncesi üçüncü taraf isteği | 12 | **0** | — |
+| Aynı anda çalışan Vimeo oynatıcı | 4 | **1** | — |
+| JS kapalıyken site | Kalıcı siyah ekran | **Tam çalışıyor** | — |
+| 404 hatası | 1 | **0** | — |
+| `fonts/` klasörü | 3,6 MB | **312 KB** | **−91%** |
+| `favicon.ico` | 465 KB | **1,4 KB** | **−99,7%** |
+
+### Kalan iki iş (sizin yapmanız gerekiyor)
+
+**1. Hero videosunu yeniden kodlayın.** Bu ortamda ffmpeg yok. Yerel makinenizde:
+
+```bash
+ffmpeg -i assets/video/hero-bg-opt.mp4 -t 10 -an \
+  -vf "scale=1920:-2" -c:v libx264 -crf 30 -preset slow -movflags +faststart \
+  assets/video/hero-1080.mp4
+
+ffmpeg -i assets/video/hero-bg-opt.mp4 -t 10 -an \
+  -vf "scale=1920:-2" -c:v libvpx-vp9 -crf 40 -b:v 0 \
+  assets/video/hero-1080.webm
+
+# poster karesi (artık uzak Unsplash görseli yerine yerel dosya)
+ffmpeg -i assets/video/hero-bg-opt.mp4 -ss 2 -frames:v 1 assets/img/hero-poster.jpg
+```
+Hedef 2-4 MB. Yeni dosyaları `index.html` içindeki `<source>` etiketlerine bağlayın.
+Şu an `preload="none"` ve mobilde video hiç yüklenmiyor, yani 36 MB kritik yolda
+değil — ama masaüstünde hâlâ 36 MB.
+
+**2. Unsplash görsellerini ve Lottie animasyonlarını kendinize alın.** Bu oturumun
+ağ politikası `images.unsplash.com`, `unpkg.com` ve `lottie.host` adreslerine 403
+döndürdüğü için dosyaları indiremedim. Şu an bu içerikler rıza kapısının arkasında,
+yani hukuken uyumlu — ancak rıza vermeyen ziyaretçi görselleri görmüyor.
+Dosyaları `assets/img/` altına indirip `data-consent-src` yerine normal `src`
+kullanırsanız hem kapı gereksizleşir hem de görseller herkese görünür. Bir
+prodüksiyon stüdyosunun vitrininde stok fotoğraf yerine kendi işinin olması
+zaten doğrusu.
+
+---
+
 ## P0 — Kritik (yayında bırakılmamalı)
 
 ### 1. Preloader siteyi kilitliyor; JS yoksa site tamamen boş
