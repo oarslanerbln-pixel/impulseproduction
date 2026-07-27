@@ -67,6 +67,10 @@ document.addEventListener('DOMContentLoaded', () => {
             "cookie-more": "Mehr erfahren",
             "cookie-accept": "Akzeptieren",
             "cookie-decline": "Ablehnen",
+            "video-consent-note": "Dieses Video wird von Vimeo geladen. Dabei wird Ihre IP-Adresse an Vimeo übertragen.",
+            "video-consent-btn": "Video laden",
+            "form-error": "Da ist etwas schiefgelaufen. Schreiben Sie uns gerne direkt an info@envisio.studio.",
+            "form-error-short": "Fehler!",
             "form-sending": "Wird gesendet...",
             "form-success": "Nachricht erhalten!",
         },
@@ -133,6 +137,10 @@ document.addEventListener('DOMContentLoaded', () => {
             "cookie-more": "Daha fazla bilgi",
             "cookie-accept": "Kabul Et",
             "cookie-decline": "Reddet",
+            "video-consent-note": "Bu video Vimeo üzerinden yüklenir. Bu sırada IP adresiniz Vimeo'ya aktarılır.",
+            "video-consent-btn": "Videoyu yükle",
+            "form-error": "Bir şeyler ters gitti. Doğrudan info@envisio.studio adresine yazabilirsiniz.",
+            "form-error-short": "Hata!",
             "form-sending": "Gönderiliyor...",
             "form-success": "Mesajınız Alındı!",
         }
@@ -340,19 +348,26 @@ document.addEventListener('DOMContentLoaded', () => {
         threshold: 0.15
     };
 
+    // A single observer drives both reveal systems. There used to be two of
+    // them watching an almost identical element set, each adding its own class.
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-            }
+            if (!entry.isIntersecting) return;
+
+            const delay = parseInt(entry.target.dataset.index || 0, 10) * 90;
+            window.setTimeout(() => {
+                entry.target.classList.add('visible', 'revealed');
+            }, delay);
+
+            observer.unobserve(entry.target);
         });
     }, observerOptions);
 
-    const animatedElements = document.querySelectorAll('.fade-in-element, .portfolio-item, .about-text, .service-row');
-    animatedElements.forEach(el => {
-        el.classList.add('fade-in-element');
-        observer.observe(el);
-    });
+    document.querySelectorAll('.fade-in-element, .section-title, .about-text, .service-row')
+        .forEach(el => {
+            el.classList.add('fade-in-element', 'reveal-ready');
+            observer.observe(el);
+        });
 
     // ==========================================
     // CINEMATIC PORTFOLIO SLIDER
@@ -367,19 +382,58 @@ document.addEventListener('DOMContentLoaded', () => {
         let currentSlide = 0;
         const totalSlides = slides.length;
 
-        // Create dots
+        // Create dots as real buttons - as <div>s they could not be reached or
+        // activated with a keyboard.
         slides.forEach((_, index) => {
-            const dot = document.createElement('div');
+            const dot = document.createElement('button');
+            dot.type = 'button';
             dot.classList.add('slider-dot');
             if (index === 0) dot.classList.add('active');
+            dot.setAttribute('aria-label', 'Slide ' + (index + 1));
+            dot.setAttribute('aria-current', index === 0 ? 'true' : 'false');
             dot.addEventListener('click', () => goToSlide(index));
             dotsContainer.appendChild(dot);
         });
-        const dots = document.querySelectorAll('.slider-dot');
+        dotsContainer.setAttribute('role', 'tablist');
+        const dots = dotsContainer.querySelectorAll('.slider-dot');
 
         // Previously all four Vimeo players loaded at once with autoplay=1.
         // Now at most one player exists: the visible one, and only once the
         // visitor has consented to Vimeo embeds.
+        // Two-click solution: without consent the slide shows a button that
+        // both explains the transfer and, when pressed, permits it. Previously
+        // a visitor who declined just got an empty slide.
+        function ensurePlaceholder(slide) {
+            let ph = slide.querySelector('.slide-consent');
+            if (ph) return ph;
+
+            ph = document.createElement('div');
+            ph.className = 'slide-consent';
+
+            const note = document.createElement('p');
+            note.className = 'slide-consent-note';
+            note.setAttribute('data-i18n', 'video-consent-note');
+            note.textContent = translations[currentLang()]['video-consent-note'];
+
+            const btn = document.createElement('button');
+            btn.type = 'button';
+            btn.className = 'slide-consent-btn';
+            btn.setAttribute('data-i18n', 'video-consent-btn');
+            btn.textContent = translations[currentLang()]['video-consent-btn'];
+            btn.addEventListener('click', () => {
+                if (window.EnvisioConsent) window.EnvisioConsent.grant();
+            });
+
+            ph.appendChild(note);
+            ph.appendChild(btn);
+            slide.appendChild(ph);
+            return ph;
+        }
+
+        function currentLang() {
+            return document.documentElement.lang === 'tr' ? 'tr' : 'de';
+        }
+
         function syncSlideVideos() {
             const allowed = window.EnvisioConsent && window.EnvisioConsent.granted();
 
@@ -389,8 +443,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 if (!allowed) {
                     iframe.removeAttribute('src');
+                    ensurePlaceholder(slide).hidden = false;
                     return;
                 }
+
+                const ph = slide.querySelector('.slide-consent');
+                if (ph) ph.hidden = true;
 
                 if (index === currentSlide) {
                     const src = iframe.getAttribute('data-consent-src');
@@ -414,7 +472,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 slide.classList.toggle('active', index === currentSlide);
             });
             dots.forEach((dot, index) => {
-                dot.classList.toggle('active', index === currentSlide);
+                const isCurrent = index === currentSlide;
+                dot.classList.toggle('active', isCurrent);
+                dot.setAttribute('aria-current', String(isCurrent));
+            });
+
+            slides.forEach((slide, index) => {
+                // Off-screen slides must not be reachable by tab.
+                slide.setAttribute('aria-hidden', String(index !== currentSlide));
             });
 
             syncSlideVideos();
@@ -423,6 +488,10 @@ document.addEventListener('DOMContentLoaded', () => {
         if (window.EnvisioConsent) {
             window.EnvisioConsent.onChange(syncSlideVideos);
         }
+
+        // onChange only fires once a decision exists, so on a first visit the
+        // slides would otherwise sit empty until the visitor touched something.
+        updateSlider();
 
         function goToSlide(index) {
             currentSlide = index;
@@ -439,6 +508,22 @@ document.addEventListener('DOMContentLoaded', () => {
         if (nextBtn) {
             nextBtn.addEventListener('click', () => {
                 currentSlide = (currentSlide + 1) % totalSlides;
+                updateSlider();
+            });
+        }
+
+        // Arrow keys once the slider has focus.
+        const sliderRegion = sliderTrack.closest('.cinematic-slider-container');
+        if (sliderRegion) {
+            sliderRegion.setAttribute('role', 'region');
+            sliderRegion.setAttribute('aria-roledescription', 'Karussell');
+            sliderRegion.setAttribute('aria-label', 'Portfolio');
+            sliderRegion.addEventListener('keydown', (e) => {
+                if (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') return;
+                e.preventDefault();
+                currentSlide = e.key === 'ArrowRight'
+                    ? (currentSlide + 1) % totalSlides
+                    : (currentSlide - 1 + totalSlides) % totalSlides;
                 updateSlider();
             });
         }
@@ -520,7 +605,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (mobileToggle) {
         mobileToggle.addEventListener('click', () => {
-            setMobileNav(!document.body.classList.contains('nav-open'));
+            const open = !document.body.classList.contains('nav-open');
+            setMobileNav(open);
+            if (open && mobileNav) {
+                const first = mobileNav.querySelector('a[href]');
+                if (first) first.focus();
+            }
         });
     }
 
@@ -531,10 +621,31 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     document.addEventListener('keydown', (e) => {
-        if (e.key !== 'Escape') return;
         if (!document.body.classList.contains('nav-open')) return;
-        setMobileNav(false);
-        if (mobileToggle) mobileToggle.focus();
+
+        if (e.key === 'Escape') {
+            setMobileNav(false);
+            if (mobileToggle) mobileToggle.focus();
+            return;
+        }
+
+        // Keep Tab inside the open overlay; otherwise focus wanders onto the
+        // page behind it, which is invisible while the menu covers the screen.
+        if (e.key !== 'Tab' || !mobileNav) return;
+
+        const focusable = mobileNav.querySelectorAll('a[href], button:not([disabled])');
+        if (!focusable.length) return;
+
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+
+        if (e.shiftKey && document.activeElement === first) {
+            e.preventDefault();
+            last.focus();
+        } else if (!e.shiftKey && document.activeElement === last) {
+            e.preventDefault();
+            first.focus();
+        }
     });
 
     // Services logic removed - using CSS-based Bento Grid now.
@@ -684,9 +795,28 @@ document.addEventListener('DOMContentLoaded', () => {
             e.preventDefault();
             const btn = contactForm.querySelector('button[type="submit"]');
             const originalText = btn.textContent;
-            const currentLang = localStorage.getItem('preferredLang') || 'de';
+            const currentLang = document.documentElement.lang === 'tr' ? 'tr' : 'de';
+
+            // A button label change is not reliably announced; this region is.
+            let status = document.getElementById('formStatus');
+            if (!status) {
+                status = document.createElement('p');
+                status.id = 'formStatus';
+                status.className = 'form-status';
+                status.setAttribute('role', 'status');
+                status.setAttribute('aria-live', 'polite');
+                contactForm.appendChild(status);
+            }
+
+            const say = (key, fallback, tone) => {
+                status.textContent = (translations[currentLang] || {})[key] || fallback;
+                status.classList.toggle('is-error', tone === 'error');
+                status.classList.toggle('is-success', tone === 'success');
+            };
+
             btn.disabled = true;
             btn.textContent = translations[currentLang]["form-sending"] || "Sending...";
+            say('form-sending', 'Sending...', null);
 
             const formData = new FormData(contactForm);
             const object = Object.fromEntries(formData);
@@ -706,6 +836,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (response.status === 200) {
                     btn.textContent = translations[currentLang]["form-success"] || "Success!";
                     btn.style.backgroundColor = '#10b981';
+                    say('form-success', 'Success!', 'success');
                     contactForm.reset();
                     setTimeout(() => {
                         btn.textContent = originalText;
@@ -718,8 +849,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             } catch (error) {
                 console.error("Email Error:", error);
-                btn.textContent = "Error!";
+                btn.textContent = translations[currentLang]["form-error-short"] || "Error!";
                 btn.style.backgroundColor = "#ef4444";
+                say('form-error', 'Something went wrong. Please email us directly.', 'error');
                 setTimeout(() => {
                     btn.textContent = originalText;
                     btn.style.backgroundColor = '';
@@ -800,26 +932,43 @@ document.addEventListener('DOMContentLoaded', () => {
     if (parallaxSections.length > 0 && window.innerWidth > 768) {
         // Scroll-based parallax for section content
         let ticking = false;
+        let parallaxCache = [];
+
+        const measureParallax = () => {
+            parallaxCache = [];
+            parallaxSections.forEach(section => {
+                // .portfolio-header-container is centred with translateX(-50%);
+                // writing translateY over that transform shoved the heading to
+                // the right edge, so the slider container is preferred there.
+                const content = section.querySelector('.cinematic-slider-container')
+                    || section.querySelector('.container:not(.portfolio-header-container)');
+                if (!content) return;
+                content.style.transform = '';
+                const rect = section.getBoundingClientRect();
+                parallaxCache.push({
+                    content: content,
+                    top: rect.top + window.scrollY,
+                    height: rect.height,
+                    speed: parseFloat(section.dataset.parallaxSpeed) || 0.2
+                });
+            });
+        };
+
+        measureParallax();
+        window.addEventListener('resize', measureParallax, { passive: true });
 
         const updateParallax = () => {
             const scrollY = window.scrollY;
             const windowHeight = window.innerHeight;
 
-            parallaxSections.forEach(section => {
-                const rect = section.getBoundingClientRect();
-                const sectionTop = rect.top + scrollY;
-                const speed = parseFloat(section.dataset.parallaxSpeed) || 0.2;
-
-                // Only apply when section is near viewport
-                if (rect.bottom > 0 && rect.top < windowHeight) {
-                    const offset = (scrollY - sectionTop + windowHeight) * speed;
-
-                    // Apply subtle parallax to inner content
-                    const content = section.querySelector('.container, .cinematic-slider-container');
-                    if (content) {
-                        content.style.transform = `translateY(${offset * 0.15}px)`;
-                    }
-                }
+            // Offsets and the inner element are resolved once (see cache below)
+            // instead of calling getBoundingClientRect for every section on
+            // every frame, which forced a layout each time.
+            parallaxCache.forEach(item => {
+                const top = item.top - scrollY;
+                if (top + item.height < 0 || top > windowHeight) return;
+                const offset = (scrollY - item.top + windowHeight) * item.speed;
+                item.content.style.transform = `translateY(${offset * 0.15}px)`;
             });
 
             ticking = false;
@@ -831,38 +980,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 ticking = true;
             }
         }, { passive: true });
-    }
-
-    // ==========================================
-    // ENHANCED SCROLL REVEAL ANIMATIONS
-    // ==========================================
-    const revealElements = document.querySelectorAll('.fade-in-element, .section-title, .about-text, .service-row');
-
-    if (revealElements.length > 0) {
-        const revealObserver = new IntersectionObserver((entries) => {
-            entries.forEach((entry, index) => {
-                if (entry.isIntersecting) {
-                    // Staggered delay for grouped items
-                    const delay = entry.target.classList.contains('service-row')
-                        ? parseInt(entry.target.dataset.index || 0) * 100
-                        : 0;
-
-                    setTimeout(() => {
-                        entry.target.classList.add('revealed');
-                    }, delay);
-
-                    revealObserver.unobserve(entry.target);
-                }
-            });
-        }, {
-            threshold: 0.15,
-            rootMargin: '0px 0px -50px 0px'
-        });
-
-        revealElements.forEach(el => {
-            el.classList.add('reveal-ready');
-            revealObserver.observe(el);
-        });
     }
 
     // ==========================================

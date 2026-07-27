@@ -43,6 +43,10 @@
             var v = stored();
             return v === 'granted' || v === 'denied';
         },
+        /* Used by the per-video "load video" button in the portfolio slider. */
+        grant: function () {
+            decide('granted');
+        },
         /* Called by main.js so the slider can pull in a Vimeo player on demand. */
         onChange: function (cb) {
             listeners.push(cb);

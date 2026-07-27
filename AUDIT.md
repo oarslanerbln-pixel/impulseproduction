@@ -56,7 +56,16 @@ detaylı gerekçeler ilgili bölümlerde duruyor.
 | 26 | Ctrl/Cmd+tık yeni sekmede açmıyor | ✅ Düzeltildi |
 | 27 | Passive olmayan scroll, sonsuz imleç döngüsü | ✅ Düzeltildi |
 | — | ~10,5 KB ölü CSS + 4 ölü çeviri anahtarı | ✅ Temizlendi |
-| 21, 29-35 | Kalan erişilebilirlik + dönüşüm işleri | ⏳ Sırada |
+| 21 | Odak halkaları (2.698 satırda 3 kural) | ✅ Site geneli `:focus-visible` |
+| — | Slider noktaları `<div>`, klavyeyle erişilemez | ✅ `<button>` + ok tuşları + `aria-current` |
+| — | Rıza reddedilince portfolyo boş kalıyor | ✅ İki tıklamalı video kapısı |
+| — | Form sonucu ekran okuyucuya duyurulmuyor | ✅ `role="status"` bölgesi |
+| — | Mobil menüde odak hapsi yok | ✅ Tab döngüsü + Escape |
+| — | İki reveal observer aynı elemanları izliyor | ✅ Tek observer'a indirildi |
+| — | Parallax her karede `getBoundingClientRect` | ✅ Ölçümler önbelleğe alındı |
+| — | Parallax, portfolyo başlığının `translateX`ini eziyordu | ✅ Düzeltildi (eski hata) |
+| — | ~13,9 KB ölü CSS toplamda | ✅ Temizlendi |
+| 29-35 | Dönüşüm işleri (form, analytics, fiyat/SSS) | ⏳ İçerik kararı bekliyor |
 | — | **`favicon.ico` eski marka logosu (IMPULSE)** | ⚠️ **Yeni bulgu** — aşağıya bakın |
 
 ### Ölçülen sonuç
