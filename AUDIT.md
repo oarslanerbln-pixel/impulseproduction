@@ -20,6 +20,60 @@ Aşağıdaki P0 maddeleri düzeltilmeden reklam bütçesi harcamak, dolu kovaya 
 
 ---
 
+## Mobil Check-up & SEO Taraması (2026-08-11)
+
+Site adı Envisio'ya çevrildikten sonra genel bir kontrol turu: altı viewport'ta
+(360px–1024px yatay) sistematik mobil test + statik SEO denetimi.
+
+| # | Bulgu | Durum |
+|---|---|---|
+| — | **Hamburger menü tekrar dokununca kapanmıyordu** — `.header` z-index'i (100) `.mobile-nav-overlay`'ınkinden (999) düşüktü; overlay header'ın stacking context'i dışında bir sibling olduğu için açık menüde tüm header'ı (X ikonu dahil) örtüyor ve dokunuşları yutuyordu. `elementFromPoint` + koordinat tabanlı tıklamayla önce/sonra doğrulandı. | ✅ Düzeltildi (`.header` z-index → 1001) |
+| — | Slider noktaları 3px, hamburger ikonu 18px yükseklikte — WCAG 2.2 SC 2.5.8'in 24×24 asgarisinin çok altında, metin-içi istisnasına girmiyor | ✅ Görünmez `::before` dokunma alanı genişletmesi (görsel değişmedi) |
+| — | Hero CTA ve iletişim e-posta linki 22px — sınırın 2px altında, bağımsız CTA (metin içi değil) | ✅ Aynı teknikle genişletildi |
+| — | Form alanları 15px'e hesaplanıyordu (991px altında kök font-size 15'e düşüyor) — iOS Safari'nin odaklanınca otomatik yakınlaştırma eşiği 16px | ✅ Sabit 16px, kök ölçekten bağımsız |
+| — | `impressum.html` / `datenschutz.html`'de meta description ve canonical hiç yoktu | ✅ İkisine de eklendi |
+| — | `theme-color` yoktu — mobil tarayıcı arayüzü markaya uymuyordu | ✅ Eklendi (`#0a0a0a`) |
+| — | Sitemap `lastmod` eski tarihte | ✅ Bugüne güncellendi |
+
+**Kontrol edilip zaten doğru bulunanlar:** başlık hiyerarşisi (tek `<h1>`, atlanan
+seviye yok), site genelinde hiç raster `<img>` yok (eksik alt sorunu da yok),
+JSON-LD geçerli, `og:image` boyutları (1200×630) gerçek dosyayla eşleşiyor,
+robots.txt/sitemap tutarlılığı, hreflang karşılıklılığı.
+
+**Doğrulama:** altı viewport'ta yatay taşma yok; mobil menü her genişlikte
+açılıp artık dokunarak kapanıyor; form alanları 16px; mevcut no-JS /
+reduced-motion / dil değişimi / rıza akışı / sayfa ağırlığı testlerinde sıfır
+regresyon (414 KB, rıza öncesi 0 üçüncü taraf isteği, 0 konsol hatası).
+Production deployment'ta (`impulseproduction.studio`, commit `7c1e780`) canlı
+CSS okunarak teyit edildi.
+
+### ⚠️ Yeni bulgu: repo'ya bağlı ek deployment projeleri
+
+PR #2 üzerinde bot yorumları, bu GitHub reposuna bağlı **üç ayrı Vercel
+projesi** (`impulseproduction`, `impulseproduction-sslp`,
+`impulseproduction.studio`) ve bir **Netlify sitesi** (`impulseprod`)
+olduğunu ortaya çıkardı. Şu ana kadar doğrulanan production trafiği
+(`www.envisio.studio`) `impulseproduction.studio` Vercel projesinden geliyor
+— diğerleri muhtemelen eski denemeler veya kullanılmayan bağlantılar, ama
+teyit edilmedi. Vercel panelinde **Settings → Projects** altına bakıp
+gereksiz olanları silmek hem karışıklığı önler hem de yanlışlıkla farklı bir
+projeye deploy yapılmasının önüne geçer.
+
+### ⚠️ Doğrulanamayan: production'da `x-robots-tag: noindex` var mı
+
+`*.vercel.app` önizleme/dal takma adlarında `x-robots-tag: noindex` başlığı
+görüldü — bu Vercel'in bu host adları için **standart davranışı** (deployment
+URL'lerinin gerçek alan adıyla arama sonuçlarında rekabet etmesini önlemek
+için) ve depoda bunu üretebilecek bir `vercel.json`/framework config yok.
+Ancak bu oturumdan `www.envisio.studio`'ya DNS engelli olduğu için doğrudan
+teyit edilemedi. **Önerilen 10 saniyelik kontrol:** tarayıcıda
+`view-source:https://www.envisio.studio/` açıp `Ctrl+F` ile "robots" arayın,
+veya `curl -I https://www.envisio.studio` çalıştırıp `x-robots-tag`
+satırının olmadığını doğrulayın. Google Search Console'da "URL denetimi"
+aracı da bunu doğrudan gösterir.
+
+---
+
 ## Uygulama Durumu (2026-07-27)
 
 Aşama 1 ve 2 uygulandı. Aşağıdaki tabloda her maddenin güncel durumu var;
