@@ -370,7 +370,13 @@ h6 {
     top: 0;
     left: 0;
     width: 100%;
-    z-index: 100;
+    /* Above .mobile-nav-overlay (z-index: 999). The overlay is a sibling that
+       paints after the header, so with z-index: 100 it sat visually on top of
+       the hamburger/X button and swallowed every tap aimed at it - the open
+       menu could not be closed by re-tapping the icon, only by picking a link
+       or pressing Escape. The toggle's own z-index: 1000 could not fix this on
+       its own, because it only applies inside the header's stacking context. */
+    z-index: 1001;
     padding: 2rem 0;
     transition: background-color var(--transition-normal);
 }
@@ -476,6 +482,16 @@ h6 {
     height: 18px;
     position: relative;
     z-index: 1000;
+}
+
+/* Invisible hit-area: the visual icon is 32x18, well under the 24x24 minimum
+   (WCAG 2.2 SC 2.5.8) and the only way to reach the menu on mobile - not
+   inline text, so it doesn't qualify for that criterion's text exception.
+   Expands the tappable region to 44x44 without changing how the icon looks. */
+.mobile-nav-toggle::before {
+    content: '';
+    position: absolute;
+    inset: -13px -6px;
 }
 
 .hamburger-line {
@@ -766,10 +782,21 @@ body.nav-open .hamburger-line:last-child {
 
 /* Minimal Custom Linear CTA */
 .cta-link {
+    position: relative;
     display: inline-flex;
     align-items: center;
     gap: 1.5rem;
     cursor: pointer;
+}
+
+/* The hero CTA and the contact email link both sit at ~22px tall - a couple
+   of pixels under the 24px minimum (WCAG 2.2 SC 2.5.8), and unlike a link
+   inside a paragraph, a standalone CTA isn't exempt via the "inline text"
+   carve-out. These are the two links most worth getting right on mobile. */
+.cta-link::before {
+    content: '';
+    position: absolute;
+    inset: -8px 0;
 }
 
 .cta-line {
@@ -1085,7 +1112,13 @@ body.nav-open .hamburger-line:last-child {
     padding: 1rem 0;
     color: var(--color-text);
     font-family: var(--font-sans);
-    font-size: 1rem;
+    /* Fixed px, not rem: below 991px the root font-size drops to 15px (see the
+       mobile typography block), which took every field under the 16px
+       threshold iOS Safari uses to decide whether to zoom the page on focus.
+       Every text field, the dropdown and the message box would jump-zoom the
+       instant a visitor tapped in - on the one section of the site people are
+       filling out on their phone. */
+    font-size: 16px;
     transition: border-color var(--transition-normal);
 }
 
@@ -1709,11 +1742,22 @@ body.cursor-active .custom-cursor {
 }
 
 .slider-dot {
+    position: relative;
     width: 50px;
     height: 3px;
     background: rgba(255, 255, 255, 0.2);
     cursor: pointer;
     transition: all 0.4s ease;
+}
+
+/* The visible dot is a 3px-tall line by design; the tappable area shouldn't
+   be. A discrete control like this (not text in a sentence) needs a real hit
+   target, so this pseudo-element extends it to ~27px without touching the
+   thin-line look. */
+.slider-dot::before {
+    content: '';
+    position: absolute;
+    inset: -12px 0;
 }
 
 .slider-dot.active {
